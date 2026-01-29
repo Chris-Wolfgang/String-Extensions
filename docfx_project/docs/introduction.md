@@ -9,7 +9,7 @@ String Extensions is a .NET library that extends the built-in `System.String` cl
 ## Key Features
 
 - **Simple and Intuitive API**: Extension methods that feel natural and are easy to use
-- **.NET 8.0 Support**: Built with the latest .NET framework
+- **Wide .NET Support**: Compatible with .NET Framework 4.6.2 through .NET 10
 - **High Performance**: Optimized for performance with minimal overhead
 - **Comprehensive Coverage**: Wide range of string manipulation capabilities
 - **Well-Tested**: Thoroughly tested to ensure reliability

@@ -4,7 +4,7 @@ A comprehensive collection of extension methods for .NET string manipulation tha
 
 ## Overview
 
-String Extensions is a powerful .NET library designed to simplify common string operations through extension methods. Built for .NET 8.0 and beyond, it provides developers with a rich set of tools for string manipulation, validation, transformation, and parsing.
+String Extensions is a powerful .NET library designed to simplify common string operations through extension methods. Supporting .NET Framework 4.6.2 through .NET 10, it provides developers with a rich set of tools for string manipulation, validation, transformation, and parsing.
 
 ## Features
 
@@ -102,16 +102,16 @@ Complete API documentation for all available extension methods.
 
 ## Requirements
 
-- .NET 8.0 or later
-- C# 12.0 or later
+- .NET Framework 4.6.2 or later, or .NET (Core) 2.0 or later, up to and including .NET 10
+- C# 7.0 or later
 
 ## Supported Platforms
 
-String Extensions supports all platforms that .NET 8.0 supports:
+String Extensions supports all platforms that the .NET runtime supports:
 
-- Windows
-- Linux
-- macOS
+- Windows (.NET Framework 4.6.2+, .NET (Core) 2.0+)
+- Linux (.NET (Core) 2.0+)
+- macOS (.NET (Core) 2.0+)
 - Docker containers
 - Cloud platforms (Azure, AWS, GCP)
 

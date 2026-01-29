@@ -236,15 +236,18 @@ dotnet test --collect:"XPlat Code Coverage"
 
 Recommended tools for development:
 
-- **Visual Studio 2022** (17.8 or later)
+- **Visual Studio 2022** (17.8 or later) or **Visual Studio 2019** (for .NET Framework 4.6.2+ support)
 - **Visual Studio Code** with C# extension
 - **JetBrains Rider** (2023.3 or later)
 
 ### Required .NET SDK
 
-- **.NET 8.0 SDK** or later
+The library supports a wide range of .NET versions:
 
-Download from: https://dotnet.microsoft.com/download
+- **.NET Framework 4.6.2** through **.NET Framework 4.8.1**
+- **.NET (Core) 2.0** through **.NET 10**
+
+Download the appropriate SDK from: https://dotnet.microsoft.com/download
 
 ## Troubleshooting
 

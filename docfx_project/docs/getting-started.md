@@ -6,8 +6,8 @@ This guide will help you quickly get up and running with the String Extensions l
 
 Before you begin, ensure you have the following installed:
 
-- **.NET 8.0 SDK** or later
-- A compatible IDE (Visual Studio 2022, VS Code, or Rider)
+- **.NET SDK** - The library supports .NET Framework 4.6.2 through .NET 10
+- A compatible IDE (Visual Studio 2022, Visual Studio 2019, VS Code, or Rider)
 - Basic knowledge of C# and .NET
 
 ## Installation
