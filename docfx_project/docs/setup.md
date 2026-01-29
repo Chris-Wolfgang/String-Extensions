@@ -84,7 +84,7 @@ For .NET 6+ projects, you can add implicit usings to your project file:
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="String-Extensions" Version="*" />
+    <PackageReference Include="String-Extensions" Version="1.0.0" />
   </ItemGroup>
 </Project>
 ```
@@ -97,7 +97,7 @@ For ASP.NET Core projects, add the package reference to your `.csproj` file:
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="String-Extensions" Version="*" />
+  <PackageReference Include="String-Extensions" Version="1.0.0" />
 </ItemGroup>
 ```
 
@@ -139,7 +139,7 @@ For class library projects that will use String Extensions:
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="String-Extensions" Version="*" />
+    <PackageReference Include="String-Extensions" Version="1.0.0" />
   </ItemGroup>
 </Project>
 ```

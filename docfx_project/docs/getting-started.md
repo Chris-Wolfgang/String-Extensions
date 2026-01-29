@@ -44,12 +44,13 @@ Once installed, you can start using the extension methods immediately. Here's a 
 ```csharp
 using StringExtensions;
 
-// Example usage
-string text = "  Hello World  ";
-string result = text.TrimAndLower(); // "hello world"
+// Example usage - Case conversion
+string text = "hello_world";
+string pascalCase = text.ToPascalCase(); // "HelloWorld"
+string camelCase = text.ToCamelCase(); // "helloWorld"
 
 // Check if string is null or empty
-if (text.IsNullOrEmpty())
+if (string.IsNullOrEmpty(text))
 {
     Console.WriteLine("String is empty");
 }
@@ -95,7 +96,7 @@ Now that you have the library installed and understand basic usage, you can:
 
 1. Explore the [API Documentation](../api/index.md) for a complete list of available methods
 2. Check out the [Setup Guide](setup.md) for advanced configuration options
-3. Review the [Examples](../examples/index.md) for more complex scenarios
+3. Review the source code examples in the documentation for more complex scenarios
 
 ## Getting Help
 
