@@ -1,128 +1,51 @@
 # String Extensions Library
 
-A comprehensive collection of extension methods for .NET string manipulation that makes working with strings more intuitive and efficient.
+A .NET library project for string manipulation extension methods.
 
 ## Overview
 
-String Extensions is a powerful .NET library designed to simplify common string operations through extension methods. Supporting .NET Framework 4.6.2 through .NET 10, it provides developers with a rich set of tools for string manipulation, validation, transformation, and parsing.
+String Extensions is a .NET library project designed to simplify common string operations through extension methods. Supporting .NET Framework 4.6.2 through .NET 10, this library is currently under development.
 
-## Features
+## Project Status
+
+**This project is in early development.** The repository structure and documentation framework are in place, with implementation to follow.
+
+## Planned Features
+
+The library is being designed to include capabilities in several areas:
 
 ### String Validation
-- Email validation
-- URL validation
-- Phone number validation
-- Credit card number validation
-- Empty/null checks with semantic methods
+Common validation operations for strings
 
 ### String Transformation
-- Case conversions (camelCase, PascalCase, snake_case, kebab-case)
-- Truncation with ellipsis
-- Padding and alignment
-- Remove extra whitespace
-- Reverse strings
-- String encoding conversions
+Case conversions and text transformations
 
 ### String Parsing
-- Safe parsing to numeric types with null fallback
-- DateTime parsing with culture support
-- Boolean parsing with flexible input
-- Custom type parsing
+Safe parsing operations with appropriate error handling
 
 ### String Formatting
-- Template-based formatting
-- Number formatting
-- Currency formatting
-- Date/time formatting
-- Custom format providers
+Formatting utilities for common scenarios
 
 ### String Manipulation
-- Substring operations with safety checks
-- String replacement with multiple options
-- Character removal and filtering
-- String splitting with advanced options
-- String joining with separators
-
-## Installation
-
-Install the String Extensions library via NuGet:
-
-```bash
-dotnet add package String-Extensions
-```
-
-Or via the Package Manager Console:
-
-```powershell
-Install-Package String-Extensions
-```
-
-## Quick Start
-
-Add the using directive to your C# file:
-
-```csharp
-using StringExtensions;
-```
-
-Start using the extension methods:
-
-```csharp
-// Validation
-if ("user@example.com".IsValidEmail())
-{
-    Console.WriteLine("Valid email!");
-}
-
-// Transformation
-string result = "hello_world".ToPascalCase(); // "HelloWorld"
-
-// Parsing
-int? number = "123".ToIntOrNull(); // 123
-
-// Truncation
-string text = "Long text here".Truncate(10); // "Long text..."
-```
-
-## Documentation Structure
-
-This documentation is organized into the following sections:
-
-### [Introduction](introduction.md)
-Learn about the String Extensions library, its features, and why you should use it.
-
-### [Getting Started](getting-started.md)
-Quick start guide to install and begin using the library in your projects.
-
-### [Setup](setup.md)
-Detailed setup and configuration instructions for advanced scenarios.
-
-### [API Reference](../api/index.md)
-Complete API documentation for all available extension methods.
+Common string manipulation operations
 
 ## Requirements
 
-- .NET Framework 4.6.2 or later, or .NET (Core) 2.0 or later, up to and including .NET 10
+When released, the library will support:
+
+- .NET Framework 4.6.2 or later
+- .NET (Core) 2.0 or later, up to and including .NET 10
 - C# 7.0 or later
 
 ## Supported Platforms
 
-String Extensions supports all platforms that the .NET runtime supports:
+The library will support all platforms that the .NET runtime supports:
 
 - Windows (.NET Framework 4.6.2+, .NET (Core) 2.0+)
 - Linux (.NET (Core) 2.0+)
 - macOS (.NET (Core) 2.0+)
 - Docker containers
 - Cloud platforms (Azure, AWS, GCP)
-
-## Performance
-
-String Extensions is designed with performance in mind:
-
-- Minimal allocations where possible
-- Optimized algorithms for common operations
-- Benchmarked against standard .NET methods
-- No reflection usage in hot paths
 
 ## Contributing
 
@@ -144,32 +67,24 @@ String Extensions is licensed under the MIT License. See the [LICENSE](../../LIC
 - **Discussions**: [Ask questions and share ideas](https://github.com/Chris-Wolfgang/String-Extensions/discussions)
 - **Documentation**: You're reading it!
 
-## Roadmap
+## Development
 
-Planned features for future releases:
+For information on setting up the development environment, see:
 
-- Regular expression extensions
-- String comparison utilities
-- Localization helpers
-- Advanced pattern matching
-- String encryption/decryption helpers
+- **[Introduction](introduction.md)** - Project overview and goals
+- **[Getting Started](getting-started.md)** - How to get involved
+- **[Setup](setup.md)** - Development environment setup
 
 ## Acknowledgments
 
-String Extensions is built and maintained by the community. Special thanks to all contributors who have helped make this library better.
-
-## Related Projects
-
-- [Microsoft String Extensions](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/)
-- [Humanizer](https://github.com/Humanizr/Humanizer)
-- [FluentValidation](https://github.com/FluentValidation/FluentValidation)
+This project uses a standardized .NET repository template to ensure consistent structure and tooling.
 
 ## Stay Connected
 
 - Star the repository on [GitHub](https://github.com/Chris-Wolfgang/String-Extensions)
-- Follow for updates
-- Share with your developer community
+- Watch for updates on development progress
+- Contribute to the project
 
 ---
 
-**Ready to get started?** Head over to the [Getting Started](getting-started.md) guide!
+**Want to contribute?** Check out the [Getting Started](getting-started.md) guide!

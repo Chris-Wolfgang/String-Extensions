@@ -1,20 +1,44 @@
 # Getting Started
 
-This guide will help you quickly get up and running with the String Extensions library in your .NET projects.
+This guide will help you get started with the String Extensions library project.
 
-## Prerequisites
+## Project Status
 
-Before you begin, ensure you have the following installed:
+The String Extensions library is currently under development. This repository contains the project structure and documentation framework, with implementation to follow.
 
-- **.NET SDK** - The library supports .NET Framework 4.6.2 through .NET 10
+## For Contributors
+
+If you'd like to contribute to the development of this library:
+
+### Prerequisites
+
+- **.NET SDK** - The library will support .NET Framework 4.6.2 through .NET 10
 - A compatible IDE (Visual Studio 2022, Visual Studio 2019, VS Code, or Rider)
 - Basic knowledge of C# and .NET
 
-## Installation
+### Setting Up for Development
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Chris-Wolfgang/String-Extensions.git
+   cd String-Extensions
+   ```
+
+2. **Explore the structure**:
+   - `/src` - Source code will go here
+   - `/tests` - Unit tests will go here
+   - `/benchmarks` - Performance benchmarks will go here
+   - `/examples` - Example usage will go here
+   - `/docs` - Additional documentation
+
+3. **Review the contribution guidelines**:
+   See [CONTRIBUTING.md](../../CONTRIBUTING.md) for details on the development workflow and coding standards.
+
+## For Future Users
+
+Once the library is published to NuGet, you will be able to install it using:
 
 ### Via NuGet Package Manager
-
-You can install String Extensions using the NuGet Package Manager in Visual Studio:
 
 1. Right-click on your project in Solution Explorer
 2. Select "Manage NuGet Packages"
@@ -23,89 +47,30 @@ You can install String Extensions using the NuGet Package Manager in Visual Stud
 
 ### Via .NET CLI
 
-Alternatively, you can install the package using the .NET CLI:
-
 ```bash
 dotnet add package String-Extensions
 ```
 
 ### Via Package Manager Console
 
-Or use the Package Manager Console in Visual Studio:
-
 ```powershell
 Install-Package String-Extensions
 ```
 
-## Basic Usage
+## Documentation Structure
 
-Once installed, you can start using the extension methods immediately. Here's a simple example:
-
-```csharp
-using StringExtensions;
-
-// Example usage - Case conversion
-string text = "hello_world";
-string pascalCase = text.ToPascalCase(); // "HelloWorld"
-string camelCase = text.ToCamelCase(); // "helloWorld"
-
-// Check if string is null or empty
-if (string.IsNullOrEmpty(text))
-{
-    Console.WriteLine("String is empty");
-}
-
-// Truncate with ellipsis
-string longText = "This is a very long string that needs to be truncated";
-string truncated = longText.Truncate(20); // "This is a very long..."
-```
-
-## Common Use Cases
-
-### String Validation
-
-```csharp
-string email = "user@example.com";
-bool isValid = email.IsValidEmail();
-
-string url = "https://example.com";
-bool isValidUrl = url.IsValidUrl();
-```
-
-### String Transformation
-
-```csharp
-string text = "hello_world";
-string camelCase = text.ToCamelCase(); // "helloWorld"
-string pascalCase = text.ToPascalCase(); // "HelloWorld"
-```
-
-### String Parsing
-
-```csharp
-string number = "123.45";
-double? value = number.ToDoubleOrNull(); // 123.45
-
-string date = "2024-01-15";
-DateTime? parsed = date.ToDateTimeOrNull(); // DateTime object or null
-```
-
-## Next Steps
-
-Now that you have the library installed and understand basic usage, you can:
-
-1. Explore the [API Documentation](../api/index.md) for a complete list of available methods
-2. Check out the [Setup Guide](setup.md) for advanced configuration options
-3. Review the source code examples in the documentation for more complex scenarios
+- **[Introduction](introduction.md)** - Project overview and goals
+- **[Setup](setup.md)** - Development setup instructions
+- **[API Reference](../api/index.md)** - API documentation (to be generated)
 
 ## Getting Help
 
-If you encounter any issues or have questions:
+If you have questions or want to contribute:
 
-- Check the [API Documentation](../api/index.md)
 - Visit the [GitHub Repository](https://github.com/Chris-Wolfgang/String-Extensions)
-- Open an issue on GitHub for bug reports or feature requests
+- Open an issue for bug reports or feature requests
+- Check existing issues and discussions
 
-## What's Next?
+## Next Steps
 
-Continue to the [Setup Guide](setup.md) to learn about advanced configuration and customization options.
+For detailed development setup instructions, see the [Setup Guide](setup.md).
