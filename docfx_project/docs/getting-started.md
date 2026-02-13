@@ -32,7 +32,7 @@ If you'd like to contribute to the development of this library:
    - `/docs` - Additional documentation
 
 3. **Review the contribution guidelines**:
-   See [CONTRIBUTING.md](../../CONTRIBUTING.md) for details on the development workflow and coding standards.
+   See [CONTRIBUTING.md](https://github.com/Chris-Wolfgang/String-Extensions/blob/main/CONTRIBUTING.md) for details on the development workflow and coding standards.
 
 ## For Future Users
 
