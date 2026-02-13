@@ -61,7 +61,7 @@ Install-Package String-Extensions
 
 - **[Introduction](introduction.md)** - Project overview and goals
 - **[Setup](setup.md)** - Development setup instructions
-- **[API Reference](../api/index.md)** - API documentation (to be generated)
+- **API Reference** - API documentation (to be generated)
 
 ## Getting Help
 

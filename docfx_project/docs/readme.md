@@ -49,7 +49,7 @@ The library will support all platforms that the .NET runtime supports:
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](../../CONTRIBUTING.md) for details on:
+We welcome contributions! Please see our [Contributing Guide](https://github.com/Chris-Wolfgang/String-Extensions/blob/main/CONTRIBUTING.md) for details on:
 
 - Code of conduct
 - Development workflow
@@ -59,7 +59,7 @@ We welcome contributions! Please see our [Contributing Guide](../../CONTRIBUTING
 
 ## License
 
-String Extensions is licensed under the MIT License. See the [LICENSE](../../LICENSE) file for details.
+String Extensions is licensed under the MIT License. See the [LICENSE](https://github.com/Chris-Wolfgang/String-Extensions/blob/main/LICENSE) file for details.
 
 ## Support
 

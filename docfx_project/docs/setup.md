@@ -90,7 +90,7 @@ For supporting multiple .NET versions, configure the `.csproj` file:
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net462;netstandard2.0;net6.0;net8.0;net10.0</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>7.0</LangVersion>
   </PropertyGroup>
 </Project>
 ```
@@ -191,6 +191,8 @@ Build documentation:
 cd docfx_project
 docfx build
 ```
+
+**Note:** The current DocFX configuration references a placeholder project file (`src/<path>/<project>.csproj`) in the metadata section. This will cause the build to fail until actual implementation is added. To build the documentation in the current state, you can temporarily comment out the metadata section in `docfx.json` or use `docfx build --force` to skip API documentation generation.
 
 Serve documentation locally:
 
@@ -300,7 +302,7 @@ public void MethodName_Scenario_ExpectedBehavior()
 
 ## Next Steps
 
-- Review [CONTRIBUTING.md](../../CONTRIBUTING.md) for detailed contribution guidelines
+- Review [CONTRIBUTING.md](https://github.com/Chris-Wolfgang/String-Extensions/blob/main/CONTRIBUTING.md) for detailed contribution guidelines
 - Check existing issues for tasks to work on
 - Join discussions about feature planning
 
@@ -318,4 +320,4 @@ If you encounter issues during setup:
 
 ---
 
-**Ready to contribute?** Check the [Contributing Guide](../../CONTRIBUTING.md) for more details.
+**Ready to contribute?** Check the [Contributing Guide](https://github.com/Chris-Wolfgang/String-Extensions/blob/main/CONTRIBUTING.md) for more details.
