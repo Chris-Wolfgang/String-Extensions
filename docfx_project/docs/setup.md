@@ -90,10 +90,12 @@ For supporting multiple .NET versions, configure the `.csproj` file:
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net462;netstandard2.0;net6.0;net8.0;net10.0</TargetFrameworks>
-    <LangVersion>7.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 </Project>
 ```
+
+**Note on C# Language Version:** While the library targets runtimes from .NET Framework 4.6.2 through .NET 10 (providing broad runtime compatibility), the project uses `<LangVersion>latest</LangVersion>` to allow compilation with the latest C# language features. This means the project will compile using newer language versions (C# 12+) while still producing binaries compatible with older runtimes. The C# 7.0 reference in the requirements section indicates the minimum language features expected in the codebase for maintainability across all target frameworks.
 
 ## Building the Project
 
