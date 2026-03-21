@@ -39,7 +39,7 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Returns a new string of a specified length in which the current string is centered with spaces padding either size
+    /// Returns a new string of a specified length in which the current string is centered with spaces padding either side
     /// </summary>
     /// <param name="s"></param>
     /// <param name="totalWidth"></param>
@@ -49,7 +49,7 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Returns a new string of a specified length in which the current string is centered with specified character padding either size
+    /// Returns a new string of a specified length in which the current string is centered with specified character padding either side
     /// </summary>
     /// <param name="s"></param>
     /// <param name="totalWidth"></param>

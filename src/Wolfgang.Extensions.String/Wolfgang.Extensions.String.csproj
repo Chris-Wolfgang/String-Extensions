@@ -14,7 +14,7 @@
 		<Authors>Chris Wolfgang</Authors>
 		<Description>A collection of extension methods for strings</Description>
 		<Copyright>Copyright 2026 Chris Wolfgang </Copyright>
-		<PackageProjectUrl>https://github.com/Chris-Wolfgang/Wolfgang.Extensions.IComparable</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/Chris-Wolfgang/String-Extensions</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<AssemblyVersion>1.0.0</AssemblyVersion>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>

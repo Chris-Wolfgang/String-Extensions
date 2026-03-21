@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Wolfgang.Extensions.String\Wolfgang.Extensions.String.csproj" />
-    <ProjectReference Include="..\src\Wolfgang.Extensions.String\Wolfgang.Extensions.String.csproj" />
   </ItemGroup>
 
 </Project>

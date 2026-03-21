@@ -20,7 +20,7 @@ internal abstract class Program
             Console.WriteLine($"\t{"Name".PadCenter(10)}|{"Date".PadCenter(12)}");
             Console.WriteLine("\t----------+------------");
             Console.WriteLine($"\t{"Steve",-10}|{DateTime.Today.ToString("MM/dd/yyyy").PadCenter(12)}");
-            Console.WriteLine($"\t{"Jane",-10}|{DateTime.Today.ToString("1/2/2012").PadCenter(12)}");
+            Console.WriteLine($"\t{"Jane",-10}|{new DateTime(2012, 1, 2).ToString("M/d/yyyy").PadCenter(12)}");
             Console.WriteLine();
         }
 
