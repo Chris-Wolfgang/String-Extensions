@@ -25,7 +25,13 @@
     <File Path=".github/workflows/release.yaml" />
   </Folder>
   <Folder Name="/benchmarks/" />
-  <Folder Name="/examples/" />
-  <Folder Name="/src/" />
-  <Folder Name="/tests/" />
+  <Folder Name="/examples/">
+    <Project Path="examples/Wolfgang.Extensions.String.Examples/Wolfgang.Extensions.String.DotNet8.Examples.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Wolfgang.Extensions.String/Wolfgang.Extensions.String.csproj" Id="2fe11b73-ad42-475f-8c4a-984083c22e94" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Wolfgang.Extensions.String.Tests.Unit/Wolfgang.Extensions.String.Tests.Unit.csproj" Id="a08cbfb0-c34a-426d-9f56-bfab5460a154" />
+  </Folder>
 </Solution>
