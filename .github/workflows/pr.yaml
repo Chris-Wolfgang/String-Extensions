@@ -7,11 +7,13 @@ name: PR Checks v2 (Gated)
 
 permissions:
   contents: read
-  
+
 on:
-  pull_request_target:  # Runs from the main branch, not from PR branch 
-    branches: 
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+    branches:
       - main
+
 jobs:
   # ============================================================================
   # STAGE 1: Linux - .NET Core/5+ Tests with Coverage Gate
