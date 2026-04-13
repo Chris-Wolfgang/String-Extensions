@@ -27,7 +27,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: refs/pull/${{ github.event.pull_request.number }}/head
           persist-credentials: false
 
       # Fix for .NET 5.0 on Ubuntu 22.04+ - install libssl1.1
@@ -211,13 +210,12 @@ jobs:
     runs-on: windows-latest
     needs: test-linux-core
     if: github.repository != 'Chris-Wolfgang/repo-template'
-    
-        with:
-          ref: refs/pull/${{ github.event.pull_request.number }}/head
-          persist-credentials: false
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -278,15 +276,14 @@ jobs:
   test-macos-core:  
     name: "Stage 2b: macOS Tests (.NET 6.0-10.0)"
     runs-on: macos-latest
-        with:
-          ref: refs/pull/${{ github.event.pull_request.number }}/head
-          persist-credentials: false
     needs: test-linux-core
     if: github.repository != 'Chris-Wolfgang/repo-template'
-    
+
     steps:
-      - name:  Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -394,18 +391,17 @@ jobs:
   # ============================================================================
   # STAGE 3: Windows - .NET Framework 4.x Tests (Gated by Stage 2)
   # ============================================================================
-        with:
-          ref: refs/pull/${{ github.event.pull_request.number }}/head
-          persist-credentials: false
-  test-windows-framework: 
+  test-windows-framework:
     name: "Stage 3: Windows .NET Framework Tests (4.6.2-4.8.1)"
     runs-on: windows-latest
     needs: [test-windows-core, test-macos-core]
     if: github.repository != 'Chris-Wolfgang/repo-template'
     
-    steps: 
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -467,9 +463,6 @@ jobs:
           Write-Host "Stage 3: .NET Framework 4.x tests ✅" -ForegroundColor Green
           Write-Host ""
           Write-Host "PR is ready to merge! 🎉" -ForegroundColor Green
-        with:
-          ref: refs/pull/${{ github.event.pull_request.number }}/head
-          persist-credentials: false
 
   # ============================================================================
   # Security Scan (Runs in parallel with tests)
