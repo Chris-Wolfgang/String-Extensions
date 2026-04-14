@@ -18,7 +18,7 @@ env:
   CODECOV_MINIMUM: 90
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, reopened]
     branches:
       - main
