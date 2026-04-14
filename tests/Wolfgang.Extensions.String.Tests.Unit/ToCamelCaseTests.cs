@@ -9,7 +9,7 @@ public class ToCamelCaseTests
     {
         string? sut = null;
 
-        Assert.Throws<ArgumentNullException>(() => sut.ToCamelCase());
+        Assert.Throws<ArgumentNullException>(() => sut!.ToCamelCase());
     }
 
 

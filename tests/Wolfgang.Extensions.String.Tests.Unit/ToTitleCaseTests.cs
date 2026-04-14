@@ -9,7 +9,7 @@ public class ToTitleCaseTests
     {
         string? sut = null;
 
-        Assert.Throws<ArgumentNullException>(() => sut.ToTitleCase());
+        Assert.Throws<ArgumentNullException>(() => sut!.ToTitleCase());
     }
 
 

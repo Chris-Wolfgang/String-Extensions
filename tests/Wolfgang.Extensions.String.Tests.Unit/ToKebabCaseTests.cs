@@ -9,7 +9,7 @@ public class ToKebabCaseTests
     {
         string? sut = null;
 
-        Assert.Throws<ArgumentNullException>(() => sut.ToKebabCase());
+        Assert.Throws<ArgumentNullException>(() => sut!.ToKebabCase());
     }
 
 

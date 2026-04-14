@@ -9,7 +9,7 @@ public class ToSnakeCaseTests
     {
         string? sut = null;
 
-        Assert.Throws<ArgumentNullException>(() => sut.ToSnakeCase());
+        Assert.Throws<ArgumentNullException>(() => sut!.ToSnakeCase());
     }
 
 

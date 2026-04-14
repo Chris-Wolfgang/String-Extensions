@@ -9,7 +9,7 @@ public class ToPascalCaseTests
     {
         string? sut = null;
 
-        Assert.Throws<ArgumentNullException>(() => sut.ToPascalCase());
+        Assert.Throws<ArgumentNullException>(() => sut!.ToPascalCase());
     }
 
 

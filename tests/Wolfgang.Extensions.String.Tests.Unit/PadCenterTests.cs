@@ -8,7 +8,7 @@ public class PadCenterTests
     {
         string? sut = null;
 
-        Assert.Throws<NullReferenceException>(() => sut.PadCenter(10));
+        Assert.Throws<NullReferenceException>(() => sut!.PadCenter(10));
     }
 
 
@@ -29,7 +29,7 @@ public class PadCenterTests
     {
         string? sut = null;
 
-        Assert.Throws<NullReferenceException>(() => sut.PadCenter(-1));
+        Assert.Throws<NullReferenceException>(() => sut!.PadCenter(-1));
     }
 
 
@@ -172,7 +172,7 @@ public class PadCenterTests
     {
         string? sut = null;
 
-        Assert.Throws<NullReferenceException>(() => sut.PadCenter(10, '-'));
+        Assert.Throws<NullReferenceException>(() => sut!.PadCenter(10, '-'));
     }
 
 
@@ -193,7 +193,7 @@ public class PadCenterTests
     {
         string? sut = null;
 
-        Assert.Throws<NullReferenceException>(() => sut.PadCenter(-1, '-'));
+        Assert.Throws<NullReferenceException>(() => sut!.PadCenter(-1, '-'));
     }
 
 
