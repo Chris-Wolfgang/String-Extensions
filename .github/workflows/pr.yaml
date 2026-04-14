@@ -82,7 +82,7 @@ jobs:
           config_files=(".editorconfig" "Directory.Build.props" "Directory.Build.targets" "BannedSymbols.txt" "*.globalconfig" "*.ruleset")
           for config_file in "${config_files[@]}"; do
             if [[ "$config_file" == *"*"* ]]; then
-              git ls-tree -r --name-only main-branch | grep -E "${config_file//\*/.*}" | while read -r file; do
+              git ls-tree -r --name-only main-branch | { grep -E "${config_file//\*/.*}" || true; } | while read -r file; do
                 if [ -n "$file" ]; then
                   echo "  ✓ Copying $file from main branch"
                   mkdir -p "$(dirname "$file")"
@@ -301,7 +301,7 @@ jobs:
           config_files=(".editorconfig" "Directory.Build.props" "Directory.Build.targets" "BannedSymbols.txt" "*.globalconfig" "*.ruleset")
           for config_file in "${config_files[@]}"; do
             if [[ "$config_file" == *"*"* ]]; then
-              git ls-tree -r --name-only main-branch | grep -E "${config_file//\*/.*}" | while read -r file; do
+              git ls-tree -r --name-only main-branch | { grep -E "${config_file//\*/.*}" || true; } | while read -r file; do
                 if [ -n "$file" ]; then
                   echo "  ✓ Copying $file from main branch"
                   mkdir -p "$(dirname "$file")"
@@ -406,7 +406,7 @@ jobs:
           config_files=(".editorconfig" "Directory.Build.props" "Directory.Build.targets" "BannedSymbols.txt" "*.globalconfig" "*.ruleset")
           for config_file in "${config_files[@]}"; do
             if [[ "$config_file" == *"*"* ]]; then
-              git ls-tree -r --name-only main-branch | grep -E "${config_file//\*/.*}" | while read -r file; do
+              git ls-tree -r --name-only main-branch | { grep -E "${config_file//\*/.*}" || true; } | while read -r file; do
                 if [ -n "$file" ]; then
                   echo "  ✓ Copying $file from main branch"
                   mkdir -p "$(dirname "$file")"
@@ -561,7 +561,7 @@ jobs:
           config_files=(".editorconfig" "Directory.Build.props" "Directory.Build.targets" "BannedSymbols.txt" "*.globalconfig" "*.ruleset")
           for config_file in "${config_files[@]}"; do
             if [[ "$config_file" == *"*"* ]]; then
-              git ls-tree -r --name-only main-branch | grep -E "${config_file//\*/.*}" | while read -r file; do
+              git ls-tree -r --name-only main-branch | { grep -E "${config_file//\*/.*}" || true; } | while read -r file; do
                 if [ -n "$file" ]; then
                   echo "  ✓ Copying $file from main branch"
                   mkdir -p "$(dirname "$file")"
@@ -663,7 +663,7 @@ jobs:
           config_files=(".editorconfig" "Directory.Build.props" "Directory.Build.targets" "BannedSymbols.txt" "*.globalconfig" "*.ruleset")
           for config_file in "${config_files[@]}"; do
             if [[ "$config_file" == *"*"* ]]; then
-              git ls-tree -r --name-only main-branch | grep -E "${config_file//\*/.*}" | while read -r file; do
+              git ls-tree -r --name-only main-branch | { grep -E "${config_file//\*/.*}" || true; } | while read -r file; do
                 if [ -n "$file" ]; then
                   echo "  ✓ Copying $file from main branch"
                   mkdir -p "$(dirname "$file")"
