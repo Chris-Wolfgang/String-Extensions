@@ -90,6 +90,8 @@ Capitalizes the first letter of each word, preserving spaces and punctuation.
 "hello world"                         → "Hello World"
 ```
 
+> **Note:** This is a general-purpose implementation that delegates to `TextInfo.ToTitleCase`. Proper names, addresses, and other domain-specific text often require specialized handling (e.g., "McDonald", "van der Berg", "O'Brien") that is not provided here.
+
 ## Usage Example
 
 ```csharp
