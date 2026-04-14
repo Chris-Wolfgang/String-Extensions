@@ -107,8 +107,8 @@ public class PadCenterTests
     [Fact]
     public void PadCenter_string_int_when_passed_null_string_has_same_behavior_as_PadRight()
     {
-        var expectedException =  Assert.Throws<NullReferenceException>(() => ((string)null).PadCenter(-1));
-        var actualException =  Assert.Throws<NullReferenceException>(() => ((string)null).PadCenter(-1));
+        var expectedException =  Assert.Throws<NullReferenceException>(() => ((string?)null!).PadCenter(-1));
+        var actualException =  Assert.Throws<NullReferenceException>(() => ((string?)null!).PadCenter(-1));
 
         Assert.Equal(expectedException.GetType(), actualException.GetType());
     }
@@ -288,8 +288,8 @@ public class PadCenterTests
     [Fact]
     public void PadCenter_string_int_char_when_passed_null_string_has_same_behavior_as_PadRight()
     {
-        var expectedException = Assert.Throws<NullReferenceException>(() => ((string)null).PadRight(-1, '-'));
-        var actualException = Assert.Throws<NullReferenceException>(() => ((string)null).PadCenter(-1, '-'));
+        var expectedException = Assert.Throws<NullReferenceException>(() => ((string?)null!).PadRight(-1, '-'));
+        var actualException = Assert.Throws<NullReferenceException>(() => ((string?)null!).PadCenter(-1, '-'));
 
         Assert.Equal(expectedException.GetType(), actualException.GetType());
     }

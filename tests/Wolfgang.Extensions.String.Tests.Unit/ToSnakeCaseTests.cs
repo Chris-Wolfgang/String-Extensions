@@ -7,7 +7,7 @@ public class ToSnakeCaseTests
     [Fact]
     public void ToSnakeCase_with_passed_null_throws_ArgumentNullException()
     {
-        string sut = null;
+        string? sut = null;
 
         Assert.Throws<ArgumentNullException>(() => sut.ToSnakeCase());
     }

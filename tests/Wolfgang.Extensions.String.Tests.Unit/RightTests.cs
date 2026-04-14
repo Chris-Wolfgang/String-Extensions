@@ -16,7 +16,7 @@ public class RightTests
     [Fact]
     public void Right_WhenPassedNull_ReturnsNull()
     {
-        string sut = null;
+        string? sut = null;
 
         Assert.Null(sut.Right(5));
     }

@@ -7,7 +7,7 @@ public class ToTitleCaseTests
     [Fact]
     public void ToTitleCase_with_passed_null_throws_ArgumentNullException()
     {
-        string sut = null;
+        string? sut = null;
 
         Assert.Throws<ArgumentNullException>(() => sut.ToTitleCase());
     }

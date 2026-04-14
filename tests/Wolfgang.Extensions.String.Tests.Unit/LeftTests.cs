@@ -15,7 +15,7 @@ public class LeftTests
     [Fact]
     public void Left_WhenPassedNull_ReturnsNull()
     {
-        var sut = (string)null;
+        var sut = (string?)null;
 
         Assert.Null(sut.Left(5));
     }

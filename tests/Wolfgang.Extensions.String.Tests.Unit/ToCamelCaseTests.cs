@@ -7,7 +7,7 @@ public class ToCamelCaseTests
     [Fact]
     public void ToCamelCase_with_passed_null_throws_ArgumentNullException()
     {
-        string sut = null;
+        string? sut = null;
 
         Assert.Throws<ArgumentNullException>(() => sut.ToCamelCase());
     }

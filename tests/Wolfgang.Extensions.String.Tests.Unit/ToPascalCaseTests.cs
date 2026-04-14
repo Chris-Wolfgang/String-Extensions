@@ -7,7 +7,7 @@ public class ToPascalCaseTests
     [Fact]
     public void ToPascalCase_with_passed_null_throws_ArgumentNullException()
     {
-        string sut = null;
+        string? sut = null;
 
         Assert.Throws<ArgumentNullException>(() => sut.ToPascalCase());
     }
