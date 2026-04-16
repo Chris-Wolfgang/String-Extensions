@@ -8,7 +8,7 @@ public class PadCenterTests
     {
         string? sut = null;
 
-        Assert.Throws<NullReferenceException>(() => sut!.PadCenter(10));
+        Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(10));
     }
 
 
@@ -25,11 +25,11 @@ public class PadCenterTests
 
 
     [Fact]
-    public void PadCenter_string_int_when_passed_null_string_and_totalWidth_less_than_0_throws_NullReferenceException_on_first_argument()
+    public void PadCenter_string_int_when_passed_null_string_and_totalWidth_less_than_0_throws_ArgumentNullException_on_first_argument()
     {
         string? sut = null;
 
-        Assert.Throws<NullReferenceException>(() => sut!.PadCenter(-1));
+        Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(-1));
     }
 
 
@@ -105,12 +105,9 @@ public class PadCenterTests
 
         
     [Fact]
-    public void PadCenter_string_int_when_passed_null_string_has_same_behavior_as_PadRight()
+    public void PadCenter_string_int_when_passed_null_string_and_negative_totalWidth_throws_ArgumentNullException()
     {
-        var expectedException =  Assert.Throws<NullReferenceException>(() => ((string?)null!).PadCenter(-1));
-        var actualException =  Assert.Throws<NullReferenceException>(() => ((string?)null!).PadCenter(-1));
-
-        Assert.Equal(expectedException.GetType(), actualException.GetType());
+        Assert.Throws<ArgumentNullException>(() => ((string?)null!).PadCenter(-1));
     }
 
 
@@ -172,7 +169,7 @@ public class PadCenterTests
     {
         string? sut = null;
 
-        Assert.Throws<NullReferenceException>(() => sut!.PadCenter(10, '-'));
+        Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(10, '-'));
     }
 
 
@@ -189,11 +186,11 @@ public class PadCenterTests
 
 
     [Fact]
-    public void PadCenter_string_int_char_when_passed_null_string_and_totalWidth_less_than_0_throws_NullReferenceException_on_first_argument()
+    public void PadCenter_string_int_char_when_passed_null_string_and_totalWidth_less_than_0_throws_ArgumentNullException_on_first_argument()
     {
         string? sut = null;
 
-        Assert.Throws<NullReferenceException>(() => sut!.PadCenter(-1, '-'));
+        Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(-1, '-'));
     }
 
 
@@ -286,12 +283,9 @@ public class PadCenterTests
 
 
     [Fact]
-    public void PadCenter_string_int_char_when_passed_null_string_has_same_behavior_as_PadRight()
+    public void PadCenter_string_int_char_when_passed_null_string_and_negative_totalWidth_throws_ArgumentNullException()
     {
-        var expectedException = Assert.Throws<NullReferenceException>(() => ((string?)null!).PadRight(-1, '-'));
-        var actualException = Assert.Throws<NullReferenceException>(() => ((string?)null!).PadCenter(-1, '-'));
-
-        Assert.Equal(expectedException.GetType(), actualException.GetType());
+        Assert.Throws<ArgumentNullException>(() => ((string?)null!).PadCenter(-1, '-'));
     }
 
 
