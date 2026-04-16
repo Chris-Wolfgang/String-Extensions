@@ -19,8 +19,8 @@ internal abstract class Program
 
             Console.WriteLine($"\t{"Name".PadCenter(10)}|{"Date".PadCenter(12)}");
             Console.WriteLine("\t----------+------------");
-            Console.WriteLine($"\t{"Steve",-10}|{DateTime.Today.ToString("MM/dd/yyyy").PadCenter(12)}");
-            Console.WriteLine($"\t{"Jane",-10}|{new DateTime(2012, 1, 2).ToString("M/d/yyyy").PadCenter(12)}");
+            Console.WriteLine($"\t{"Steve",-10}|{DateTime.Today.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture).PadCenter(12)}");
+            Console.WriteLine($"\t{"Jane",-10}|{new DateTime(2012, 1, 2, 0, 0, 0, DateTimeKind.Unspecified).ToString("M/d/yyyy", System.Globalization.CultureInfo.InvariantCulture).PadCenter(12)}");
             Console.WriteLine();
         }
 

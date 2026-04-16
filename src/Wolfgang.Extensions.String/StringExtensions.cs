@@ -59,7 +59,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="totalWidth"/> is less than zero.
     /// </exception>
-    public static string? PadCenter(this string? s, int totalWidth)
+    public static string PadCenter(this string? s, int totalWidth)
         => PadCenter(s, totalWidth, ' ');
 
 
@@ -83,7 +83,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="totalWidth"/> is less than zero.
     /// </exception>
-    public static string? PadCenter(this string? s, int totalWidth, char paddingChar)
+    public static string PadCenter(this string? s, int totalWidth, char paddingChar)
     {
         if (s == null)
         {
@@ -170,7 +170,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
-    public static string? ToCamelCase(this string s)
+    public static string ToCamelCase(this string s)
     {
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
@@ -192,13 +192,13 @@ public static class StringExtensions
             {
                 isLastCharSeparator = false;
                 foundFirstChar = true;
-                output[outputIndex++] = char.ToUpper(chr);
+                output[outputIndex++] = char.ToUpperInvariant(chr);
             }
             else
             {
                 isLastCharSeparator = false;
                 foundFirstChar = true;
-                output[outputIndex++] = char.ToLower(chr);
+                output[outputIndex++] = char.ToLowerInvariant(chr);
             }
         }
 
@@ -227,7 +227,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
-    public static string? ToKebabCase(this string s)
+    public static string ToKebabCase(this string s)
     {
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
@@ -243,7 +243,7 @@ public static class StringExtensions
             }
             else
             {
-                output[outputIndex++] = char.ToLower(chr);
+                output[outputIndex++] = char.ToLowerInvariant(chr);
             }
         }
 
@@ -272,7 +272,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
-    public static string? ToPascalCase(this string s)
+    public static string ToPascalCase(this string s)
     {
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
@@ -292,12 +292,12 @@ public static class StringExtensions
             else if (isLastCharSeparator)
             {
                 isLastCharSeparator = false;
-                output[outputIndex++] = char.ToUpper(chr);
+                output[outputIndex++] = char.ToUpperInvariant(chr);
             }
             else
             {
                 isLastCharSeparator = false;
-                output[outputIndex++] = char.ToLower(chr);
+                output[outputIndex++] = char.ToLowerInvariant(chr);
             }
         }
 
@@ -326,7 +326,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
-    public static string? ToSnakeCase(this string s)
+    public static string ToSnakeCase(this string s)
     {
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
@@ -342,7 +342,7 @@ public static class StringExtensions
             }
             else
             {
-                output[outputIndex++] = char.ToLower(chr);
+                output[outputIndex++] = char.ToLowerInvariant(chr);
             }
         }
 
@@ -372,7 +372,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
-    public static string? ToTitleCase(this string s)
+    public static string ToTitleCase(this string s)
     {
         return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s);
     }
