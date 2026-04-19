@@ -1,6 +1,6 @@
-# Contributing to <Application Name>
+# Contributing to Wolfgang.Extensions.String
 
-Thank you for your interest in contributing to **<Application Name>**! We welcome contributions to help improve this project.
+Thank you for your interest in contributing to **Wolfgang.Extensions.String**! We welcome contributions to help improve this project.
 
 ## How Can You Contribute?
 

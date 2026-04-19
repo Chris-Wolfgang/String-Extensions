@@ -5,7 +5,7 @@
       "src": [
         {
           "files": [
-			"src/<path>/<project>.csproj"
+			"src/Wolfgang.Extensions.String/Wolfgang.Extensions.String.csproj"
           ],
           "src": "../"
         }
@@ -37,8 +37,8 @@
       "default"
     ],
     "globalMetadata": {
-      "_appName": "",
-      "_appTitle": "<title>",
+      "_appName": "Wolfgang.Extensions.String",
+      "_appTitle": "Wolfgang.Extensions.String",
       "_enableSearch": true,
       "pdf": true
     }
