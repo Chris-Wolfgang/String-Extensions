@@ -1,5 +1,3 @@
-using System;
-
 namespace Wolfgang.Extensions.String.DotNet8.Examples;
 
 internal abstract class Program
