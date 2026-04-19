@@ -13,6 +13,9 @@
 # Claude Code
 .claude/
 
+# ReSharper / JetBrains Rider inspection output
+inspections.xml
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
