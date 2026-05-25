@@ -10,7 +10,6 @@
 		<LangVersion>14</LangVersion>
 		<Version>0.1.0</Version>
 		<Title>$(AssemblyName)</Title>
-		<Authors>Chris Wolfgang</Authors>
 		<Description>A collection of extension methods for strings</Description>
 		<Copyright>Copyright 2026 Chris Wolfgang </Copyright>
 		<PackageProjectUrl>https://github.com/Chris-Wolfgang/String-Extensions</PackageProjectUrl>
