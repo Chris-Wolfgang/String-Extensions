@@ -42,6 +42,7 @@
     "globalMetadata": {
       "_appName": "Wolfgang.Extensions.String",
       "_appTitle": "Wolfgang.Extensions.String",
+      "_appLogoPath": "logo.svg",
       "_enableSearch": true,
       "pdf": true
     }
