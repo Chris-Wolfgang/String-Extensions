@@ -30,6 +30,7 @@
     "resource": [
       {
         "files": [
+          "favicon.svg",
           "images/**"
         ]
       }
@@ -42,6 +43,7 @@
     "globalMetadata": {
       "_appName": "Wolfgang.Extensions.String",
       "_appTitle": "Wolfgang.Extensions.String",
+      "_appFaviconPath": "favicon.svg",
       "_enableSearch": true,
       "pdf": true
     }
