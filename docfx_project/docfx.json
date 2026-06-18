@@ -5,7 +5,7 @@
       "src": [
         {
           "files": [
-			"src/Wolfgang.Extensions.String/Wolfgang.Extensions.String.csproj"
+            "src/Wolfgang.Extensions.String/Wolfgang.Extensions.String.csproj"
           ],
           "src": "../"
         }
@@ -19,9 +19,9 @@
   "build": {
     "content": [
       {
-		"files": [
-			"**/*.{md,yml}"
-		],
+        "files": [
+          "**/*.{md,yml}"
+        ],
         "exclude": [
           "_site/**"
         ]
@@ -30,6 +30,9 @@
     "resource": [
       {
         "files": [
+          "apple-touch-icon.png",
+          "favicon.ico",
+          "favicon.svg",
           "images/**"
         ]
       }
@@ -43,6 +46,7 @@
       "_appName": "Wolfgang.Extensions.String",
       "_appTitle": "Wolfgang.Extensions.String",
       "_appLogoPath": "logo.svg",
+      "_appFaviconPath": "favicon.svg",
       "_enableSearch": true,
       "pdf": true
     }
