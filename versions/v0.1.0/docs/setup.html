@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Setup Guide | Wolfgang.Extensions.String </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Setup Guide | Wolfgang.Extensions.String ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="Wolfgang.Extensions.String">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="setup-guide">Setup Guide</h1>
+
+<p>This guide provides instructions for setting up the String Extensions library development environment.</p>
+<h2 id="development-setup">Development Setup</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before you begin development, ensure you have:</p>
+<ul>
+<li><strong>.NET SDK</strong> - Supporting .NET Framework 4.6.2 through .NET 10</li>
+<li>A compatible IDE (Visual Studio 2022, Visual Studio 2019, VS Code, or Rider)</li>
+<li>Git for version control</li>
+<li>Basic knowledge of C# and .NET</li>
+</ul>
+<h3 id="required-net-sdk">Required .NET SDK</h3>
+<p>The library will support a wide range of .NET versions:</p>
+<ul>
+<li><strong>.NET Framework 4.6.2</strong> through <strong>.NET Framework 4.8.1</strong></li>
+<li><strong>.NET (Core) 2.0</strong> through <strong>.NET 10</strong></li>
+</ul>
+<p>Download the appropriate SDK from: <a href="https://dotnet.microsoft.com/download">https://dotnet.microsoft.com/download</a></p>
+<h3 id="development-tools">Development Tools</h3>
+<p>Recommended tools for development:</p>
+<ul>
+<li><strong>Visual Studio 2022</strong> (17.8 or later) or <strong>Visual Studio 2019</strong> (for .NET Framework 4.6.2+ support)</li>
+<li><strong>Visual Studio Code</strong> with C# extension</li>
+<li><strong>JetBrains Rider</strong> (2023.3 or later)</li>
+</ul>
+<h2 id="setting-up-the-repository">Setting Up the Repository</h2>
+<h3 id="1-clone-the-repository">1. Clone the Repository</h3>
+<pre><code class="lang-bash">git clone https://github.com/Chris-Wolfgang/String-Extensions.git
+cd String-Extensions
+</code></pre>
+<h3 id="2-explore-the-structure">2. Explore the Structure</h3>
+<p>The repository follows a standard .NET project structure:</p>
+<pre><code>root/
+├── src/                        # Source code (to be created)
+├── tests/                      # Unit tests (to be created)
+├── benchmarks/                 # Performance benchmarks (to be created)
+├── examples/                   # Example projects (to be created)
+├── docs/                       # Documentation
+├── docfx_project/             # DocFX documentation
+└── .github/                   # GitHub workflows and configurations
+</code></pre>
+<h3 id="3-create-projects">3. Create Projects</h3>
+<p>When adding implementation, follow these steps:</p>
+<h4 id="create-the-main-library-project">Create the Main Library Project</h4>
+<pre><code class="lang-bash">cd src
+dotnet new classlib -n StringExtensions -f net462
+# Add additional target frameworks as needed
+</code></pre>
+<h4 id="create-test-projects">Create Test Projects</h4>
+<pre><code class="lang-bash">cd ../tests
+dotnet new xunit -n StringExtensions.Tests
+</code></pre>
+<h4 id="create-solution-file">Create Solution File</h4>
+<pre><code class="lang-bash">cd ..
+dotnet new sln -n StringExtensions
+dotnet sln add src/StringExtensions/StringExtensions.csproj
+dotnet sln add tests/StringExtensions.Tests/StringExtensions.Tests.csproj
+</code></pre>
+<h3 id="4-multi-targeting-configuration">4. Multi-Targeting Configuration</h3>
+<p>For supporting multiple .NET versions, configure the <code>.csproj</code> file:</p>
+<pre><code class="lang-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+  &lt;PropertyGroup&gt;
+    &lt;TargetFrameworks&gt;net462;netstandard2.0;net6.0;net8.0;net10.0&lt;/TargetFrameworks&gt;
+    &lt;LangVersion&gt;latest&lt;/LangVersion&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;
+</code></pre>
+<p><strong>Note on C# Language Version:</strong> While the library targets runtimes from .NET Framework 4.6.2 through .NET 10 (providing broad runtime compatibility), the project uses <code>&lt;LangVersion&gt;latest&lt;/LangVersion&gt;</code> to allow compilation with the latest C# language features. This means the project will compile using newer language versions (C# 12+) while still producing binaries compatible with older runtimes. The C# 7.0 reference in the requirements section indicates the minimum language features expected in the codebase for maintainability across all target frameworks.</p>
+<h2 id="building-the-project">Building the Project</h2>
+<p>Once projects are created:</p>
+<h3 id="restore-dependencies">Restore Dependencies</h3>
+<pre><code class="lang-bash">dotnet restore
+</code></pre>
+<h3 id="build-the-solution">Build the Solution</h3>
+<pre><code class="lang-bash">dotnet build --configuration Release
+</code></pre>
+<h3 id="run-tests">Run Tests</h3>
+<pre><code class="lang-bash">dotnet test
+</code></pre>
+<h3 id="run-tests-with-coverage">Run Tests with Coverage</h3>
+<pre><code class="lang-bash">dotnet test --collect:&quot;XPlat Code Coverage&quot;
+</code></pre>
+<h2 id="project-configuration">Project Configuration</h2>
+<h3 id="global-using-directives-c-10">Global Using Directives (C# 10+)</h3>
+<p>Create <code>GlobalUsings.cs</code> in the main project:</p>
+<pre><code class="lang-csharp">global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+</code></pre>
+<h3 id="editorconfig">EditorConfig</h3>
+<p>The repository includes an <code>.editorconfig</code> file with coding standards. Ensure your IDE respects these settings.</p>
+<h2 id="contributing-workflow">Contributing Workflow</h2>
+<h3 id="1-create-a-feature-branch">1. Create a Feature Branch</h3>
+<pre><code class="lang-bash">git checkout -b feature/my-new-feature
+</code></pre>
+<h3 id="2-make-changes">2. Make Changes</h3>
+<p>Implement your feature or bug fix following the coding standards.</p>
+<h3 id="3-write-tests">3. Write Tests</h3>
+<p>Ensure all new code has appropriate test coverage.</p>
+<h3 id="4-run-tests-locally">4. Run Tests Locally</h3>
+<pre><code class="lang-bash">dotnet test
+</code></pre>
+<h3 id="5-commit-and-push">5. Commit and Push</h3>
+<pre><code class="lang-bash">git add .
+git commit -m &quot;Description of changes&quot;
+git push origin feature/my-new-feature
+</code></pre>
+<h3 id="6-create-pull-request">6. Create Pull Request</h3>
+<p>Open a pull request on GitHub for review.</p>
+<h2 id="documentation">Documentation</h2>
+<h3 id="building-documentation">Building Documentation</h3>
+<p>The project uses DocFX for documentation generation.</p>
+<p>Install DocFX:</p>
+<pre><code class="lang-bash">dotnet tool install -g docfx
+</code></pre>
+<p>Build documentation:</p>
+<pre><code class="lang-bash">cd docfx_project
+docfx build
+</code></pre>
+<p><strong>Note:</strong> The current DocFX configuration references a placeholder project file (<code>src/&lt;path&gt;/&lt;project&gt;.csproj</code>) in the metadata section. This will cause the build to fail until actual implementation is added. To build the documentation in the current state, you can temporarily comment out the metadata section in <code>docfx.json</code> or use <code>docfx build --force</code> to skip API documentation generation.</p>
+<p>Serve documentation locally:</p>
+<pre><code class="lang-bash">docfx serve _site
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<h4 id="issue-build-fails-with-framework-errors">Issue: Build fails with framework errors</h4>
+<p><strong>Solution:</strong>
+Ensure you have all required .NET SDKs installed. Check with:</p>
+<pre><code class="lang-bash">dotnet --list-sdks
+</code></pre>
+<h4 id="issue-tests-not-discovered">Issue: Tests not discovered</h4>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>Ensure test project references xUnit or your chosen test framework</li>
+<li>Rebuild the test project:
+<pre><code class="lang-bash">dotnet build tests/StringExtensions.Tests
+</code></pre>
+</li>
+</ol>
+<h4 id="issue-multi-targeting-issues">Issue: Multi-targeting issues</h4>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>Verify all target frameworks are installed</li>
+<li>Check the <code>.csproj</code> <code>&lt;TargetFrameworks&gt;</code> element</li>
+<li>Ensure conditional compilation is used for framework-specific code</li>
+</ol>
+<h2 id="code-style-and-standards">Code Style and Standards</h2>
+<h3 id="naming-conventions">Naming Conventions</h3>
+<ul>
+<li>Use PascalCase for public members</li>
+<li>Use camelCase for private fields with <code>_</code> prefix</li>
+<li>Use meaningful, descriptive names</li>
+</ul>
+<h3 id="extension-methods">Extension Methods</h3>
+<p>Extension methods should:</p>
+<ul>
+<li>Be in static classes</li>
+<li>Use <code>this</code> parameter modifier</li>
+<li>Have clear, descriptive names</li>
+<li>Handle null inputs gracefully</li>
+<li>Include XML documentation comments</li>
+</ul>
+<p>Example:</p>
+<pre><code class="lang-csharp">/// &lt;summary&gt;
+/// Performs an operation on the string.
+/// &lt;/summary&gt;
+/// &lt;param name=&quot;value&quot;&gt;The input string.&lt;/param&gt;
+/// &lt;returns&gt;The result.&lt;/returns&gt;
+public static string SomeOperation(this string value)
+{
+    if (value == null)
+        throw new ArgumentNullException(nameof(value));
+    
+    // Implementation
+    return value;
+}
+</code></pre>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<p>When implementing extension methods:</p>
+<ol>
+<li>Minimize allocations</li>
+<li>Use <code>Span&lt;T&gt;</code> and <code>ReadOnlySpan&lt;T&gt;</code> where appropriate</li>
+<li>Consider using <code>StringBuilder</code> for multiple string operations</li>
+<li>Benchmark performance-critical code</li>
+</ol>
+<h2 id="testing-guidelines">Testing Guidelines</h2>
+<h3 id="test-structure">Test Structure</h3>
+<p>Use AAA pattern (Arrange, Act, Assert):</p>
+<pre><code class="lang-csharp">[Fact]
+public void MethodName_Scenario_ExpectedBehavior()
+{
+    // Arrange
+    var input = &quot;test&quot;;
+    
+    // Act
+    var result = input.SomeOperation();
+    
+    // Assert
+    Assert.Equal(&quot;expected&quot;, result);
+}
+</code></pre>
+<h3 id="test-coverage">Test Coverage</h3>
+<ul>
+<li>Aim for high code coverage (80%+)</li>
+<li>Test edge cases and error conditions</li>
+<li>Include null/empty string tests</li>
+<li>Test with different cultures when relevant</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Review <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for detailed contribution guidelines</li>
+<li>Check existing issues for tasks to work on</li>
+<li>Join discussions about feature planning</li>
+</ul>
+<h2 id="getting-help">Getting Help</h2>
+<p>If you encounter issues during setup:</p>
+<ol>
+<li>Check <a href="https://github.com/Chris-Wolfgang/String-Extensions/issues">existing GitHub issues</a></li>
+<li>Review the <a href="readme.html">README</a></li>
+<li>Open a new issue with:
+<ul>
+<li>Your .NET version (<code>dotnet --version</code>)</li>
+<li>Operating system</li>
+<li>Steps to reproduce</li>
+<li>Error messages or logs</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p><strong>Ready to contribute?</strong> Check the <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/main/CONTRIBUTING.md">Contributing Guide</a> for more details.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/main/docfx_project/docs/setup.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      
+      <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

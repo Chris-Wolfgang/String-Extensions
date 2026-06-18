@@ -1,0 +1,152 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Wolfgang.Extensions.String
+  name: Wolfgang.Extensions.String
+  href: api/Wolfgang.Extensions.String.html
+  commentId: N:Wolfgang.Extensions.String
+  fullName: Wolfgang.Extensions.String
+  nameWithType: Wolfgang.Extensions.String
+- uid: Wolfgang.Extensions.String.StringExtensions
+  name: StringExtensions
+  href: api/Wolfgang.Extensions.String.StringExtensions.html
+  commentId: T:Wolfgang.Extensions.String.StringExtensions
+  fullName: Wolfgang.Extensions.String.StringExtensions
+  nameWithType: StringExtensions
+- uid: Wolfgang.Extensions.String.StringExtensions.Left(System.String,System.Int32)
+  name: Left(string?, int)
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_Left_System_String_System_Int32_
+  commentId: M:Wolfgang.Extensions.String.StringExtensions.Left(System.String,System.Int32)
+  name.vb: Left(String, Integer)
+  fullName: Wolfgang.Extensions.String.StringExtensions.Left(string?, int)
+  fullName.vb: Wolfgang.Extensions.String.StringExtensions.Left(String, Integer)
+  nameWithType: StringExtensions.Left(string?, int)
+  nameWithType.vb: StringExtensions.Left(String, Integer)
+- uid: Wolfgang.Extensions.String.StringExtensions.Left*
+  name: Left
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_Left_
+  commentId: Overload:Wolfgang.Extensions.String.StringExtensions.Left
+  isSpec: "True"
+  fullName: Wolfgang.Extensions.String.StringExtensions.Left
+  nameWithType: StringExtensions.Left
+- uid: Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String,System.Int32)
+  name: PadCenter(string?, int)
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_
+  commentId: M:Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String,System.Int32)
+  name.vb: PadCenter(String, Integer)
+  fullName: Wolfgang.Extensions.String.StringExtensions.PadCenter(string?, int)
+  fullName.vb: Wolfgang.Extensions.String.StringExtensions.PadCenter(String, Integer)
+  nameWithType: StringExtensions.PadCenter(string?, int)
+  nameWithType.vb: StringExtensions.PadCenter(String, Integer)
+- uid: Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String,System.Int32,System.Char)
+  name: PadCenter(string?, int, char)
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_System_Char_
+  commentId: M:Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String,System.Int32,System.Char)
+  name.vb: PadCenter(String, Integer, Char)
+  fullName: Wolfgang.Extensions.String.StringExtensions.PadCenter(string?, int, char)
+  fullName.vb: Wolfgang.Extensions.String.StringExtensions.PadCenter(String, Integer, Char)
+  nameWithType: StringExtensions.PadCenter(string?, int, char)
+  nameWithType.vb: StringExtensions.PadCenter(String, Integer, Char)
+- uid: Wolfgang.Extensions.String.StringExtensions.PadCenter*
+  name: PadCenter
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_PadCenter_
+  commentId: Overload:Wolfgang.Extensions.String.StringExtensions.PadCenter
+  isSpec: "True"
+  fullName: Wolfgang.Extensions.String.StringExtensions.PadCenter
+  nameWithType: StringExtensions.PadCenter
+- uid: Wolfgang.Extensions.String.StringExtensions.Right(System.String,System.Int32)
+  name: Right(string?, int)
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_Right_System_String_System_Int32_
+  commentId: M:Wolfgang.Extensions.String.StringExtensions.Right(System.String,System.Int32)
+  name.vb: Right(String, Integer)
+  fullName: Wolfgang.Extensions.String.StringExtensions.Right(string?, int)
+  fullName.vb: Wolfgang.Extensions.String.StringExtensions.Right(String, Integer)
+  nameWithType: StringExtensions.Right(string?, int)
+  nameWithType.vb: StringExtensions.Right(String, Integer)
+- uid: Wolfgang.Extensions.String.StringExtensions.Right*
+  name: Right
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_Right_
+  commentId: Overload:Wolfgang.Extensions.String.StringExtensions.Right
+  isSpec: "True"
+  fullName: Wolfgang.Extensions.String.StringExtensions.Right
+  nameWithType: StringExtensions.Right
+- uid: Wolfgang.Extensions.String.StringExtensions.ToCamelCase(System.String)
+  name: ToCamelCase(string)
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String_
+  commentId: M:Wolfgang.Extensions.String.StringExtensions.ToCamelCase(System.String)
+  name.vb: ToCamelCase(String)
+  fullName: Wolfgang.Extensions.String.StringExtensions.ToCamelCase(string)
+  fullName.vb: Wolfgang.Extensions.String.StringExtensions.ToCamelCase(String)
+  nameWithType: StringExtensions.ToCamelCase(string)
+  nameWithType.vb: StringExtensions.ToCamelCase(String)
+- uid: Wolfgang.Extensions.String.StringExtensions.ToCamelCase*
+  name: ToCamelCase
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToCamelCase_
+  commentId: Overload:Wolfgang.Extensions.String.StringExtensions.ToCamelCase
+  isSpec: "True"
+  fullName: Wolfgang.Extensions.String.StringExtensions.ToCamelCase
+  nameWithType: StringExtensions.ToCamelCase
+- uid: Wolfgang.Extensions.String.StringExtensions.ToKebabCase(System.String)
+  name: ToKebabCase(string)
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String_
+  commentId: M:Wolfgang.Extensions.String.StringExtensions.ToKebabCase(System.String)
+  name.vb: ToKebabCase(String)
+  fullName: Wolfgang.Extensions.String.StringExtensions.ToKebabCase(string)
+  fullName.vb: Wolfgang.Extensions.String.StringExtensions.ToKebabCase(String)
+  nameWithType: StringExtensions.ToKebabCase(string)
+  nameWithType.vb: StringExtensions.ToKebabCase(String)
+- uid: Wolfgang.Extensions.String.StringExtensions.ToKebabCase*
+  name: ToKebabCase
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToKebabCase_
+  commentId: Overload:Wolfgang.Extensions.String.StringExtensions.ToKebabCase
+  isSpec: "True"
+  fullName: Wolfgang.Extensions.String.StringExtensions.ToKebabCase
+  nameWithType: StringExtensions.ToKebabCase
+- uid: Wolfgang.Extensions.String.StringExtensions.ToPascalCase(System.String)
+  name: ToPascalCase(string)
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String_
+  commentId: M:Wolfgang.Extensions.String.StringExtensions.ToPascalCase(System.String)
+  name.vb: ToPascalCase(String)
+  fullName: Wolfgang.Extensions.String.StringExtensions.ToPascalCase(string)
+  fullName.vb: Wolfgang.Extensions.String.StringExtensions.ToPascalCase(String)
+  nameWithType: StringExtensions.ToPascalCase(string)
+  nameWithType.vb: StringExtensions.ToPascalCase(String)
+- uid: Wolfgang.Extensions.String.StringExtensions.ToPascalCase*
+  name: ToPascalCase
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToPascalCase_
+  commentId: Overload:Wolfgang.Extensions.String.StringExtensions.ToPascalCase
+  isSpec: "True"
+  fullName: Wolfgang.Extensions.String.StringExtensions.ToPascalCase
+  nameWithType: StringExtensions.ToPascalCase
+- uid: Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(System.String)
+  name: ToSnakeCase(string)
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String_
+  commentId: M:Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(System.String)
+  name.vb: ToSnakeCase(String)
+  fullName: Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(string)
+  fullName.vb: Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(String)
+  nameWithType: StringExtensions.ToSnakeCase(string)
+  nameWithType.vb: StringExtensions.ToSnakeCase(String)
+- uid: Wolfgang.Extensions.String.StringExtensions.ToSnakeCase*
+  name: ToSnakeCase
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_
+  commentId: Overload:Wolfgang.Extensions.String.StringExtensions.ToSnakeCase
+  isSpec: "True"
+  fullName: Wolfgang.Extensions.String.StringExtensions.ToSnakeCase
+  nameWithType: StringExtensions.ToSnakeCase
+- uid: Wolfgang.Extensions.String.StringExtensions.ToTitleCase(System.String)
+  name: ToTitleCase(string)
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToTitleCase_System_String_
+  commentId: M:Wolfgang.Extensions.String.StringExtensions.ToTitleCase(System.String)
+  name.vb: ToTitleCase(String)
+  fullName: Wolfgang.Extensions.String.StringExtensions.ToTitleCase(string)
+  fullName.vb: Wolfgang.Extensions.String.StringExtensions.ToTitleCase(String)
+  nameWithType: StringExtensions.ToTitleCase(string)
+  nameWithType.vb: StringExtensions.ToTitleCase(String)
+- uid: Wolfgang.Extensions.String.StringExtensions.ToTitleCase*
+  name: ToTitleCase
+  href: api/Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToTitleCase_
+  commentId: Overload:Wolfgang.Extensions.String.StringExtensions.ToTitleCase
+  isSpec: "True"
+  fullName: Wolfgang.Extensions.String.StringExtensions.ToTitleCase
+  nameWithType: StringExtensions.ToTitleCase
