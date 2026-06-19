@@ -431,3 +431,6 @@ nuget-packages/
 docfx_project/_site/
 docfx_project/obj/
 
+
+# JetBrains/ReSharper inspection SARIF report (generated, do not commit)
+inspections.xml
