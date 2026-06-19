@@ -5,17 +5,17 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Title | Wolfgang.Extensions.String </title>
+      <title>Wolfgang.Extensions.String | Wolfgang.Extensions.String </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Title | Wolfgang.Extensions.String ">
+      <meta name="title" content="Wolfgang.Extensions.String | Wolfgang.Extensions.String ">
     
     
       <link rel="shortcut icon" href="favicon.svg">
       <link rel="stylesheet" href="styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="styles/docfx.css">
       <link rel="stylesheet" href="styles/main.css">
-      <meta property="docfx:navrel" content="">
-      <meta property="docfx:tocrel" content="">
+      <meta property="docfx:navrel" content="toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
     
     <meta property="docfx:rel" content="">
     
@@ -70,10 +70,64 @@
         <div class="article row grid">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="title">Title</h1>
+<h1 id="wolfgangextensionsstring">Wolfgang.Extensions.String</h1>
 
-<h2 id="quick-start-notes">Quick Start Notes:</h2>
-<!--1. Add images to the *images* folder if the file is referencing an image.-->
+<p>A collection of extension methods for <code>string</code> targeting .NET Framework 4.6.2, .NET Standard 2.0, .NET 8.0, and .NET 10.0.</p>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-bash">dotnet add package Wolfgang.Extensions.String
+</code></pre>
+<h2 id="methods-at-a-glance">Methods at a glance</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Left(int)</code></td>
+<td>Leftmost N characters</td>
+</tr>
+<tr>
+<td><code>Right(int)</code></td>
+<td>Rightmost N characters</td>
+</tr>
+<tr>
+<td><code>PadCenter(int, char?)</code></td>
+<td>Center within a width, padding both sides</td>
+</tr>
+<tr>
+<td><code>ToCamelCase()</code></td>
+<td>Convert to <code>camelCase</code></td>
+</tr>
+<tr>
+<td><code>ToKebabCase()</code></td>
+<td>Convert to <code>kebab-case</code></td>
+</tr>
+<tr>
+<td><code>ToPascalCase()</code></td>
+<td>Convert to <code>PascalCase</code></td>
+</tr>
+<tr>
+<td><code>ToSnakeCase()</code></td>
+<td>Convert to <code>snake_case</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="quick-examples">Quick examples</h2>
+<pre><code class="lang-csharp">&quot;A sample string&quot;.Left(8);         // &quot;A sample&quot;
+&quot;A sample string&quot;.Right(6);        // &quot;string&quot;
+&quot;Hello&quot;.PadCenter(11, '-');        // &quot;---Hello---&quot;
+&quot;hello world&quot;.ToPascalCase();      // &quot;HelloWorld&quot;
+&quot;Hello World&quot;.ToSnakeCase();       // &quot;hello_world&quot;
+</code></pre>
+<h2 id="where-to-next">Where to next</h2>
+<ul>
+<li><strong><a href="docs/introduction.html">Documentation</a></strong> — concepts, setup, and getting-started walkthrough</li>
+<li><strong><a href="api/index.html">API Reference</a></strong> — full member listing generated from XML doc comments</li>
+<li><strong><a href="https://github.com/Chris-Wolfgang/String-Extensions">GitHub repository</a></strong> — source, issues, releases</li>
+</ul>
 
 </article>
           </div>
