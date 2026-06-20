@@ -290,7 +290,7 @@ var assemblies = [
   {
     "name": "Wolfgang.Extensions.String",
     "classes": [
-      { "name": "Wolfgang.Extensions.String.StringExtensions", "rp": "Wolfgang.Extensions.String_StringExtensions.html", "cl": 73, "ucl": 0, "cal": 73, "tl": 380, "cb": 46, "tb": 46, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "Wolfgang.Extensions.String.StringExtensions", "rp": "Wolfgang.Extensions.String_StringExtensions.html", "cl": 72, "ucl": 0, "cal": 72, "tl": 379, "cb": 46, "tb": 46, "cm": 0, "fcm": 0, "tm": 0, "lch": [100], "bch": [100], "mch": [], "mfch": [], "hc": [{ "et": "6/20/2026 - 5:41:52 PM", "cl": 72, "ucl": 0, "cal": 72, "tl": 379, "lcq": 100, "cb": 46, "tb": 46, "bcq": 100, "cm": 0, "fcm": 0, "tm": 0, "mcq": 0, "mfcq": 0 }], "metrics": { } },
     ]},
 ];
 
