@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-06-20
+
 Canonical maintenance round + binding-stability fix. No public API or runtime
 behavior change vs v0.1.0.
 
@@ -39,5 +41,6 @@ Initial release.
   and `ToTitleCase`.
 - Multi-targeting: .NET Framework 4.6.2, .NET Standard 2.0, .NET 8.0, .NET 10.0.
 
-[Unreleased]: https://github.com/Chris-Wolfgang/String-Extensions/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Chris-Wolfgang/String-Extensions/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/Chris-Wolfgang/String-Extensions/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Chris-Wolfgang/String-Extensions/releases/tag/v0.1.0
