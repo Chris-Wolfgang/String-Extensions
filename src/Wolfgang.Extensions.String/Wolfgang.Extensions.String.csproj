@@ -18,6 +18,7 @@
 		<FileVersion>$([System.Text.RegularExpressions.Regex]::Replace("$(Version)", "[-+].*$", "")).0</FileVersion>
 		<Title>$(AssemblyName)</Title>
 		<Description>A collection of extension methods for strings</Description>
+			<PackageTags>string;strings;extensions;extension-methods;left;right;padcenter;camelcase;kebabcase;pascalcase;snakecase;titlecase;dotnet;netstandard</PackageTags>
 		<PackageProjectUrl>https://github.com/Chris-Wolfgang/String-Extensions</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Chris-Wolfgang/String-Extensions.git</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
