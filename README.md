@@ -2,7 +2,7 @@
 
 A collection of extension methods for strings targeting .NET Framework 4.6.2, .NET Standard 2.0, .NET 8.0, and .NET 10.0.
 
-## Installation
+## 📦 Installation
 
 ```bash
 dotnet add package Wolfgang.Extensions.String
@@ -116,12 +116,12 @@ Console.WriteLine(input.ToSnakeCase());   // "user_login_count"
 Console.WriteLine(input.ToTitleCase());   // "User Login Count"
 ```
 
-## Documentation
+## 📚 Documentation
 
 - [API Reference](https://chris-wolfgang.github.io/String-Extensions/api/)
 - [Getting Started](https://chris-wolfgang.github.io/String-Extensions/docs/getting-started.html)
 - [Introduction](https://chris-wolfgang.github.io/String-Extensions/docs/introduction.html)
 
-## License
+## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
