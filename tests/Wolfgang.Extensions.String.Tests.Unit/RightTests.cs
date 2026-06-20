@@ -4,7 +4,7 @@ public class RightTests
 {
 
     [Fact]
-    public void Right_WhenPassedLengthLessThanZero_ThrowsArgumentOutOfRangeException()
+    public void Right_when_passed_length_less_than_zero_throws_ArgumentOutOfRangeException()
     {
         var sut = "Sample Text";
         var exception = Assert.Throws<ArgumentOutOfRangeException>(() => sut.Right(-1));
@@ -14,7 +14,7 @@ public class RightTests
 
 
     [Fact]
-    public void Right_WhenPassedNull_ReturnsNull()
+    public void Right_when_passed_null_returns_null()
     {
         string? sut = null;
 
@@ -24,7 +24,7 @@ public class RightTests
 
 
     [Fact]
-    public void Right_WhenPassedEmptyString_ReturnsEmptyString()
+    public void Right_when_passed_empty_string_returns_empty_string()
     {
         var sut = string.Empty;
 
@@ -34,7 +34,7 @@ public class RightTests
 
 
     [Fact]
-    public void Right_WhenPassedStringShorterThanSpecifiedLength_ReturnEntireString()
+    public void Right_when_passed_string_shorter_than_specified_length_returns_entire_string()
     {
         var sut = "1234";
 
@@ -44,7 +44,7 @@ public class RightTests
 
 
     [Fact]
-    public void Right_WhenPassedStringIsEqualToLengthSpecified_ReturnEntireString()
+    public void Right_when_passed_string_is_equal_to_length_specified_returns_entire_string()
     {
         var sut = "12345";
 
@@ -57,7 +57,7 @@ public class RightTests
     [InlineData("123456", 5, "23456")]
     [InlineData("bobcat", 3, "cat")]
     [InlineData("Sample Text", 4, "Text")]
-    public void Right_WhenPassedStringIsGreaterThanLengthSpecified_ReturnOnlyTheSpecifiedPortion(string value, int length, string expectedResult)
+    public void Right_when_passed_string_is_greater_than_length_specified_returns_only_the_specified_portion(string value, int length, string expectedResult)
     {
         var sut = value;
 

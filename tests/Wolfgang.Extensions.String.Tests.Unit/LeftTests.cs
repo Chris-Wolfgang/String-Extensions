@@ -3,7 +3,7 @@ namespace Wolfgang.Extensions.String.Tests.Unit;
 public class LeftTests
 {
     [Fact]
-    public void Left_WhenPassedLengthLessThanZero_ThrowsArgumentOutOfRangeException()
+    public void Left_when_passed_length_less_than_zero_throws_ArgumentOutOfRangeException()
     {
         var sut = "Sample Text";
         var exception = Assert.Throws<ArgumentOutOfRangeException>(() => sut.Left(-1));
@@ -13,7 +13,7 @@ public class LeftTests
 
 
     [Fact]
-    public void Left_WhenPassedNull_ReturnsNull()
+    public void Left_when_passed_null_returns_null()
     {
         var sut = (string?)null;
 
@@ -23,7 +23,7 @@ public class LeftTests
 
 
     [Fact]
-    public void Left_WhenPassedEmptyString_ReturnsEmptyString()
+    public void Left_when_passed_empty_string_returns_empty_string()
     {
         var sut = string.Empty;
 
@@ -33,7 +33,7 @@ public class LeftTests
         
 
     [Fact]
-    public void Left_WhenPassedStringShorterThanSpecifiedLength_ReturnEntireString()
+    public void Left_when_passed_string_shorter_than_specified_length_returns_entire_string()
     {
         var sut = "1234";
 
@@ -43,7 +43,7 @@ public class LeftTests
 
 
     [Fact]
-    public void Left_WhenPassedStringIsEqualToLengthSpecified_ReturnEntireString()
+    public void Left_when_passed_string_is_equal_to_length_specified_returns_entire_string()
     {
         var sut = "12345";
 
@@ -56,7 +56,7 @@ public class LeftTests
     [InlineData("123456", 5, "12345")]
     [InlineData("bobcat", 3, "bob")]
     [InlineData("Sample Text", 4, "Samp")]
-    public void Left_WhenPassedStringIsGreaterThanLengthSpecified_ReturnOnlyTheSpecifiedPortion(string sut, int length, string expectedResult)
+    public void Left_when_passed_string_is_greater_than_length_specified_returns_only_the_specified_portion(string sut, int length, string expectedResult)
     {
         Assert.Equal(expectedResult, sut.Left(length));
     }
