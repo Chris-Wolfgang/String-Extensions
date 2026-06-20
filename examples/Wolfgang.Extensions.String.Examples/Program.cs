@@ -11,16 +11,16 @@ internal abstract class Program
 
 
 
-        private static void PadCenter()
-        {
-            Console.WriteLine("\tPadCenter\n\n");
+    private static void PadCenter()
+    {
+        Console.WriteLine("\tPadCenter\n\n");
 
-            Console.WriteLine($"\t{"Name".PadCenter(10)}|{"Date".PadCenter(12)}");
-            Console.WriteLine("\t----------+------------");
-            Console.WriteLine($"\t{"Steve",-10}|{DateTime.Today.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture).PadCenter(12)}");
-            Console.WriteLine($"\t{"Jane",-10}|{new DateTime(2012, 1, 2, 0, 0, 0, DateTimeKind.Unspecified).ToString("M/d/yyyy", System.Globalization.CultureInfo.InvariantCulture).PadCenter(12)}");
-            Console.WriteLine();
-        }
+        Console.WriteLine($"\t{"Name".PadCenter(10)}|{"Date".PadCenter(12)}");
+        Console.WriteLine("\t----------+------------");
+        Console.WriteLine($"\t{"Steve",-10}|{DateTime.Today.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture).PadCenter(12)}");
+        Console.WriteLine($"\t{"Jane",-10}|{new DateTime(2012, 1, 2, 0, 0, 0, DateTimeKind.Unspecified).ToString("M/d/yyyy", System.Globalization.CultureInfo.InvariantCulture).PadCenter(12)}");
+        Console.WriteLine();
+    }
 
 
     private static void Left()
@@ -78,8 +78,9 @@ internal abstract class Program
         Console.WriteLine($"\tToPascalCase: \"{testString.ToPascalCase()}\".\n");
         Console.WriteLine($"\tToSnakeCase: \"{testString.ToSnakeCase()}\".\n");
         Console.WriteLine($"\tToTitleCase: \"{testString.ToTitleCase()}\".\n");
-        
+
         Console.WriteLine("\n");
+        Console.ResetColor();
     }
 
 }

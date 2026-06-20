@@ -191,7 +191,6 @@ public static class StringExtensions
             else if (isLastCharSeparator && foundFirstChar)
             {
                 isLastCharSeparator = false;
-                foundFirstChar = true;
                 output[outputIndex++] = char.ToUpperInvariant(chr);
             }
             else

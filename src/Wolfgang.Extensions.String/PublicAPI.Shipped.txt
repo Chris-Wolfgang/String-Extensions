@@ -1,0 +1,11 @@
+#nullable enable
+Wolfgang.Extensions.String.StringExtensions
+static Wolfgang.Extensions.String.StringExtensions.Left(this string? s, int length) -> string?
+static Wolfgang.Extensions.String.StringExtensions.PadCenter(this string s, int totalWidth) -> string
+static Wolfgang.Extensions.String.StringExtensions.PadCenter(this string s, int totalWidth, char paddingChar) -> string
+static Wolfgang.Extensions.String.StringExtensions.Right(this string? s, int length) -> string?
+static Wolfgang.Extensions.String.StringExtensions.ToCamelCase(this string s) -> string
+static Wolfgang.Extensions.String.StringExtensions.ToKebabCase(this string s) -> string
+static Wolfgang.Extensions.String.StringExtensions.ToPascalCase(this string s) -> string
+static Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(this string s) -> string
+static Wolfgang.Extensions.String.StringExtensions.ToTitleCase(this string s) -> string
