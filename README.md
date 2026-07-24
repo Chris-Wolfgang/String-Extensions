@@ -116,15 +116,15 @@ authoritative list (kept in sync with source on every release), see the
 
 ---
 
-## 🎯 Target Frameworks
+## 🎯 Supported Frameworks
 
-| Framework | Versions |
-|-----------|----------|
-| .NET Framework | .NET Framework 4.6.2 |
-| .NET Standard | .NET Standard 2.0 |
-| .NET | .NET 8.0, .NET 10.0 |
+This library targets:
 
----
+- **.NET Framework:** 4.6.2
+- **.NET Standard:** 2.0
+- **.NET:** 8.0, 10.0
+
+See the [NuGet package page](https://www.nuget.org/packages/Wolfgang.Extensions.String/) for the authoritative per-TFM compatibility matrix.
 
 ## 🔍 Code Quality & Static Analysis
 
