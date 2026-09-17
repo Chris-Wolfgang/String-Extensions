@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784920265626,
+  "lastUpdate": 1789613731964,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -192,6 +192,102 @@ window.BENCHMARK_DATA = {
             "value": 97.71547953287761,
             "unit": "ns",
             "range": "± 4.215658874011142"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "142bd0f96b1c967b84f782e76d24d315bfe6f85a",
+          "message": "ci: pin every workflow action to a commit SHA with an exact # vX.Y.Z comment (#190)\n\nRan repo-template's scripts/pin-actions.ps1 -PinTags on current main (rebuilt\nafter Dependabot's github-actions bump landed): tag references become SHA pins\nand major-only comments (# v7) become the exact tag on the pinned commit\n(# v7.0.1). Only the ref/comment text changed.\n\n7 already exact, 37 line(s) rewritten, 2 tag reference(s), 0 pinned SHA(s) with no tag\n\nRefs Chris-Wolfgang/repo-template#447\n\nCo-authored-by: Chris Wolfgang <cwolfgan@ptd.net>\nCo-authored-by: Claude Opus 5 <noreply@anthropic.com>",
+          "timestamp": "2026-09-16T22:53:00-04:00",
+          "tree_id": "e43b66fa51b973a906ce8add2ef8f39dff7d1e42",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/142bd0f96b1c967b84f782e76d24d315bfe6f85a"
+        },
+        "date": 1789613730202,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 258.59012428919476,
+            "unit": "ns",
+            "range": "± 1.27474072393586"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 92.11777301629384,
+            "unit": "ns",
+            "range": "± 0.7137160652087091"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 87.6145538687706,
+            "unit": "ns",
+            "range": "± 0.24048360079379577"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 91.87431903680165,
+            "unit": "ns",
+            "range": "± 0.5754356085804937"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 91.96109207471211,
+            "unit": "ns",
+            "range": "± 0.23884999066057322"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 21.774578670660656,
+            "unit": "ns",
+            "range": "± 0.35521575994513116"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 20.235636403163273,
+            "unit": "ns",
+            "range": "± 1.742762399068708"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 23.262201696634293,
+            "unit": "ns",
+            "range": "± 0.18333408958199218"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 9.755996659398079,
+            "unit": "ns",
+            "range": "± 0.08615126672766629"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 36.29535297552744,
+            "unit": "ns",
+            "range": "± 1.6184877644321973"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 76.99223613739014,
+            "unit": "ns",
+            "range": "± 1.0431743712459538"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 76.38891617457072,
+            "unit": "ns",
+            "range": "± 1.486696598518125"
           }
         ]
       }
