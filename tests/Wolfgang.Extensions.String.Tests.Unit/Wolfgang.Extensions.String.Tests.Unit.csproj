@@ -8,7 +8,6 @@
 		</TargetFrameworks>
 		<Version>1.0.0-rc</Version>
 		<LangVersion>latest</LangVersion>
-		<ImplicitUsings>enable</ImplicitUsings>
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 		<Copyright>Copyright 2026 Chris Wolfgang</Copyright>
@@ -111,10 +110,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Wolfgang.Extensions.String\Wolfgang.Extensions.String.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Using Include="Xunit" />
 	</ItemGroup>
 
 </Project>
