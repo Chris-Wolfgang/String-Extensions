@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791833138840,
+  "lastUpdate": 1791834959763,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -480,6 +480,102 @@ window.BENCHMARK_DATA = {
             "value": 102.86804723739624,
             "unit": "ns",
             "range": "± 2.5221720000022576"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "3409eeb630e8596e21aac7f3d04497521bc3bff3",
+          "message": "chore(benchmarks): drop redundant using directives (#231)\n\nThe benchmark classes live in Wolfgang.Extensions.String.Benchmarks, a\nchild of Wolfgang.Extensions.String, so `using Wolfgang.Extensions.String;`\nis already in scope and InspectCode flagged it as redundant.\n\nFixes code-scanning alerts #14-#16 (RedundantUsingDirective).\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-10-12T15:51:43-04:00",
+          "tree_id": "69e27ad7f273923d436ec092bf83d8a3ce3c91a7",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/3409eeb630e8596e21aac7f3d04497521bc3bff3"
+        },
+        "date": 1791834958337,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 210.94433943430582,
+            "unit": "ns",
+            "range": "± 1.124183211887908"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 69.45505146185558,
+            "unit": "ns",
+            "range": "± 3.228818114054425"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 80.55302218596141,
+            "unit": "ns",
+            "range": "± 1.9965045354174866"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 74.77290491263072,
+            "unit": "ns",
+            "range": "± 1.980397489756475"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 72.23877831300099,
+            "unit": "ns",
+            "range": "± 1.6984443321824119"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 7.0992171714703245,
+            "unit": "ns",
+            "range": "± 0.07127397081035979"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 6.670487021406491,
+            "unit": "ns",
+            "range": "± 0.4101926994459035"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 9.657283882300058,
+            "unit": "ns",
+            "range": "± 0.0704674777837251"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 8.097687837978205,
+            "unit": "ns",
+            "range": "± 0.09955064638769308"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 27.770346919695537,
+            "unit": "ns",
+            "range": "± 0.2998394784057863"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 62.48678356409073,
+            "unit": "ns",
+            "range": "± 0.5550314676681003"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 65.69491976499557,
+            "unit": "ns",
+            "range": "± 0.8495390569602678"
           }
         ]
       }
