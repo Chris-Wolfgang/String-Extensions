@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791682761241,
+  "lastUpdate": 1791833138840,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -384,6 +384,102 @@ window.BENCHMARK_DATA = {
             "value": 79.03675667444865,
             "unit": "ns",
             "range": "± 1.0836991234298454"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "43c7aa7c0d1712337b43255607fdfaad11d2d685",
+          "message": "fix(publicapi): add nullability annotations to the shipped API baseline (#230)\n\nPublicAPI.Shipped.txt declared the non-nullable string parameters and\nreturns without the `!` annotation, so PublicApiAnalyzers raised RS0036 on\nseven members. The entries now match the analyzer's own rendering of the\ncompiled surface on every TFM (net462, netstandard2.0, net8.0, net10.0).\n\nFixes code-scanning alerts #7-#13 (RS0036).\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-10-12T15:22:47-04:00",
+          "tree_id": "b2f63d95bb067a44adde2a5f59328756125b74fb",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/43c7aa7c0d1712337b43255607fdfaad11d2d685"
+        },
+        "date": 1791833137408,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 293.44321489334106,
+            "unit": "ns",
+            "range": "± 3.997487677585148"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 96.02649060885112,
+            "unit": "ns",
+            "range": "± 1.561366843421895"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 102.86532696088155,
+            "unit": "ns",
+            "range": "± 0.024609574940127752"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 92.39828908443451,
+            "unit": "ns",
+            "range": "± 1.108888813758428"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 93.88430029153824,
+            "unit": "ns",
+            "range": "± 1.4734372547081438"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 9.142824004093805,
+            "unit": "ns",
+            "range": "± 0.22365660224656092"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 9.534162531296412,
+            "unit": "ns",
+            "range": "± 0.22543872335021153"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 9.030752410491308,
+            "unit": "ns",
+            "range": "± 0.05160772422834848"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 10.966250946124395,
+            "unit": "ns",
+            "range": "± 0.02922410850597431"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 49.52359424034754,
+            "unit": "ns",
+            "range": "± 1.0548998869149397"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 106.1173684199651,
+            "unit": "ns",
+            "range": "± 1.2517447278808493"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 102.86804723739624,
+            "unit": "ns",
+            "range": "± 2.5221720000022576"
           }
         ]
       }
