@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791834959763,
+  "lastUpdate": 1791837413459,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -576,6 +576,102 @@ window.BENCHMARK_DATA = {
             "value": 65.69491976499557,
             "unit": "ns",
             "range": "± 0.8495390569602678"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "649b1932c625124975afd281757e80485592b37d",
+          "message": "chore: explicit usings on every TFM (no implicit/global usings in multi-TFM projects) (#233)\n\nRemove ImplicitUsings (net8.0/net10.0 slice of the library, all TFMs of the\ntest project) and the test project's <Using Include=\"Xunit\" />. Add the\nexplicit using directives each test file needs (System, Xunit).\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-10-12T16:34:08-04:00",
+          "tree_id": "17a5d92b3a990411dab426396c4e73f178962879",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/649b1932c625124975afd281757e80485592b37d"
+        },
+        "date": 1791837412073,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 135.57287049293518,
+            "unit": "ns",
+            "range": "± 0.7101545730717514"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 43.37416956822077,
+            "unit": "ns",
+            "range": "± 0.40071612068825346"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 45.90731302897135,
+            "unit": "ns",
+            "range": "± 0.6418463555635857"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 42.67155610521635,
+            "unit": "ns",
+            "range": "± 0.7428564152554066"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 44.12139534950256,
+            "unit": "ns",
+            "range": "± 1.7026856961232317"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 3.3415042584141097,
+            "unit": "ns",
+            "range": "± 0.008208893483537816"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 3.614017846683661,
+            "unit": "ns",
+            "range": "± 0.12379455617543446"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 3.4783887962500253,
+            "unit": "ns",
+            "range": "± 0.06208791895003192"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 4.725396856665611,
+            "unit": "ns",
+            "range": "± 0.13213318247853897"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 17.006078213453293,
+            "unit": "ns",
+            "range": "± 0.4997169716780912"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 36.82043139139811,
+            "unit": "ns",
+            "range": "± 0.6619227089254681"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 36.88858697811762,
+            "unit": "ns",
+            "range": "± 0.28630157587574256"
           }
         ]
       }
