@@ -1,3 +1,6 @@
+using System;
+using Xunit;
+
 namespace Wolfgang.Extensions.String.Tests.Unit;
 
 public class ToPascalCaseTests
