@@ -1,35 +1,21 @@
 # Introduction
 
-Welcome to the String Extensions library documentation! This library will provide extension methods for .NET string manipulation to make common string operations more intuitive and efficient.
+**Wolfgang.Extensions.String** is a small library of extension methods for `string`:
 
-## What is String Extensions?
+- **Substring helpers:** `Left` and `Right` return the first or last N characters. They clamp the length (a string shorter than N is returned unchanged) and return `null` for a `null` input.
+- **Center padding:** `PadCenter` centers a string within a total width, padding both sides with spaces or a character you choose. When the padding is uneven, the extra character goes on the right.
+- **Case conversions:** `ToCamelCase`, `ToKebabCase`, `ToPascalCase`, `ToSnakeCase` and `ToTitleCase`.
 
-String Extensions is a .NET library project designed to extend the built-in `System.String` class with additional methods to simplify common string operations. This library is currently under development.
+The package is published on NuGet as [`Wolfgang.Extensions.String`](https://www.nuget.org/packages/Wolfgang.Extensions.String) and targets .NET Framework 4.6.2, .NET Standard 2.0, .NET 8.0 and .NET 10.0.
 
-## Project Goals
+## Behaviour worth knowing
 
-The goals for this library include:
+- `ToCamelCase`, `ToKebabCase`, `ToPascalCase` and `ToSnakeCase` treat the characters for which `char.IsSeparator` returns `true` (spaces and other Unicode separators) as word boundaries. Punctuation and control characters are kept. They use invariant casing, so the result does not depend on the current culture.
+- `ToTitleCase` delegates to `TextInfo.ToTitleCase` of the **current** culture, and leaves words that are entirely upper case unchanged.
+- `PadCenter` and the case conversions throw `ArgumentNullException` for a `null` input. `Left`, `Right` and `PadCenter` throw `ArgumentOutOfRangeException` for a negative length or width.
 
-- **Simple and Intuitive API**: Extension methods that feel natural and are easy to use
-- **Wide .NET Support**: Compatible with .NET Framework 4.6.2 through .NET 10
-- **High Performance**: Optimized for performance with minimal overhead
-- **Comprehensive Coverage**: Wide range of string manipulation capabilities
-- **Well-Tested**: Thoroughly tested to ensure reliability
-- **Open Source**: Licensed under MIT, free to use in any project
+## Next steps
 
-## Development Status
-
-This project is currently in the early stages of development. The documentation structure has been set up, and implementation will follow.
-
-## Target Audience
-
-This library is being designed for:
-
-- .NET developers working with C#
-- Anyone who frequently manipulates strings in their applications
-- Teams looking to standardize string operations across their codebase
-- Developers seeking to reduce boilerplate code
-
-## Getting Started
-
-For information on how to contribute to or use this library, see the [Getting Started](getting-started.md) guide.
+- [Getting Started](getting-started.md): install the package and call each method.
+- [Building from source](setup.md): build, test and contribute.
+- [API Reference](xref:Wolfgang.Extensions.String.StringExtensions): every member, generated from the XML doc comments.

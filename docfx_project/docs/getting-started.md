@@ -1,76 +1,54 @@
 # Getting Started
 
-This guide will help you get started with the String Extensions library project.
-
-## Project Status
-
-The String Extensions library is currently under development. This repository contains the project structure and documentation framework, with implementation to follow.
-
-## For Contributors
-
-If you'd like to contribute to the development of this library:
-
-### Prerequisites
-
-- **.NET SDK** - The library will support .NET Framework 4.6.2 through .NET 10
-- A compatible IDE (Visual Studio 2022, Visual Studio 2019, VS Code, or Rider)
-- Basic knowledge of C# and .NET
-
-### Setting Up for Development
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Chris-Wolfgang/String-Extensions.git
-   cd String-Extensions
-   ```
-
-2. **Explore the structure**:
-   - `/src` - Source code will go here
-   - `/tests` - Unit tests will go here
-   - `/benchmarks` - Performance benchmarks will go here
-   - `/examples` - Example usage will go here
-   - `/docs` - Additional documentation
-
-3. **Review the contribution guidelines**:
-   See [CONTRIBUTING.md](https://github.com/Chris-Wolfgang/String-Extensions/blob/main/CONTRIBUTING.md) for details on the development workflow and coding standards.
-
-## For Future Users
-
-Once the library is published to NuGet, you will be able to install it using:
-
-### Via NuGet Package Manager
-
-1. Right-click on your project in Solution Explorer
-2. Select "Manage NuGet Packages"
-3. Search for "String-Extensions"
-4. Click "Install"
-
-### Via .NET CLI
+## Install
 
 ```bash
-dotnet add package String-Extensions
+dotnet add package Wolfgang.Extensions.String
 ```
 
-### Via Package Manager Console
+Or from the Package Manager Console:
 
 ```powershell
-Install-Package String-Extensions
+Install-Package Wolfgang.Extensions.String
 ```
 
-## Documentation Structure
+In Visual Studio, search for `Wolfgang.Extensions.String` in **Manage NuGet Packages**.
 
-- **[Introduction](introduction.md)** - Project overview and goals
-- **[Setup](setup.md)** - Development setup instructions
-- **API Reference** - API documentation (to be generated)
+## Use
 
-## Getting Help
+Add the namespace, then call the methods on any `string`:
 
-If you have questions or want to contribute:
+```csharp
+using Wolfgang.Extensions.String;
 
-- Visit the [GitHub Repository](https://github.com/Chris-Wolfgang/String-Extensions)
-- Open an issue for bug reports or feature requests
-- Check existing issues and discussions
+// Substring helpers (null-tolerant, length-clamped)
+"A sample string".Left(8);    // "A sample"
+"Hello".Left(10);             // "Hello"
+"Hello".Left(0);              // ""
+"A sample string".Right(6);   // "string"
 
-## Next Steps
+// Center padding
+"Hello".PadCenter(11);        // "   Hello   "
+"Hello".PadCenter(11, '-');   // "---Hello---"
+"Hello".PadCenter(3);         // "Hello" (already wide enough)
 
-For detailed development setup instructions, see the [Setup Guide](setup.md).
+// Case conversions
+"A sample string for processing".ToCamelCase();   // "aSampleStringForProcessing"
+"A sample string for processing".ToKebabCase();   // "a-sample-string-for-processing"
+"A sample string for processing".ToPascalCase();  // "ASampleStringForProcessing"
+"A sample string for processing".ToSnakeCase();   // "a_sample_string_for_processing"
+"a sample string for processing".ToTitleCase();   // "A Sample String For Processing"
+```
+
+## Supported frameworks
+
+| Target | Version |
+|---|---|
+| .NET Framework | 4.6.2 and later |
+| .NET Standard | 2.0 |
+| .NET | 8.0, 10.0 |
+
+## Where to next
+
+- The [API Reference](xref:Wolfgang.Extensions.String.StringExtensions) documents every overload, its exceptions and an example.
+- The [examples project](https://github.com/Chris-Wolfgang/String-Extensions/tree/main/examples) is a runnable console app.
