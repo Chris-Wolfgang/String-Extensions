@@ -22,6 +22,14 @@
 		<SignAssembly>False</SignAssembly>
 		<PackageIcon>icon.png</PackageIcon>
 		<ApplicationIcon>icon.ico</ApplicationIcon>
+
+		<!-- PackageValidation: pack fails if the package introduces a binary-breaking
+		     change against the last published version. Intentional breaks are waived
+		     in CompatibilitySuppressions.xml with a specific rule ID and target. Keep the
+		     baseline at the last published version and bump it in the release PR that
+		     ships the next one. -->
+		<EnablePackageValidation>true</EnablePackageValidation>
+		<PackageValidationBaselineVersion>0.1.1</PackageValidationBaselineVersion>
 	</PropertyGroup>
 
 	<!-- Analyzer PackageReferences are centralized in Directory.Build.props -->
