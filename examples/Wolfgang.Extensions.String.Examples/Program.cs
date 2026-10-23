@@ -1,10 +1,10 @@
-namespace Wolfgang.Extensions.String.DotNet8.Examples;
+namespace Wolfgang.Extensions.String.Examples;
 
 internal abstract class Program
 {
     private static void Main()
     {
-        Left();
+        LeftAndRight();
         PadCenter();
         ToXxxCase();
     }
@@ -23,7 +23,7 @@ internal abstract class Program
     }
 
 
-    private static void Left()
+    private static void LeftAndRight()
     {
         Console.WriteLine("\n");
         Console.ForegroundColor = ConsoleColor.White;

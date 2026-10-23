@@ -76,8 +76,8 @@ authoritative list (kept in sync with source on every release), see the
 
 | Method | Returns | Description |
 |--------|---------|-------------|
-| `Left(this string, int length)` | `string` | Returns the leftmost `length` characters. Returns the whole string when it is shorter than `length`; returns `null` for a `null` input. |
-| `Right(this string, int length)` | `string` | Returns the rightmost `length` characters. Returns the whole string when it is shorter than `length`; returns `null` for a `null` input. |
+| `Left(this string? s, int length)` | `string?` | Returns the leftmost `length` characters. Returns the whole string when it is shorter than `length`; returns `null` for a `null` input. |
+| `Right(this string? s, int length)` | `string?` | Returns the rightmost `length` characters. Returns the whole string when it is shorter than `length`; returns `null` for a `null` input. |
 | `PadCenter(this string, int totalWidth)` | `string` | Centers the string within `totalWidth`, padding both sides with spaces. When padding is uneven the extra character goes on the right. Returns the original string when it is already at least `totalWidth` long. |
 | `PadCenter(this string, int totalWidth, char paddingChar)` | `string` | As above, padding with `paddingChar` instead of spaces. |
 | `ToCamelCase(this string)` | `string` | Converts to `camelCase`. Separator characters are treated as word boundaries and removed. |
