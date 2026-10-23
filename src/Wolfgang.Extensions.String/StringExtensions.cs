@@ -59,7 +59,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="totalWidth"/> is less than zero.
     /// </exception>
-    public static string PadCenter(this string? s, int totalWidth)
+    public static string PadCenter(this string s, int totalWidth)
         => PadCenter(s, totalWidth, ' ');
 
 
@@ -83,7 +83,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="totalWidth"/> is less than zero.
     /// </exception>
-    public static string PadCenter(this string? s, int totalWidth, char paddingChar)
+    public static string PadCenter(this string s, int totalWidth, char paddingChar)
     {
         if (s == null)
         {
@@ -373,6 +373,8 @@ public static class StringExtensions
     /// </exception>
     public static string ToTitleCase(this string s)
     {
+        _ = s ?? throw new ArgumentNullException(nameof(s));
+
         return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s);
     }
 
