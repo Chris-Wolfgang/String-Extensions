@@ -58,7 +58,7 @@ You can contribute in several ways:
 
 This project maintains **extremely high code quality standards** through multiple layers of static analysis and automated enforcement.
 
-### The 7 Analyzers
+### The Analyzers (7 on every build, plus PublicApiAnalyzers)
 
 All code is analyzed by these tools during build:
 
@@ -95,6 +95,11 @@ All code is analyzed by these tools during build:
    - Industry-standard code analysis
    - Security vulnerability detection
    - Code smell identification
+
+8. **Microsoft.CodeAnalysis.PublicApiAnalyzers** (opt-in per project)
+   - Tracks the public surface in `PublicAPI.Shipped.txt` / `PublicAPI.Unshipped.txt`
+   - `Directory.Build.props` references it only for a project that has those files, which
+     `src/Wolfgang.Extensions.String/` does
 
 ### Async-First Enforcement
 
@@ -213,7 +218,7 @@ Key style rules enforced:
 - **Naming:** PascalCase for public members, camelCase for parameters/locals
 - **File-scoped namespaces:** Required in C# 10+
 - **`var` preferences:** Use for built-in types and when type is obvious
-- **Null checks:** Prefer pattern matching (`is null`, `is not null`)
+- **Null checks:** `is null` / `is not null` is the preferred style for new code; it is a convention, not enforced by `.editorconfig` (older code uses `== null`)
 
 View the complete configuration in [.editorconfig](.editorconfig).
 
