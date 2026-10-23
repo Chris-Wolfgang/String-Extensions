@@ -117,6 +117,13 @@ authoritative list (kept in sync with source on every release), see the
 
 ---
 
+## 🔏 Verify the build
+
+- **Provenance and SBOM:** every release attaches a CycloneDX SBOM, and releases after 0.1.1 carry a build-provenance attestation; see [SECURITY.md](SECURITY.md#verifying-a-release).
+- **Rebuilding from source:** see [docs/REPRODUCIBLE-BUILD.md](docs/REPRODUCIBLE-BUILD.md) for the exact steps, a measured worked example (what a near-match looks like for v0.1.1), the release hash manifest, and how to report a discrepancy or share a verification result.
+
+---
+
 ## 🎯 Supported Frameworks
 
 This library targets:
