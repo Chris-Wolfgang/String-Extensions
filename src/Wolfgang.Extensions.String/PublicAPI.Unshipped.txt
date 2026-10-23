@@ -1,1 +1,5 @@
 #nullable enable
+*REMOVED*static Wolfgang.Extensions.String.StringExtensions.PadCenter(this string? s, int totalWidth) -> string!
+*REMOVED*static Wolfgang.Extensions.String.StringExtensions.PadCenter(this string? s, int totalWidth, char paddingChar) -> string!
+static Wolfgang.Extensions.String.StringExtensions.PadCenter(this string! s, int totalWidth) -> string!
+static Wolfgang.Extensions.String.StringExtensions.PadCenter(this string! s, int totalWidth, char paddingChar) -> string!

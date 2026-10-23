@@ -12,7 +12,8 @@ public class ToTitleCaseTests
     {
         string? sut = null;
 
-        Assert.Throws<ArgumentNullException>(() => sut!.ToTitleCase());
+        var exception = Assert.Throws<ArgumentNullException>(() => sut!.ToTitleCase());
+        Assert.Equal("s", exception.ParamName);
     }
 
 
