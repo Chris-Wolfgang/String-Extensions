@@ -11,7 +11,8 @@ public class PadCenterTests
     {
         string? sut = null;
 
-        Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(10));
+        var exception = Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(10));
+        Assert.Equal("s", exception.ParamName);
     }
 
 
@@ -32,7 +33,8 @@ public class PadCenterTests
     {
         string? sut = null;
 
-        Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(-1));
+        var exception = Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(-1));
+        Assert.Equal("s", exception.ParamName);
     }
 
 
@@ -46,12 +48,13 @@ public class PadCenterTests
     }
 
 
+
     [Fact]
     public void PadCenter_string_int_when_passed_totalWidth_less_than_string_length_returns_a_reference_to_existing_string()
     {
         const string sut = "sample text";
 
-        Assert.True(ReferenceEquals(sut, sut.PadCenter(sut.Length - 1)));
+        Assert.Same(sut, sut.PadCenter(sut.Length - 1));
     }
 
 
@@ -61,7 +64,7 @@ public class PadCenterTests
     {
         const string sut = "sample text";
 
-        Assert.Equal("sample text", sut.PadCenter(0));
+        Assert.Equal("sample text", sut.PadCenter(sut.Length));
     }
 
 
@@ -71,7 +74,7 @@ public class PadCenterTests
     {
         const string sut = "sample text";
 
-        Assert.False(ReferenceEquals(sut, sut.PadCenter(sut.Length)));
+        Assert.NotSame(sut, sut.PadCenter(sut.Length));
     }
 
 
@@ -106,15 +109,6 @@ public class PadCenterTests
 
 
 
-        
-    [Fact]
-    public void PadCenter_string_int_when_passed_null_string_and_negative_totalWidth_throws_ArgumentNullException()
-    {
-        Assert.Throws<ArgumentNullException>(() => ((string?)null!).PadCenter(-1));
-    }
-
-
-
     [Fact]
     public void PadCenter_string_int_when_passed_totalWidth_less_than_0_has_same_behavior_as_PadRight()
     {
@@ -123,7 +117,11 @@ public class PadCenterTests
         var expectedException = Assert.Throws<ArgumentOutOfRangeException>(() => sut.PadRight(-1));
         var actualException = Assert.Throws<ArgumentOutOfRangeException>(() => sut.PadCenter(-1));
 
-        Assert.Equal(expectedException.GetType(), actualException.GetType());
+        Assert.Equal
+        (
+            expectedException.ParamName,
+            actualException.ParamName
+        );
     }
 
 
@@ -134,7 +132,7 @@ public class PadCenterTests
         const string sut = "Sample Text";
 
         var expected = sut.PadRight(0);
-        var actual =  sut.PadCenter(0);
+        var actual = sut.PadCenter(0);
 
         Assert.Equal(expected, actual);
     }
@@ -172,7 +170,8 @@ public class PadCenterTests
     {
         string? sut = null;
 
-        Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(10, '-'));
+        var exception = Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(10, '-'));
+        Assert.Equal("s", exception.ParamName);
     }
 
 
@@ -193,7 +192,8 @@ public class PadCenterTests
     {
         string? sut = null;
 
-        Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(-1, '-'));
+        var exception = Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(-1, '-'));
+        Assert.Equal("s", exception.ParamName);
     }
 
 
@@ -207,12 +207,13 @@ public class PadCenterTests
     }
 
 
+
     [Fact]
     public void PadCenter_string_int_char_when_passed_totalWidth_less_than_string_length_returns_a_reference_to_existing_string()
     {
         const string sut = "sample text";
 
-        Assert.True(ReferenceEquals(sut, sut.PadCenter(sut.Length - 1, '-')));
+        Assert.Same(sut, sut.PadCenter(sut.Length - 1, '-'));
     }
 
 
@@ -222,7 +223,7 @@ public class PadCenterTests
     {
         const string sut = "sample text";
 
-        Assert.Equal("sample text", sut.PadCenter(0, '-'));
+        Assert.Equal("sample text", sut.PadCenter(sut.Length, '-'));
     }
 
 
@@ -232,7 +233,7 @@ public class PadCenterTests
     {
         const string sut = "sample text";
 
-        Assert.False(ReferenceEquals(sut, sut.PadCenter(sut.Length, '-')));
+        Assert.NotSame(sut, sut.PadCenter(sut.Length, '-'));
     }
 
 
@@ -267,28 +268,18 @@ public class PadCenterTests
 
 
 
-
     [Theory]
     [InlineData('*')]
     [InlineData('-')]
     [InlineData('\t')]
     [InlineData('a')]
-    [InlineData('\x255')]
+    [InlineData('ɕ')] // LATIN SMALL LETTER C WITH CURL, a non-ASCII padding char
     public void PadCenter_string_int_char_when_passed_centers_text_using_specified_character(char paddingChar)
     {
         const string sut = "sample text";
         var expected = string.Concat(new string(paddingChar, 4), sut, new string(paddingChar, 5));
 
         Assert.Equal(expected, sut.PadCenter(20, paddingChar));
-    }
-
-
-
-
-    [Fact]
-    public void PadCenter_string_int_char_when_passed_null_string_and_negative_totalWidth_throws_ArgumentNullException()
-    {
-        Assert.Throws<ArgumentNullException>(() => ((string?)null!).PadCenter(-1, '-'));
     }
 
 
@@ -301,7 +292,11 @@ public class PadCenterTests
         var expectedException = Assert.Throws<ArgumentOutOfRangeException>(() => sut.PadRight(-1, '-'));
         var actualException = Assert.Throws<ArgumentOutOfRangeException>(() => sut.PadCenter(-1, '-'));
 
-        Assert.Equal(expectedException.GetType(), actualException.GetType());
+        Assert.Equal
+        (
+            expectedException.ParamName,
+            actualException.ParamName
+        );
     }
 
 
