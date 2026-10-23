@@ -67,4 +67,33 @@ public class RightTests
         Assert.Equal(expectedResult, sut.Right(length));
     }
 
+
+
+    [Fact]
+    public void Right_when_passed_length_0_returns_empty_string()
+    {
+        var sut = "Hello";
+
+        Assert.Equal(string.Empty, sut.Right(0));
+    }
+
+
+
+    [Fact]
+    public void Right_when_passed_string_shorter_than_specified_length_returns_the_same_instance()
+    {
+        var sut = "1234";
+
+        Assert.Same(sut, sut.Right(5));
+    }
+
+
+
+    [Fact]
+    public void Right_when_passed_string_is_equal_to_length_specified_returns_the_same_instance()
+    {
+        var sut = "12345";
+
+        Assert.Same(sut, sut.Right(5));
+    }
 }

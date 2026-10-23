@@ -33,7 +33,7 @@ public class LeftTests
         Assert.Equal(string.Empty, sut.Left(5));
     }
 
-        
+
 
     [Fact]
     public void Left_when_passed_string_shorter_than_specified_length_returns_entire_string()
@@ -62,5 +62,35 @@ public class LeftTests
     public void Left_when_passed_string_is_greater_than_length_specified_returns_only_the_specified_portion(string sut, int length, string expectedResult)
     {
         Assert.Equal(expectedResult, sut.Left(length));
+    }
+
+
+
+    [Fact]
+    public void Left_when_passed_length_0_returns_empty_string()
+    {
+        var sut = "Hello";
+
+        Assert.Equal(string.Empty, sut.Left(0));
+    }
+
+
+
+    [Fact]
+    public void Left_when_passed_string_shorter_than_specified_length_returns_the_same_instance()
+    {
+        var sut = "1234";
+
+        Assert.Same(sut, sut.Left(5));
+    }
+
+
+
+    [Fact]
+    public void Left_when_passed_string_is_equal_to_length_specified_returns_the_same_instance()
+    {
+        var sut = "12345";
+
+        Assert.Same(sut, sut.Left(5));
     }
 }
