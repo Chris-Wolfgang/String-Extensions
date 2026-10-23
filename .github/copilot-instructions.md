@@ -1,162 +1,69 @@
-# Copilot Coding Agent Instructions
+# Copilot instructions for String-Extensions
 
-## Repository Summary
+## What this repository is
 
-This is a **repository template** for creating new .NET repositories. It provides a standardized structure with comprehensive GitHub integration, CI/CD workflows, and development tooling. The template is designed for .NET 8.0 projects using C# and follows Microsoft's recommended project organization patterns.
+A shipped .NET library, published to NuGet as `Wolfgang.Extensions.String`. It is one public static class,
+`Wolfgang.Extensions.String.StringExtensions`, in `src/Wolfgang.Extensions.String/StringExtensions.cs`:
 
-**Repository Type**: Template (not a working project)  
-**Target Platform**: .NET 8.0  
-**Primary Language**: C#  
-**Size**: Small template (~15 configuration files, empty project folders)  
+- `Left` / `Right` — the first or last N characters; null-tolerant (`null` in, `null` out) and length-clamping.
+- `PadCenter` — centers a string within a total width, padding with spaces or a given character; the extra
+  character of uneven padding goes on the right.
+- `ToCamelCase`, `ToKebabCase`, `ToPascalCase`, `ToSnakeCase` — split on `char.IsSeparator` characters and use
+  invariant casing.
+- `ToTitleCase` — delegates to `TextInfo.ToTitleCase` of the current culture.
 
-## Build and Validation Instructions
+`PadCenter` and the case conversions throw `ArgumentNullException` (parameter `s`) for a null input; `Left`, `Right`
+and `PadCenter` throw `ArgumentOutOfRangeException` for a negative length or width.
 
-### Prerequisites
-- .NET 8.0.x SDK (always install if not present)
-- ReportGenerator tool (installed via `dotnet tool install -g dotnet-reportgenerator-globaltool`)
-- DevSkim CLI (installed via `dotnet tool install --global Microsoft.CST.DevSkim.CLI`)
+- **License:** MIT (`LICENSE`, `<PackageLicenseExpression>MIT</PackageLicenseExpression>`).
+- **Library targets:** `net462;netstandard2.0;net8.0;net10.0`.
+- **Test targets:** see `<TargetFrameworks>` in `tests/Wolfgang.Extensions.String.Tests.Unit/Wolfgang.Extensions.String.Tests.Unit.csproj` (.NET Framework 4.6.2 through .NET 10).
+- **SDK:** .NET 10 (the CI tools in `.config/dotnet-tools.json` are restored with `dotnet tool restore`; nothing is installed globally).
 
-### Build Process (For Repositories Created from This Template)
-**IMPORTANT**: This template has no buildable projects. These commands apply to repositories created FROM this template.
+## Layout
 
-1. **Restore Dependencies** (always run first):
-   ```bash
-   dotnet restore
-   ```
+- `src/Wolfgang.Extensions.String/` — the library, plus `PublicAPI.Shipped.txt` / `PublicAPI.Unshipped.txt` when present.
+- `tests/Wolfgang.Extensions.String.Tests.Unit/` — xunit 2.9.3 tests, one class per method.
+- `tests/` may also hold the specialised suites (AOT smoke, doc-example compile check, FsCheck fuzz properties).
+- `benchmarks/Wolfgang.Extensions.String.Benchmarks/` — BenchmarkDotNet, charted on gh-pages by `benchmarks.yaml`.
+- `docfx_project/` — the documentation site; `docs/` — maintainer docs (workflow security, release setup).
+- `changelog/unreleased/` — changelog fragments (see below).
 
-2. **Build Solution**:
-   ```bash
-   dotnet build --no-restore --configuration Release
-   ```
+## Build and validate
 
-3. **Run Tests with Coverage**:
-   ```bash
-   # Find and test all test projects
-   find ./tests -type f -name '*Test*.csproj' | while read proj; do
-     dotnet test "$proj" --no-build --configuration Release --collect:"XPlat Code Coverage" --results-directory "./TestResults"
-   done
-   ```
-
-4. **Generate Coverage Reports**:
-   ```bash
-   reportgenerator -reports:"TestResults/**/coverage.cobertura.xml" -targetdir:"CoverageReport" -reporttypes:"Html;TextSummary;MarkdownSummaryGithub;CsvSummary"
-   ```
-
-5. **Security Scanning**:
-   ```bash
-   devskim analyze --source-code . -f text --output-file devskim-results.txt -E
-   ```
-
-### Critical Build Requirements
-- **Code Coverage**: Minimum 80% line coverage required for all projects
-- **Security Scanning**: DevSkim must pass with no errors
-- **Build Configuration**: Always use Release configuration for CI
-- **Test Pattern**: Test projects must match `*Test*.csproj` pattern in `/tests` folder
-
-### Common Issues and Workarounds
-- **Timeout Issues**: Coverage and security scans can take 5-10 minutes for larger projects
-- **Coverage Threshold Failures**: If below 80%, the build will fail - this is by design
-- **Missing Test Projects**: The workflow expects at least one test project in `/tests` folder
-- **DevSkim False Positives**: Review `devskim-results.txt` for any security findings
-
-## Project Layout and Architecture
-
-### Standard Directory Structure
-```
-root/
-├── MySolution.sln              # Solution file (create in root)
-├── src/                        # Application projects
-│   ├── MyApp/
-│   │   └── MyApp.csproj
-│   └── MyLib/
-│       └── MyLib.csproj
-├── tests/                      # Test projects (required)
-│   ├── MyApp.Tests/
-│   │   └── MyApp.Tests.csproj
-│   └── MyLib.Tests/
-│       └── MyLib.Tests.csproj
-├── benchmarks/                 # Performance benchmarks (optional)
-│   └── MyApp.Benchmarks/
-│       └── MyApp.Benchmarks.csproj
-├── examples/                   # Example projects (optional)
-├── docs/                       # Documentation
-└── .github/                    # GitHub configuration
+```bash
+dotnet tool restore
+dotnet build "String Extensions.slnx" -c Release
+pwsh ./scripts/build-pr.ps1     # the local equivalent of the Windows stage of pr.yaml
 ```
 
-### Key Configuration Files
-- **`.editorconfig`**: Code style rules (C# file-scoped namespaces, var preferences, analyzer severity)
-- **`.gitignore`**: Comprehensive .NET gitignore (Visual Studio, build artifacts, packages)
-- **`SETUP.md`**: Detailed repository setup instructions (delete after setup)
-- **`CONTRIBUTING.md`**: Empty - populate with contribution guidelines
-- **`CODE_OF_CONDUCT.md`**: Standard Contributor Covenant v2.0
+`scripts/build-pr.ps1` builds in Release (warnings are errors), runs every test project on every target framework,
+enforces coverage, and runs DevSkim and gitleaks. The coverage gates are `CODECOV_MINIMUM` (production code under
+`src/`) and `CODECOV_TEST_MINIMUM` (every test assembly, held to 100 %) in `.github/workflows/pr.yaml`;
+`build-pr.ps1`'s defaults mirror them. Do not lower a gate or add `[ExcludeFromCodeCoverage]` to get green.
 
-### GitHub Integration
-- **Workflows**: `.github/workflows/pr.yaml` - Comprehensive CI/CD pipeline
-- **Issue Templates**: Bug reports (YAML) and feature requests (Markdown)
-- **PR Template**: Structured pull request template with checklists
-- **CODEOWNERS**: Default owner `@Chris-Wolfgang`, update usernames as needed
-- **Dependabot**: Configured for NuGet packages in all project directories
+## Conventions
 
-### Continuous Integration Pipeline (`.github/workflows/pr.yaml`)
-The workflow runs on pull requests to `main` branch and includes:
+- Allman braces, 4-space indentation, file-scoped namespaces, `var` when the type is obvious.
+- Three blank lines between members (constructors, methods, properties).
+- Multi-line argument lists put the opening parenthesis on its own line, one argument per line, and the closing
+  parenthesis on its own line.
+- Every public member has `///` docs with `<see cref=""/>` / `<paramref name=""/>`; `<example><code>` blocks must compile.
+- Test names follow `MethodUnderTest_when_condition_expected_result`.
+- No implicit or global usings in multi-target projects; every file declares its own `using` directives.
+- `<TargetFrameworks>` stays on one line in every csproj; no absolute paths in project files.
+- Treat warnings as errors: fix them; suppress only with a justification, never with an inline `nosemgrep`.
 
-1. **Environment**: Ubuntu Latest with .NET 8.0.x
-2. **Build Steps**: Checkout → Setup .NET → Restore → Build → Test → Coverage → Security
-3. **Artifacts**: Coverage reports and DevSkim results uploaded
-4. **Branch Protection**: Configured to require this workflow to pass before merging
+## Changelog
 
-**Security Note**: Workflow includes safeguard `if: github.repository != 'Chris-Wolfgang/repo-template'` to prevent running on the template itself.
+`CHANGELOG.md` is not edited by hand. A PR that changes `src/` adds one fragment under `changelog/unreleased/`
+(`type: breaking|feature|fix|docs|internal` on line 1, then one user-facing sentence) or carries the `no-changelog`
+label. See `changelog/unreleased/README.md`.
 
-### Branch Protection Configuration
-When using this template, configure these settings in GitHub (detailed in `SETUP.md`):
-- Require status checks to pass before merging
-- Require branches to be up to date
-- Require pull request reviews (including Copilot reviews)
-- Restrict deletions and block force pushes
-- Require code scanning
+## Protected files
 
-## Key Files and Locations
-
-### Root Directory Files
-- `README.md` - Basic template description (update for your project)
-- `LICENSE` - Mozilla Public License 2.0
-- `SETUP.md` - Template setup instructions (delete after setup)
-- `.editorconfig` - Code style configuration
-- `.gitignore` - .NET-specific gitignore
-
-### GitHub Directory (`.github/`)
-- `workflows/pr.yaml` - Main CI/CD pipeline
-- `ISSUE_TEMPLATE/` - Bug report (YAML) and feature request templates
-- `pull_request_template.md` - PR template with checklists
-- `CODEOWNERS` - Code ownership rules
-- `dependabot.yml` - Dependency update configuration
-
-### Project Directories (Currently Empty in Template)
-- `src/` - Application source code
-- `tests/` - Unit and integration tests
-- `benchmarks/` - Performance benchmarks
-- `examples/` - Example usage projects
-- `docs/` - Documentation (contains placeholder `index.html`)
-
-## Agent Guidelines
-
-### Trust These Instructions
-This information has been validated against the template structure and GitHub workflows. **Only search for additional information if these instructions are incomplete or found to be incorrect.**
-
-### When Working with This Template
-1. **Creating New Projects**: Follow the structure outlined in `SETUP.md`
-2. **Adding Dependencies**: Use `dotnet add package` commands
-3. **Code Style**: Follow `.editorconfig` rules (file-scoped namespaces, explicit typing)
-4. **Testing**: Ensure test projects follow `*Test*.csproj` naming convention
-5. **Coverage**: Aim for >80% code coverage to pass CI
-6. **Security**: Review DevSkim findings and address security concerns
-
-### Validation Steps
-Before submitting changes:
-1. Run `dotnet restore && dotnet build --configuration Release`
-2. Run tests with coverage collection
-3. Verify coverage meets 80% threshold
-4. Run DevSkim security scan
-5. Ensure all GitHub Actions checks pass
-
-This template provides a solid foundation for .NET projects with enterprise-grade CI/CD, security scanning, and development best practices built-in.
+`.github/workflows/*`, `.editorconfig`, `*.globalconfig`, `*.ruleset`, `*.DotSettings`, `Directory.Build.props`,
+`Directory.Build.targets`, `BannedSymbols.txt`, `coverlet.runsettings`, `.config/dotnet-tools.json`, `.gitleaks.toml`,
+`.github/license-audit/*.json` and the CI scripts listed in `docs/WORKFLOW_SECURITY.md` must change in a PR of their
+own; `protected-files.yaml` fails a PR that mixes them with other changes. `docs/WORKFLOW_SECURITY.md` is the
+authoritative list.

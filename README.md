@@ -181,7 +181,7 @@ This project uses `.editorconfig` and `dotnet format`:
 # Format code
 dotnet format
 
-# Verify formatting (as CI does)
+# Verify formatting (the PR workflow does not run this check; see scripts/format.ps1)
 dotnet format --verify-no-changes
 ```
 
