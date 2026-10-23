@@ -21,6 +21,16 @@ public static class StringExtensions
     /// If the string is null, null will be returned. If the string contains fewer than the specified number of characters
     /// then the entire string is returned.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var prefix = "A sample string".Left(8);   // "A sample"
+    /// var whole = "Hello".Left(10);             // "Hello" (shorter than length: unchanged)
+    /// string? missing = null;
+    /// var none = missing.Left(3);               // null
+    /// </code>
+    /// </example>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="length"/> is less than zero.
     /// </exception>
@@ -55,6 +65,15 @@ public static class StringExtensions
     /// A new string that is equivalent to <paramref name="s"/>, but center-aligned and padded on both sides with spaces.
     /// When the padding is uneven, the extra character is placed on the right.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var centered = "Hello".PadCenter(11);     // "   Hello   "
+    /// var uneven = "Hello".PadCenter(8);        // " Hello  " (the extra space goes on the right)
+    /// var unchanged = "Hello".PadCenter(3);     // "Hello" (already wider than totalWidth)
+    /// </code>
+    /// </example>
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
@@ -79,6 +98,14 @@ public static class StringExtensions
     /// A new string that is equivalent to <paramref name="s"/>, but center-aligned and padded on both sides with the
     /// <paramref name="paddingChar"/> character. When the padding is uneven, the extra character is placed on the right.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var centered = "Hello".PadCenter(11, '-'); // "---Hello---"
+    /// var uneven = "Hello".PadCenter(8, '*');    // "*Hello**"
+    /// </code>
+    /// </example>
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
@@ -139,6 +166,16 @@ public static class StringExtensions
     /// If the string is null, null will be returned. If the string contains fewer than the specified number of characters
     /// then the entire string is returned.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var suffix = "A sample string".Right(6);  // "string"
+    /// var whole = "Hello".Right(10);            // "Hello" (shorter than length: unchanged)
+    /// string? missing = null;
+    /// var none = missing.Right(3);              // null
+    /// </code>
+    /// </example>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="length"/> is less than zero.
     /// </exception>
@@ -175,8 +212,10 @@ public static class StringExtensions
     /// </remarks>
     /// <example>
     /// <code>
-    ///     Original: " A sample string for processing! "
-    /// Return value: aSampleStringForProcessing!
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var camel = " A sample string for processing! ".ToCamelCase();
+    /// // camel == "aSampleStringForProcessing!"
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
@@ -228,8 +267,10 @@ public static class StringExtensions
     /// </remarks>
     /// <example>
     /// <code>
-    ///     Original: "A sample string for processing!"
-    /// Return value: a-sample-string-for-processing!
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var kebab = "A sample string for processing!".ToKebabCase();
+    /// // kebab == "a-sample-string-for-processing!"
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
@@ -274,8 +315,10 @@ public static class StringExtensions
     /// </remarks>
     /// <example>
     /// <code>
-    ///     Original: " A sample string for processing! "
-    /// Return value: ASampleStringForProcessing!
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var pascal = " A sample string for processing! ".ToPascalCase();
+    /// // pascal == "ASampleStringForProcessing!"
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
@@ -328,8 +371,10 @@ public static class StringExtensions
     /// </remarks>
     /// <example>
     /// <code>
-    ///     Original: "A sample string for processing!"
-    /// Return value: a_sample_string_for_processing!
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var snake = "A sample string for processing!".ToSnakeCase();
+    /// // snake == "a_sample_string_for_processing!"
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
@@ -374,8 +419,10 @@ public static class StringExtensions
     /// </remarks>
     /// <example>
     /// <code>
-    ///     Original: "a sample string for processing!"
-    /// Return value: A Sample String For Processing!
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var title = "a sample string for processing!".ToTitleCase();
+    /// // title == "A Sample String For Processing!" (under en-US)
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
