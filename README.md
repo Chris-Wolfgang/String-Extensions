@@ -4,7 +4,7 @@ A collection of extension methods for `string` — substring helpers (`Left` / `
 
 [![NuGet](https://img.shields.io/nuget/v/Wolfgang.Extensions.String.svg?logo=nuget&label=NuGet)](https://www.nuget.org/packages/Wolfgang.Extensions.String)
 [![NuGet downloads](https://img.shields.io/nuget/dt/Wolfgang.Extensions.String.svg?logo=nuget&label=downloads)](https://www.nuget.org/packages/Wolfgang.Extensions.String)
-[![PR build](https://img.shields.io/github/actions/workflow/status/Chris-Wolfgang/String-Extensions/pr.yaml?event=pull_request_target&label=PR%20build&logo=github)](https://github.com/Chris-Wolfgang/String-Extensions/actions/workflows/pr.yaml)
+[![PR build](https://img.shields.io/github/actions/workflow/status/Chris-Wolfgang/String-Extensions/pr.yaml?branch=main&label=PR%20build&logo=github)](https://github.com/Chris-Wolfgang/String-Extensions/actions/workflows/pr.yaml)
 [![Release](https://img.shields.io/github/actions/workflow/status/Chris-Wolfgang/String-Extensions/release.yaml?label=release&logo=github)](https://github.com/Chris-Wolfgang/String-Extensions/actions/workflows/release.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![.NET](https://img.shields.io/badge/.NET-Multi--Targeted-purple.svg)](https://dotnet.microsoft.com/)
