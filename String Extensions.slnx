@@ -60,6 +60,7 @@
   <Folder Name="/tests/">
     <Project Path="tests/Wolfgang.Extensions.String.Tests.AotSmoke/Wolfgang.Extensions.String.Tests.AotSmoke.csproj" />
     <Project Path="tests/Wolfgang.Extensions.String.Tests.DocExamples/Wolfgang.Extensions.String.Tests.DocExamples.csproj" />
+    <Project Path="tests/Wolfgang.Extensions.String.Tests.Fuzz/Wolfgang.Extensions.String.Tests.Fuzz.csproj" />
     <Project Path="tests/Wolfgang.Extensions.String.Tests.Unit/Wolfgang.Extensions.String.Tests.Unit.csproj" Id="a08cbfb0-c34a-426d-9f56-bfab5460a154" />
   </Folder>
 </Solution>
