@@ -93,4 +93,15 @@ public class LeftTests
 
         Assert.Same(sut, sut.Left(5));
     }
+
+
+
+    [Fact]
+    public void Left_when_passed_null_and_length_less_than_zero_throws_ArgumentOutOfRangeException()
+    {
+        string? sut = null;
+
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => sut.Left(-1));
+        Assert.Equal("length", exception.ParamName);
+    }
 }
