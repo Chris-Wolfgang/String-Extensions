@@ -57,6 +57,7 @@ Ensure the following settings are enabled:
   - "Security Scan (CodeQL) (csharp)"
   - "Secrets Scan (gitleaks)"
   - "Changelog Fragment Check"
+  - Also run on every PR to `main`, but not in this repository's ruleset yet: "ReSharper InspectCode" (`pr.yaml`; adding it is tracked in #149) and the actionlint job of `actions-audit.yaml` (not path-filtered, so it can be required).
 - ✅ **Require conversation resolution before merging**
 - ✅ **Block force pushes** and **Restrict deletions**
 - ⬜ **Require linear history** — optional. `Setup-BranchRuleset.ps1 -RequireLinearHistory` adds it (and limits merges to squash/rebase); stacked PRs then use `scripts/restack.ps1` after each merge, see [STACKED-PRS.md](https://github.com/Chris-Wolfgang/repo-template/blob/main/docs/STACKED-PRS.md) in repo-template. It is being trialled per repo, not fleet-wide.
