@@ -12,11 +12,11 @@ The template in [TEMPLATE-major-version-migration.md](TEMPLATE-major-version-mig
 
 ## Index
 
-_No guides yet: the library is at 0.3.0 and has not shipped a breaking release. The first entry lands with the 0.x → 1.0 release PR._
+_No guides yet: the library is at 0.1.1 and has not shipped a breaking release. The first entry lands with the 0.x → 1.0 release PR._
 
 ## Before 1.0
 
-Pre-1.0, a breaking change rides on a **minor** bump (`changelog/unreleased/README.md`: the minor version is the compatibility line until 1.0). A 0.x release whose fragments include `type: breaking` gets a guide here too, named for its versions (for example `v0.3-to-v0.4.md`).
+Pre-1.0, a breaking change rides on a **minor** bump (`changelog/unreleased/README.md`: the minor version is the compatibility line until 1.0). A 0.x release whose fragments include `type: breaking` gets a guide here too, named for its versions (for example `v0.1-to-v0.2.md`).
 
 ## Release-PR checklist for a breaking release
 
