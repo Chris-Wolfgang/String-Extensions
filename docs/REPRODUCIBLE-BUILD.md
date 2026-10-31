@@ -45,3 +45,46 @@ Releases published after the manifest step was added to `release.yaml` carry a `
 ### Sharing your verification result
 
 There is no third-party attestation service wired into this repository. To record that you rebuilt a release, open an issue titled `Verification: v<version>` containing the same information as a discrepancy report: tag and commit, operating system and `dotnet --info`, the exact build command, and the per-target-framework `cmp -l` byte count with the differing offsets. State plainly whether the result was byte-identical, a near-match confined to the five fields, or a mismatch elsewhere. A report is a claim by the person who ran it, not something this project signs or vouches for.
+
+#### Signed verification attestation (optional)
+
+An issue on its own is an unsigned claim. To make your result checkable by others, also attach a signed attestation, following the [Reproducible Builds](https://reproducible-builds.org/docs/) practice of independent rebuilders publishing signed results. The format is an in-toto statement with the SLSA [Verification Summary Attestation](https://slsa.dev/spec/v1.0/verification_summary) (VSA) predicate, signed keylessly with Sigstore [cosign](https://docs.sigstore.dev/cosign/) so it is bound to your own identity (GitHub, Google or Microsoft account) and recorded in the public Rekor transparency log:
+
+1. Write `vsa.json` (the predicate only):
+
+   ```json
+   {
+     "verifier": { "id": "https://github.com/<your-github-user>" },
+     "timeVerified": "<UTC time, e.g. 2026-11-01T12:00:00Z>",
+     "resourceUri": "pkg:nuget/Wolfgang.Extensions.String@<version>",
+     "policy": { "uri": "https://github.com/Chris-Wolfgang/String-Extensions/blob/v<version>/docs/REPRODUCIBLE-BUILD.md" },
+     "verificationResult": "PASSED",
+     "verifiedLevels": ["REPRODUCIBLE_BUILD"],
+     "slsaVersion": "1.0"
+   }
+   ```
+
+   Use `"FAILED"` for a mismatch outside the five toolchain-dependent fields. Put the `cmp -l` byte counts in the issue, not in the predicate.
+2. Sign it over the published `.nupkg` you compared against:
+
+   ```bash
+   cosign attest-blob Wolfgang.Extensions.String.<version>.nupkg \
+     --predicate vsa.json \
+     --type https://slsa.dev/verification_summary/v1 \
+     --bundle verification.sigstore.json
+   ```
+
+   cosign opens a browser for the OIDC sign-in and prints the Rekor log index.
+3. Attach `verification.sigstore.json` to your `Verification: v<version>` issue and paste the Rekor log index.
+
+Anyone can then check the attestation against the same `.nupkg` and your identity:
+
+```bash
+cosign verify-blob-attestation Wolfgang.Extensions.String.<version>.nupkg \
+  --bundle verification.sigstore.json \
+  --type https://slsa.dev/verification_summary/v1 \
+  --certificate-identity <the e-mail address or URI you signed with> \
+  --certificate-oidc-issuer <https://github.com/login/oauth, https://accounts.google.com or https://login.microsoftonline.com>
+```
+
+The attestation says who rebuilt the package and what they found; this project does not countersign it. Hosted rebuilder services (for example [vouchsafe.io](https://vouchsafe.io/)) can publish the same kind of statement; none is wired into this repository.
