@@ -28,7 +28,7 @@ behavior change vs v0.1.0.
 - Stryker.NET mutation-testing configuration.
 - DocFX documentation version picker wired into the docs site.
 
-## [0.1.0] - 2026-04-27
+## [0.1.0] - 2026-04-28
 
 Initial release.
 
