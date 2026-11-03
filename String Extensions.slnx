@@ -58,6 +58,7 @@
     <Project Path="src/Wolfgang.Extensions.String/Wolfgang.Extensions.String.csproj" Id="2fe11b73-ad42-475f-8c4a-984083c22e94" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/Wolfgang.Extensions.String.Tests.Aot/Wolfgang.Extensions.String.Tests.Aot.csproj" />
     <Project Path="tests/Wolfgang.Extensions.String.Tests.AotSmoke/Wolfgang.Extensions.String.Tests.AotSmoke.csproj" />
     <Project Path="tests/Wolfgang.Extensions.String.Tests.DocExamples/Wolfgang.Extensions.String.Tests.DocExamples.csproj" />
     <Project Path="tests/Wolfgang.Extensions.String.Tests.Fuzz/Wolfgang.Extensions.String.Tests.Fuzz.csproj" />
