@@ -316,7 +316,13 @@ jobs:
                    "$GITHUB_RUN_ID" "$score" "${floors:-none}" "$survivors")
           existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --label "kind:mutation-survives" \
                        --state open --json number --jq '.[0].number' 2>/dev/null || true)
-          if [ -n "$existing" ]; then
+          if [ "$count" -eq 0 ]; then
+            # Nothing survived: close the tracking issue instead of rewriting it to
+            # "(0)", and do not open an empty one.
+            if [ -n "$existing" ]; then
+              gh issue close "$existing" --repo "$GITHUB_REPOSITORY" --comment "No surviving mutants in Stryker run ${GITHUB_RUN_ID} (lowest score ${score} %). Closed by the Stryker workflow." || true
+            fi
+          elif [ -n "$existing" ]; then
             gh issue edit "$existing" --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body" || true
           else
             gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body" \
