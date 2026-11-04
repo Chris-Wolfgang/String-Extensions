@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1791837413459,
+  "lastUpdate": 1793817390261,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -672,6 +672,102 @@ window.BENCHMARK_DATA = {
             "value": 36.88858697811762,
             "unit": "ns",
             "range": "± 0.28630157587574256"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8b58191677fc6294b09c920e0b00efe2b8834bd9",
+          "message": "chore(pack): stop requiring licence acceptance for the MIT package (#315)\n\nPackageRequireLicenseAcceptance=True makes Visual Studio show an\naccept-licence prompt on install. MIT does not require acceptance, so the\nprompt is only friction.\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-11-04T13:33:28-05:00",
+          "tree_id": "aa5b811b516761377999345d3828fe1c09b606ec",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/8b58191677fc6294b09c920e0b00efe2b8834bd9"
+        },
+        "date": 1793817389528,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 291.597549756368,
+            "unit": "ns",
+            "range": "± 0.7608687297653656"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 95.84446314970653,
+            "unit": "ns",
+            "range": "± 2.58565600308482"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 101.28972347577412,
+            "unit": "ns",
+            "range": "± 0.35706013417092786"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 93.5204267501831,
+            "unit": "ns",
+            "range": "± 0.18123822225827418"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 95.00586299101512,
+            "unit": "ns",
+            "range": "± 0.3389100918430904"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 9.75633309284846,
+            "unit": "ns",
+            "range": "± 0.02283234150319489"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 9.01512778798739,
+            "unit": "ns",
+            "range": "± 0.0322508116891867"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 9.987454762061438,
+            "unit": "ns",
+            "range": "± 0.08339041964994401"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 11.548409014940262,
+            "unit": "ns",
+            "range": "± 0.14589645170877055"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 52.59177194039027,
+            "unit": "ns",
+            "range": "± 1.7656215305410357"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 109.73813919226329,
+            "unit": "ns",
+            "range": "± 1.0468524620405935"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 108.80869388580322,
+            "unit": "ns",
+            "range": "± 0.7768816783128826"
           }
         ]
       }
