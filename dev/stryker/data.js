@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1792303650234,
+  "lastUpdate": 1794140831285,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "Mutation score": [
@@ -102,6 +102,33 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/925fc4ca9e157a92ba4800faf1eb091e1e9d5e35"
         },
         "date": 1792303648775,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Mutation score",
+            "value": 90.62,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang",
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "3f50c51be250df8d6850dda4a2832aeafe37d9be",
+          "message": "deps(semgrep): OpenTelemetry 1.45.2 / 0.66b2 overrides, with the lock regenerated (#336)\n\n* deps(semgrep): move the OpenTelemetry overrides to 1.45.2 and regenerate the lock\n\nsemgrep.yaml installs semgrep.txt with --no-deps --require-hashes, so bumping only the\noverrides leaves CI running the old versions. Regenerated from the overrides with uv, which\nchanges only the OpenTelemetry family. Also corrects the lockstep comment to the new versions.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\n\n* deps(semgrep): restore the generated-by line in the lock header\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-11-05T17:24:05Z",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/3f50c51be250df8d6850dda4a2832aeafe37d9be"
+        },
+        "date": 1794140830295,
         "tool": "customBiggerIsBetter",
         "benches": [
           {
