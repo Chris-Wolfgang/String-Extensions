@@ -1,9 +1,6 @@
 {
   "stryker-config": {
-    "project": "src/Wolfgang.Extensions.String/Wolfgang.Extensions.String.csproj",
-    "test-projects": [
-      "tests/Wolfgang.Extensions.String.Tests.Unit/Wolfgang.Extensions.String.Tests.Unit.csproj"
-    ],
+    "project": "Wolfgang.Extensions.String.csproj",
     "target-framework": "net10.0",
     "reporters": [
       "html",
