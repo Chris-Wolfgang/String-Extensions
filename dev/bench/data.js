@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1793817390261,
+  "lastUpdate": 1794498970120,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -768,6 +768,102 @@ window.BENCHMARK_DATA = {
             "value": 108.80869388580322,
             "unit": "ns",
             "range": "± 0.7768816783128826"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "81215a546dd03a6318c9c00b8a8100d04885f539",
+          "message": "build(deps): bump the github-actions group with 5 updates (#343)\n\nBumps the github-actions group with 5 updates:\n\n| Package | From | To |\n| --- | --- | --- |\n| [actions/setup-python](https://github.com/actions/setup-python) | `7.0.0` | `7.1.0` |\n| [github/codeql-action/upload-sarif](https://github.com/github/codeql-action) | `4.39.1` | `4.39.3` |\n| [actions/setup-dotnet](https://github.com/actions/setup-dotnet) | `6.0.0` | `6.1.0` |\n| [github/codeql-action/init](https://github.com/github/codeql-action) | `4.39.1` | `4.39.3` |\n| [github/codeql-action/analyze](https://github.com/github/codeql-action) | `4.39.1` | `4.39.3` |\n\n\nUpdates `actions/setup-python` from 7.0.0 to 7.1.0\n- [Release notes](https://github.com/actions/setup-python/releases)\n- [Commits](https://github.com/actions/setup-python/compare/v7...6d4fd22b20465ccc0f7354476588e8df7c9ca0e0)\n\nUpdates `github/codeql-action/upload-sarif` from 4.39.1 to 4.39.3\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/9b3254085494b55a0f7c4c2b3d2d52cc712ce370...33d7b85da1a04171e211befe2c739303b9a4c066)\n\nUpdates `actions/setup-dotnet` from 6.0.0 to 6.1.0\n- [Release notes](https://github.com/actions/setup-dotnet/releases)\n- [Commits](https://github.com/actions/setup-dotnet/compare/a98b56852c35b8e3190ac28c8c2271da59106c68...0f4a354dd5547a28c70b7853dbd95d5b67886e73)\n\nUpdates `github/codeql-action/init` from 4.39.1 to 4.39.3\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/9b3254085494b55a0f7c4c2b3d2d52cc712ce370...33d7b85da1a04171e211befe2c739303b9a4c066)\n\nUpdates `github/codeql-action/analyze` from 4.39.1 to 4.39.3\n- [Release notes](https://github.com/github/codeql-action/releases)\n- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/github/codeql-action/compare/9b3254085494b55a0f7c4c2b3d2d52cc712ce370...33d7b85da1a04171e211befe2c739303b9a4c066)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-python\n  dependency-version: 7.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: github-actions\n- dependency-name: github/codeql-action/upload-sarif\n  dependency-version: 4.39.3\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: github-actions\n- dependency-name: actions/setup-dotnet\n  dependency-version: 6.1.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: github-actions\n- dependency-name: github/codeql-action/init\n  dependency-version: 4.39.3\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: github-actions\n- dependency-name: github/codeql-action/analyze\n  dependency-version: 4.39.3\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: github-actions\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: Chris Wolfgang <210299580+Chris-Wolfgang@users.noreply.github.com>",
+          "timestamp": "2026-11-12T10:14:08-05:00",
+          "tree_id": "7485d8ffaa42329fcc2eb1ae15ed622f9d1b50bf",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/81215a546dd03a6318c9c00b8a8100d04885f539"
+        },
+        "date": 1794498968853,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 201.77493011951447,
+            "unit": "ns",
+            "range": "± 0.050148319195875465"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 63.77735835313797,
+            "unit": "ns",
+            "range": "± 0.15106386129632748"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 78.61462249358495,
+            "unit": "ns",
+            "range": "± 1.6442221968931632"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 69.8730120062828,
+            "unit": "ns",
+            "range": "± 1.760345082265996"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 69.24766663710277,
+            "unit": "ns",
+            "range": "± 0.2856330909267612"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 6.06437636166811,
+            "unit": "ns",
+            "range": "± 0.05667942198732159"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 6.1938980768124265,
+            "unit": "ns",
+            "range": "± 0.12895119129562746"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 5.9971999277671175,
+            "unit": "ns",
+            "range": "± 0.1260660915538489"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 8.080266882975897,
+            "unit": "ns",
+            "range": "± 0.01110069599757803"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 25.799549748500187,
+            "unit": "ns",
+            "range": "± 0.10893889691158998"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 56.85843652486801,
+            "unit": "ns",
+            "range": "± 0.10944219840035975"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 56.0602139433225,
+            "unit": "ns",
+            "range": "± 0.22040191671876314"
           }
         ]
       }
