@@ -1,6 +1,8 @@
 using System;
 using System.Globalization;
+#if !NET8_0_OR_GREATER
 using System.Text;
+#endif
 
 namespace Wolfgang.Extensions.String;
 
@@ -101,13 +103,28 @@ public static class StringExtensions
         }
 
         var leftPadding = (totalWidth - s.Length) / 2;
+#if NET8_0_OR_GREATER
+        // One allocation: the result string is written in place.
+        return string.Create
+        (
+            totalWidth,
+            (Value: s, PaddingChar: paddingChar, LeftPadding: leftPadding),
+            static (span, state) =>
+            {
+                span.Slice(0, state.LeftPadding).Fill(state.PaddingChar);
+                state.Value.AsSpan().CopyTo(span.Slice(state.LeftPadding));
+                span.Slice(state.LeftPadding + state.Value.Length).Fill(state.PaddingChar);
+            }
+        );
+#else
         var rightPadding = totalWidth - s.Length - leftPadding;
-        var buffer = new StringBuilder(totalWidth);
-        buffer.Append(new string(paddingChar, leftPadding));
-        buffer.Append(s);
-        buffer.Append(new string(paddingChar, rightPadding));
 
-        return buffer.ToString();
+        return new StringBuilder(totalWidth)
+            .Append(paddingChar, leftPadding)
+            .Append(s)
+            .Append(paddingChar, rightPadding)
+            .ToString();
+#endif
     }
 
 
