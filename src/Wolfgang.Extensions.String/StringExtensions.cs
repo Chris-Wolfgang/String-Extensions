@@ -11,10 +11,8 @@ namespace Wolfgang.Extensions.String;
 /// </summary>
 public static class StringExtensions
 {
-
-
     /// <summary>
-    /// Returns the left most specified character from the specified string.
+    /// Returns the leftmost <paramref name="length"/> characters of the string.
     /// </summary>
     /// <param name="s">The instance to retrieve from.</param>
     /// <param name="length">The number of characters to retrieve.</param>
@@ -130,7 +128,7 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Returns the right most specified character from the specified string.
+    /// Returns the rightmost <paramref name="length"/> characters of the string.
     /// </summary>
     /// <param name="s">The instance to retrieve from.</param>
     /// <param name="length">The number of characters to retrieve.</param>
@@ -167,23 +165,23 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Converts a string to camelCase by lowering the first character, capitalizing the first letter
-    /// of each subsequent word, and removing all separator characters.
+    /// Converts a string to camelCase: the first word is lower-cased, every later word is capitalized with the
+    /// rest of its letters lower-cased, and all separator characters are removed.
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
     /// The specified string in camel case.
     /// </returns>
     /// <remarks>
+    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are treated as word
+    /// boundaries and removed from the output. Control characters and punctuation are preserved.
+    /// </remarks>
     /// <example>
     /// <code>
     ///     Original: " A sample string for processing! "
     /// Return value: aSampleStringForProcessing!
     /// </code>
     /// </example>
-    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are treated as word
-    /// boundaries and removed from the output. Control characters and punctuation are preserved.
-    /// </remarks>
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
@@ -231,15 +229,15 @@ public static class StringExtensions
     /// The specified string in kebab case.
     /// </returns>
     /// <remarks>
+    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are replaced with dashes.
+    /// Control characters and punctuation are preserved.
+    /// </remarks>
     /// <example>
     /// <code>
     ///     Original: "A sample string for processing!"
     /// Return value: a-sample-string-for-processing!
     /// </code>
     /// </example>
-    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are replaced with dashes.
-    /// Control characters and punctuation are preserved.
-    /// </remarks>
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
@@ -269,22 +267,23 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Capitalizes each word, including the first one, and removes all separator characters.
+    /// Converts a string to PascalCase: every word, including the first one, is capitalized with the rest of its
+    /// letters lower-cased, and all separator characters are removed.
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
     /// The specified string in Pascal case.
     /// </returns>
     /// <remarks>
+    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are treated as word
+    /// boundaries and removed from the output. Control characters and punctuation are preserved.
+    /// </remarks>
     /// <example>
     /// <code>
     ///     Original: " A sample string for processing! "
     /// Return value: ASampleStringForProcessing!
     /// </code>
     /// </example>
-    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are treated as word
-    /// boundaries and removed from the output. Control characters and punctuation are preserved.
-    /// </remarks>
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
@@ -330,15 +329,15 @@ public static class StringExtensions
     /// The specified string in snake case.
     /// </returns>
     /// <remarks>
+    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are replaced with underscores.
+    /// Control characters and punctuation are preserved.
+    /// </remarks>
     /// <example>
     /// <code>
     ///     Original: "A sample string for processing!"
     /// Return value: a_sample_string_for_processing!
     /// </code>
     /// </example>
-    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are replaced with underscores.
-    /// Control characters and punctuation are preserved.
-    /// </remarks>
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
@@ -375,16 +374,16 @@ public static class StringExtensions
     /// The specified string in title case.
     /// </returns>
     /// <remarks>
+    /// Delegates to <see cref="TextInfo.ToTitleCase"/> using <see cref="CultureInfo.CurrentCulture"/>.
+    /// Words that are entirely uppercase are left unchanged. This is a general-purpose implementation;
+    /// proper names and addresses may require specialized handling.
+    /// </remarks>
     /// <example>
     /// <code>
     ///     Original: "a sample string for processing!"
     /// Return value: A Sample String For Processing!
     /// </code>
     /// </example>
-    /// Delegates to <see cref="TextInfo.ToTitleCase"/> using <see cref="CultureInfo.CurrentCulture"/>.
-    /// Words that are entirely uppercase are left unchanged. This is a general-purpose implementation;
-    /// proper names and addresses may require specialized handling.
-    /// </remarks>
     /// <exception cref="ArgumentNullException">
     /// <paramref name="s"/> is <see langword="null"/>.
     /// </exception>
@@ -394,5 +393,4 @@ public static class StringExtensions
 
         return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s);
     }
-
 }
