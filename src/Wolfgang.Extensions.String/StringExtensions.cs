@@ -36,7 +36,9 @@ public static class StringExtensions
             return null;
         }
 
-        return s.Length <= length ? s : s.Substring(0, length);
+        // Substring returns the same instance when it covers the whole string, so a string
+        // no longer than length comes back unchanged without a separate length check.
+        return s.Substring(0, Math.Min(length, s.Length));
     }
 
 
@@ -152,14 +154,9 @@ public static class StringExtensions
             return null;
         }
 
-        if (s.Length <= length)
-        {
-            return s;
-        }
-
-        var startIndex = s.Length - length;
-
-        return s.Substring(startIndex);
+        // Substring returns the same instance when it covers the whole string, so a string
+        // no longer than length comes back unchanged without a separate length check.
+        return s.Substring(s.Length - Math.Min(length, s.Length));
     }
 
 
@@ -191,8 +188,9 @@ public static class StringExtensions
 
         var output = new char[s.Length];
 
-        var isLastCharSeparator = false;
-        var foundFirstChar = false;
+        // A word starts after a separator, but only once something has been written: the first
+        // word stays lower case even when the input starts with separators.
+        var capitalizeNext = false;
 
         var outputIndex = 0;
 
@@ -200,19 +198,15 @@ public static class StringExtensions
         {
             if (char.IsSeparator(chr))
             {
-                isLastCharSeparator = true;
+                capitalizeNext = outputIndex > 0;
                 // eat char
-            }
-            else if (isLastCharSeparator && foundFirstChar)
-            {
-                isLastCharSeparator = false;
-                output[outputIndex++] = char.ToUpperInvariant(chr);
             }
             else
             {
-                isLastCharSeparator = false;
-                foundFirstChar = true;
-                output[outputIndex++] = char.ToLowerInvariant(chr);
+                output[outputIndex++] = capitalizeNext
+                    ? char.ToUpperInvariant(chr)
+                    : char.ToLowerInvariant(chr);
+                capitalizeNext = false;
             }
         }
 
