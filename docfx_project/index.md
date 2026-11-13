@@ -18,11 +18,13 @@ dotnet add package Wolfgang.Extensions.String
 |---|---|
 | `Left(int)` | Leftmost N characters |
 | `Right(int)` | Rightmost N characters |
-| `PadCenter(int, char?)` | Center within a width, padding both sides |
+| `PadCenter(int)` | Center within a width, padding both sides with spaces |
+| `PadCenter(int, char)` | Center within a width, padding both sides with the given character |
 | `ToCamelCase()` | Convert to `camelCase` |
 | `ToKebabCase()` | Convert to `kebab-case` |
 | `ToPascalCase()` | Convert to `PascalCase` |
 | `ToSnakeCase()` | Convert to `snake_case` |
+| `ToTitleCase()` | Convert to `Title Case` (current culture) |
 
 ## Quick examples
 
@@ -32,6 +34,7 @@ dotnet add package Wolfgang.Extensions.String
 "Hello".PadCenter(11, '-');        // "---Hello---"
 "hello world".ToPascalCase();      // "HelloWorld"
 "Hello World".ToSnakeCase();       // "hello_world"
+"hello world".ToTitleCase();       // "Hello World"
 ```
 
 ## Where to next

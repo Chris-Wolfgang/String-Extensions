@@ -60,6 +60,66 @@ Please keep the details private until the advisory is published.
 Reporters are credited in the published advisory and in the release notes, unless you ask not to be.
 Tell us in the report how you would like to be named.
 
+## Verifying a release
+
+Each release ships artifacts that let a consumer check that the package they downloaded was built
+from this repository, unmodified. Replace `<version>` with the release you are checking;
+`gh release download v<version> --repo Chris-Wolfgang/String-Extensions` fetches the release
+assets.
+
+### 1. Package signature (`nuget verify`)
+
+NuGet.org applies a **repository signature** to every package it accepts, so this works for every
+published version:
+
+```bash
+nuget verify -Signatures Wolfgang.Extensions.String.<version>.nupkg
+```
+
+There is no **author signature** yet: that needs a code-signing certificate (tracked in #169).
+
+### 2. Build provenance (SLSA attestation)
+
+`release.yaml` records a Sigstore-backed [SLSA build-provenance](https://slsa.dev/) attestation for
+each `.nupkg` before it is pushed, signed with the workflow's OIDC identity (no stored key). It binds
+the package's SHA-256 digest to this repository, the tagged commit and the `release.yaml` run.
+Verify it with the GitHub CLI:
+
+```bash
+gh attestation verify Wolfgang.Extensions.String.<version>.nupkg \
+  --repo Chris-Wolfgang/String-Extensions \
+  --signer-workflow Chris-Wolfgang/String-Extensions/.github/workflows/release.yaml
+```
+
+The attestation step was added after 0.1.1, so 0.1.1 and earlier have no attestation; the first
+release after it is the first one this check applies to.
+
+### 3. SBOM
+
+Each release attaches a CycloneDX SBOM, `Wolfgang.Extensions.String.bom.json` (0.1.1 has one),
+listing the package's dependency graph for vulnerability scanning and license review. The package
+has no run-time package dependencies; `license-audit.yaml` checks the full transitive closure
+against an allow-list on every pull request and weekly.
+
+### 4. Rebuild it yourself
+
+[docs/REPRODUCIBLE-BUILD.md](docs/REPRODUCIBLE-BUILD.md) gives the exact rebuild command and how to
+compare the result with the published DLLs.
+
+Together these close the chain: **provenance** (this repository's workflow produced the bytes),
+**signature** (nuget.org has not altered them since), **SBOM** (what is inside) and **rebuild**
+(the source at the tag produces the same code).
+
+## Release path & compromise scope
+
+Facts a maintainer would need at 2am if the release identity is compromised. Generic incident-response steps (rotating credentials, revoking OAuth apps, publishing advisories, unlisting NuGet packages) are not duplicated here — GitHub's and NuGet's own docs update faster than a checked-in runbook.
+
+- **Release path**: OIDC / NuGet Trusted Publishing via `NuGet/login@v1` in `.github/workflows/release.yaml`. The workflow mints an ephemeral push token per run via OIDC — the release path does not depend on a long-lived API key stored in GitHub secrets or on the NuGet account. During an incident, check the NuGet account for any long-lived API keys anyway (they can be created outside of CI) and delete anything you don't recognize. (Until the first OIDC release, a legacy `NUGET_API_KEY` repository secret still exists; see #160.)
+- **Fallback**: none. If Trusted Publishing is compromised, the incident is at the GitHub-account level (the OIDC identity is `Chris-Wolfgang/String-Extensions`).
+- **Owner**: @Chris-Wolfgang.
+- **Downstream consumers**: no first-party Wolfgang.* repository depends on `Wolfgang.Extensions.String`; unknown external consumers may exist on nuget.org (public package). Use nuget.org download counts and reverse-dependency search as the incident-time signal.
+- **Package coordinates for unlisting**: `Wolfgang.Extensions.String` on nuget.org — https://www.nuget.org/packages/Wolfgang.Extensions.String/. This repository ships exactly one package.
+
 ## Thank You
 
 Your help is greatly appreciated!

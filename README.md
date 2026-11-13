@@ -4,7 +4,7 @@ A collection of extension methods for `string` — substring helpers (`Left` / `
 
 [![NuGet](https://img.shields.io/nuget/v/Wolfgang.Extensions.String.svg?logo=nuget&label=NuGet)](https://www.nuget.org/packages/Wolfgang.Extensions.String)
 [![NuGet downloads](https://img.shields.io/nuget/dt/Wolfgang.Extensions.String.svg?logo=nuget&label=downloads)](https://www.nuget.org/packages/Wolfgang.Extensions.String)
-[![PR build](https://img.shields.io/github/actions/workflow/status/Chris-Wolfgang/String-Extensions/pr.yaml?event=pull_request_target&label=PR%20build&logo=github)](https://github.com/Chris-Wolfgang/String-Extensions/actions/workflows/pr.yaml)
+[![PR build](https://img.shields.io/github/actions/workflow/status/Chris-Wolfgang/String-Extensions/pr.yaml?branch=main&label=PR%20build&logo=github)](https://github.com/Chris-Wolfgang/String-Extensions/actions/workflows/pr.yaml)
 [![Release](https://img.shields.io/github/actions/workflow/status/Chris-Wolfgang/String-Extensions/release.yaml?label=release&logo=github)](https://github.com/Chris-Wolfgang/String-Extensions/actions/workflows/release.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![.NET](https://img.shields.io/badge/.NET-Multi--Targeted-purple.svg)](https://dotnet.microsoft.com/)
@@ -117,6 +117,13 @@ authoritative list (kept in sync with source on every release), see the
 
 ---
 
+## 🔏 Verify the build
+
+- **Provenance and SBOM:** every release attaches a CycloneDX SBOM, and releases after 0.1.1 carry a build-provenance attestation; see [SECURITY.md](SECURITY.md#verifying-a-release).
+- **Rebuilding from source:** see [docs/REPRODUCIBLE-BUILD.md](docs/REPRODUCIBLE-BUILD.md) for the exact steps, a measured worked example (what a near-match looks like for v0.1.1), the release hash manifest, and how to report a discrepancy or share a verification result.
+
+---
+
 ## 🎯 Supported Frameworks
 
 This library targets:
@@ -126,6 +133,13 @@ This library targets:
 - **.NET:** 8.0, 10.0
 
 See the [NuGet package page](https://www.nuget.org/packages/Wolfgang.Extensions.String/) for the authoritative per-TFM compatibility matrix.
+
+## Native AOT
+
+This library is trim- and Native AOT-compatible. **.NET 10 is the lowest version on which Native
+AOT is supported**: on every pull request the unit suite is compiled and run as a native binary
+(`tests/Wolfgang.Extensions.String.Tests.Aot`). The .NET 8 build passes the trim/AOT analyzers but is not executed
+natively, so Native AOT on .NET 8 is not a supported scenario.
 
 ## 🔍 Code Quality & Static Analysis
 
@@ -181,7 +195,7 @@ This project uses `.editorconfig` and `dotnet format`:
 # Format code
 dotnet format
 
-# Verify formatting (as CI does)
+# Verify formatting (the PR workflow does not run this check; see scripts/format.ps1)
 dotnet format --verify-no-changes
 ```
 
