@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794140831285,
+  "lastUpdate": 1794748413064,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "Mutation score": [
@@ -134,6 +134,33 @@ window.BENCHMARK_DATA = {
           {
             "name": "Mutation score",
             "value": 90.62,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang",
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "add7633dff9f994eebbaef7787cf01f59546df70",
+          "message": "docs(scorecard): record the first published score (7.5) as the floor (#349)\n\nscorecard.dev published the first score for main at 01cdaec on 2026-11-13. The per-check table replaces the 'once the first score is published' placeholder in the Floor section.\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-11-13T18:57:42Z",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/add7633dff9f994eebbaef7787cf01f59546df70"
+        },
+        "date": 1794748410967,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Mutation score (tests/Wolfgang.Extensions.String.Tests.Unit)",
+            "value": 100,
             "unit": "%"
           }
         ]
