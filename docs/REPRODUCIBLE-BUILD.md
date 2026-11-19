@@ -47,7 +47,7 @@ Each GitHub Release carries these assets next to the packages:
 
 ## Verify a release
 
-You need git, the GitHub CLI (`gh`), Python 3 and the .NET SDK the manifest names.
+You need git, the GitHub CLI (`gh`), Python 3, PowerShell 7 (`pwsh`) and the .NET SDK the manifest names.
 
 1. **Clone the tag.**
 
@@ -63,10 +63,14 @@ You need git, the GitHub CLI (`gh`), Python 3 and the .NET SDK the manifest name
    `BUILD-MANIFEST.txt` names (for example with `dotnet-install.sh --version <sdk>`), and check that `dotnet --version`
    prints it from inside the clone.
 
-3. **Pack exactly as the workflow does**, once per packable project under `src/`:
+3. **Pack exactly as the workflow does.** Restore, render the third-party notices (the release packs
+   `obj/THIRD-PARTY-NOTICES.md` at the package root, so a pack without it differs by that entry), then pack
+   each packable project under `src/`:
 
    ```bash
    export CI=true
+   dotnet restore
+   pwsh ./scripts/third-party-notices.ps1
    for proj in $(git ls-files 'src/*.csproj' 'src/**/*.csproj'); do
      [ "$(dotnet msbuild "$proj" -getProperty:IsPackable | tr -d '[:space:]')" = "true" ] || continue
      dotnet pack "$proj" -c Release -p:ContinuousIntegrationBuild=true -p:Deterministic=true -o ../rebuilt
@@ -145,7 +149,7 @@ Open an issue and include: the release tag and commit, your operating system and
 
 ## Per-package hash manifest
 
-Releases published after the manifest step was added to `release.yaml` also carry a `reproducible-build-manifest.json` asset, next to `SHA256SUMS.txt`. It lists the tag, the commit, and the SHA-256 of each attached `.nupkg` and `.snupkg` and of every `.dll` and `.pdb` inside them. It describes the **published bytes**, which is what a rebuild is compared against; it is not signed (the build-provenance attestation covers the `.nupkg`, see [SECURITY.md](../SECURITY.md)). For a release that has `BUILD-MANIFEST.txt`, rebuild with the SDK it names and expect every hash to match. For an older release the SDK is unknown, so compare with `cmp -l` and treat a mismatch confined to those five ranges as the expected near-match. Releases up to and including 0.1.1 have no manifest; compare against the `.nupkg` itself.
+Releases published after the manifest step was added to `release.yaml` also carry a `reproducible-build-manifest.json` asset, next to `SHA256SUMS.txt`. It lists the tag, the commit, and the SHA-256 of each attached `.nupkg` and `.snupkg` and of every `.dll` and `.pdb` inside them. It describes the **published bytes**, which is what a rebuild is compared against; it is not signed (the build-provenance attestation covers the `.nupkg`, see [SECURITY.md](../SECURITY.md)). Use its two kinds of hash differently. The package-level hashes (`.nupkg` / `.snupkg`) cover the whole zip, so they identify the **downloaded** files: check a package you fetched against them. A rebuilt package never matches them, because its zip entries carry the pack time (see "What is expected to differ"). For a rebuild, compare the `.dll` and `.pdb` hashes, and compare packages entry by entry as in step 4. For a release that has `BUILD-MANIFEST.txt`, rebuild with the SDK it names and expect every `.dll` and `.pdb` hash to match. For an older release the SDK is unknown, so compare with `cmp -l` and treat a mismatch confined to those five ranges as the expected near-match. Releases up to and including 0.1.1 have no manifest; compare against the `.nupkg` itself.
 
 ## Sharing your verification result
 

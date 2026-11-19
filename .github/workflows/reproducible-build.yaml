@@ -133,6 +133,11 @@ jobs:
         run: |
           set -euo pipefail
           dotnet --version
+          # Same inputs as release.yaml: restore, render obj/THIRD-PARTY-NOTICES.md (which
+          # Directory.Build.props packs at the package root), then pack, so the notices entry
+          # is part of what this gate compares.
+          dotnet restore
+          if [ -f scripts/third-party-notices.ps1 ]; then pwsh ./scripts/third-party-notices.ps1; fi
           while IFS= read -r proj; do
             dotnet pack "$proj" -c Release -p:ContinuousIntegrationBuild=true -p:Deterministic=true -o "$RUNNER_TEMP/pack-1"
           done < "$RUNNER_TEMP/repro-projects.txt"
@@ -148,6 +153,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Same inputs as release.yaml: restore, render obj/THIRD-PARTY-NOTICES.md (which
+          # Directory.Build.props packs at the package root), then pack, so the notices entry
+          # is part of what this gate compares.
+          dotnet restore
+          if [ -f scripts/third-party-notices.ps1 ]; then pwsh ./scripts/third-party-notices.ps1; fi
           while IFS= read -r proj; do
             dotnet pack "$proj" -c Release -p:ContinuousIntegrationBuild=true -p:Deterministic=true -o "$RUNNER_TEMP/pack-2"
           done < "$RUNNER_TEMP/repro-projects.txt"
@@ -234,6 +244,11 @@ jobs:
             packable=$(dotnet msbuild "$proj" -noLogo -getProperty:IsPackable | tr -d '[:space:]')
             if [ "${packable,,}" = "true" ]; then printf '%s\n' "$proj"; fi
           done > "$list"
+          # Same inputs as release.yaml: restore, render obj/THIRD-PARTY-NOTICES.md (which
+          # Directory.Build.props packs at the package root), then pack, so the notices entry
+          # is part of what this gate compares.
+          dotnet restore
+          if [ -f scripts/third-party-notices.ps1 ]; then pwsh ./scripts/third-party-notices.ps1; fi
           while IFS= read -r proj; do
             dotnet pack "$proj" -c Release -p:ContinuousIntegrationBuild=true -p:Deterministic=true -o "$RUNNER_TEMP/pack-win"
           done < "$list"
