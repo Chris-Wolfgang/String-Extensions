@@ -134,11 +134,13 @@ This library targets:
 
 See the [NuGet package page](https://www.nuget.org/packages/Wolfgang.Extensions.String/) for the authoritative per-TFM compatibility matrix.
 
+**Test matrix.** Every pull request runs the test suite on five legs and all five must pass: Linux x64, Linux ARM64, Windows x64, Windows ARM64 and macOS ARM64. Windows x64 runs every target framework (the only leg with .NET Framework); Linux x64 runs .NET Core 3.1 and .NET 5.0 and later; the three ARM64 legs run .NET 6.0 and later.
+
 ## Native AOT
 
 This library is trim- and Native AOT-compatible. **.NET 10 is the lowest version on which Native
 AOT is supported**: on every pull request the unit suite is compiled and run as a native binary
-(`tests/Wolfgang.Extensions.String.Tests.Aot`). The .NET 8 build passes the trim/AOT analyzers but is not executed
+(`tests/Wolfgang.Extensions.String.Tests.Aot`) on linux-x64 and linux-arm64 (`.github/workflows/aot-smoke.yaml`). The .NET 8 build passes the trim/AOT analyzers but is not executed
 natively, so Native AOT on .NET 8 is not a supported scenario.
 
 ## 🔍 Code Quality & Static Analysis
