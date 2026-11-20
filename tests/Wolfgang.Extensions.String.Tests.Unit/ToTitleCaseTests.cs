@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Xunit;
 
 namespace Wolfgang.Extensions.String.Tests.Unit;
@@ -35,6 +36,21 @@ public class ToTitleCaseTests
     [InlineData("A string with acronym CRM in it.", "A String With Acronym CRM In It.")]
     public void ToTitleCase_when_passed_valid_string_converts_properly(string input, string expectedResult)
     {
-        Assert.Equal(expectedResult, input.ToTitleCase());
+        // ToTitleCase uses CultureInfo.CurrentCulture (ADR 0004), and these expected strings assume
+        // en-US casing: under tr-TR "in" becomes "İn". Pin the culture so the result does not depend
+        // on the machine. Set and restored synchronously, so only this thread is affected.
+        var original = CultureInfo.CurrentCulture;
+        string actual;
+        try
+        {
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            actual = input.ToTitleCase();
+        }
+        finally
+        {
+            CultureInfo.CurrentCulture = original;
+        }
+
+        Assert.Equal(expectedResult, actual);
     }
 }
