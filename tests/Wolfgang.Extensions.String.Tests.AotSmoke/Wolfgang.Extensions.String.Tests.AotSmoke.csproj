@@ -16,8 +16,11 @@
     <InvariantGlobalization>true</InvariantGlobalization>
 
     <!-- Not packed and not a test project: publish, then execute. pr.yaml and
-         scripts/build-pr.ps1 skip it in their test step (no IsTestProject / Test SDK). -->
+         scripts/build-pr.ps1 skip it in their test step. The opt-out is explicit because
+         the ARM64 stages' test step fails on a tests/ project that has neither
+         Microsoft.NET.Test.Sdk nor IsTestProject=false. -->
     <IsPackable>false</IsPackable>
+    <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
