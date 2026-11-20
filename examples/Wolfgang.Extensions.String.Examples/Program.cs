@@ -1,6 +1,6 @@
 namespace Wolfgang.Extensions.String.Examples;
 
-internal abstract class Program
+internal static class Program
 {
     private static void Main()
     {
@@ -21,6 +21,7 @@ internal abstract class Program
         Console.WriteLine($"\t{"Jane",-10}|{new DateTime(2012, 1, 2, 0, 0, 0, DateTimeKind.Unspecified).ToString("M/d/yyyy", System.Globalization.CultureInfo.InvariantCulture).PadCenter(12)}");
         Console.WriteLine();
     }
+
 
 
     private static void LeftAndRight()
