@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794585403346,
+  "lastUpdate": 1795220467977,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -960,6 +960,102 @@ window.BENCHMARK_DATA = {
             "value": 14.07042940457662,
             "unit": "ns",
             "range": "± 0.35214042446668836"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4ef6941a4ea5b87139e64305c76b3bbee55e92a4",
+          "message": "fix(pack): stop shipping icon.ico as content and as a Win32 resource (#363) (#369)\n\nThe library csproj set ApplicationIcon and a Content item for a 4.3 MB\nicon.ico, so the package carried it in content/, four contentFiles/\nfolders and inside every DLL (8.7 MB package). The gallery icon comes\nfrom PackageIcon (icon.png), which is unchanged.\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-11-20T19:13:47-05:00",
+          "tree_id": "08138541123ff0013478ce4e1761707826b802c2",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/4ef6941a4ea5b87139e64305c76b3bbee55e92a4"
+        },
+        "date": 1795220466927,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 150.71880269050598,
+            "unit": "ns",
+            "range": "± 1.5459286431211205"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 48.55929517745972,
+            "unit": "ns",
+            "range": "± 0.1989162868421323"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 46.209947327772774,
+            "unit": "ns",
+            "range": "± 1.062083251694293"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 42.86934880415598,
+            "unit": "ns",
+            "range": "± 2.576743872914833"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 42.3653866648674,
+            "unit": "ns",
+            "range": "± 0.684363253500301"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 4.0649330243468285,
+            "unit": "ns",
+            "range": "± 0.1487184937499609"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 5.633349289496739,
+            "unit": "ns",
+            "range": "± 0.29485640615488273"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 4.597619292636712,
+            "unit": "ns",
+            "range": "± 0.29483198164752494"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 5.583127210537593,
+            "unit": "ns",
+            "range": "± 0.14892769003628722"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 18.983349561691284,
+            "unit": "ns",
+            "range": "± 0.4368872182676932"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 11.75798586010933,
+            "unit": "ns",
+            "range": "± 0.351253204147049"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 11.079479729135832,
+            "unit": "ns",
+            "range": "± 0.32051059723767933"
           }
         ]
       }
