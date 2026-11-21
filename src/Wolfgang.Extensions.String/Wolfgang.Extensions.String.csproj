@@ -21,7 +21,6 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<SignAssembly>False</SignAssembly>
 		<PackageIcon>icon.png</PackageIcon>
-		<ApplicationIcon>icon.ico</ApplicationIcon>
 
 		<!-- PackageValidation: pack fails if the package introduces a binary-breaking
 		     change against the last published version. Intentional breaks are waived
@@ -43,10 +42,6 @@
 	</PropertyGroup>
 
 	<!-- Analyzer PackageReferences are centralized in Directory.Build.props -->
-
-	<ItemGroup>
-	  <Content Include="icon.ico" />
-	</ItemGroup>
 
 	<ItemGroup>
 	  <None Include="..\..\assets\icon.png">
