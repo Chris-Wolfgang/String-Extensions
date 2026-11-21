@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795220467977,
+  "lastUpdate": 1795289642585,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -1056,6 +1056,102 @@ window.BENCHMARK_DATA = {
             "value": 11.079479729135832,
             "unit": "ns",
             "range": "± 0.32051059723767933"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e41f6e1dfb4a2fa8c0ffcab3eb795e5ffac31ee7",
+          "message": "chore: project file hygiene (slnx, IsPackable, LangVersion, formatting) (#368) (#372)\n\n- slnx: drop the non-existent root stryker-config.json; list\n  Directory.Build.targets, global.json, the five newer workflows,\n  REPRODUCIBLE-BUILD.md, scorecard-baseline.md, docs/adr and docs/migrations\n- examples/benchmarks: IsPackable=false\n- Tests.Aot: drop LangVersion latest (Directory.Build.props sets latestMajor)\n- DocExamples: drop Nullable already set by Directory.Build.props\n- src csproj: PackageTags indentation (whitespace only)\n- examples Program: static class, three blank lines between members\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-11-21T14:31:16-05:00",
+          "tree_id": "9c5efd3d3bdcfc6f63e9a07b4fc654ae094d03f9",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/e41f6e1dfb4a2fa8c0ffcab3eb795e5ffac31ee7"
+        },
+        "date": 1795289642161,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 207.74430362383524,
+            "unit": "ns",
+            "range": "± 2.4428650021117435"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 89.7115172346433,
+            "unit": "ns",
+            "range": "± 1.302405621021201"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 96.82814349730809,
+            "unit": "ns",
+            "range": "± 6.0679335691618235"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 80.39476935068767,
+            "unit": "ns",
+            "range": "± 0.6983974949142467"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 81.32408765951793,
+            "unit": "ns",
+            "range": "± 0.730550580965395"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 6.300952255725861,
+            "unit": "ns",
+            "range": "± 0.18605886663321272"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 7.716731170813243,
+            "unit": "ns",
+            "range": "± 0.04122906515374502"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 7.334127599994342,
+            "unit": "ns",
+            "range": "± 0.03516251011593863"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 8.746748651067415,
+            "unit": "ns",
+            "range": "± 0.027293449945416923"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 28.337979555130005,
+            "unit": "ns",
+            "range": "± 0.4002192795819195"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 17.675559212764103,
+            "unit": "ns",
+            "range": "± 0.5559301840487448"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 18.082324127356213,
+            "unit": "ns",
+            "range": "± 0.3629413681006924"
           }
         ]
       }
