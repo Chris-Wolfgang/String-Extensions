@@ -8,11 +8,12 @@
     <File Path="CODE_OF_CONDUCT.md" />
     <File Path="CONTRIBUTING.md" />
     <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
     <File Path="LICENSE" />
     <File Path="README.md" />
     <File Path="SECURITY.md" />
     <File Path="coverlet.runsettings" />
-    <File Path="stryker-config.json" />
+    <File Path="global.json" />
   </Folder>
   <Folder Name="/.root/.github/">
     <File Path=".github/CODEOWNERS" />
@@ -27,14 +28,19 @@
   </Folder>
   <Folder Name="/.root/.github/workflows/">
     <File Path=".github/workflows/actions-audit.yaml" />
+    <File Path=".github/workflows/aot-smoke.yaml" />
     <File Path=".github/workflows/benchmarks.yaml" />
     <File Path=".github/workflows/build-all-versions.yaml" />
     <File Path=".github/workflows/codeql.yaml" />
+    <File Path=".github/workflows/cross-platform-differential.yaml" />
     <File Path=".github/workflows/docfx.yaml" />
+    <File Path=".github/workflows/fuzz.yaml" />
     <File Path=".github/workflows/license-audit.yaml" />
+    <File Path=".github/workflows/pr-benchmarks.yaml" />
     <File Path=".github/workflows/pr.yaml" />
     <File Path=".github/workflows/protected-files.yaml" />
     <File Path=".github/workflows/release.yaml" />
+    <File Path=".github/workflows/reproducible-build.yaml" />
     <File Path=".github/workflows/sbom.yaml" />
     <File Path=".github/workflows/scorecard.yaml" />
     <File Path=".github/workflows/security-alerts.yml" />
@@ -46,7 +52,22 @@
     <File Path="docs/DOCFX-VERSION-PICKER.md" />
     <File Path="docs/README-FORMATTING.md" />
     <File Path="docs/RELEASE-WORKFLOW-SETUP.md" />
+    <File Path="docs/REPRODUCIBLE-BUILD.md" />
     <File Path="docs/WORKFLOW_SECURITY.md" />
+    <File Path="docs/scorecard-baseline.md" />
+  </Folder>
+  <Folder Name="/.root/docs/adr/">
+    <File Path="docs/adr/0001-pin-assemblyversion-at-1-0-0-0.md" />
+    <File Path="docs/adr/0002-publicapianalyzers-opt-in-per-project.md" />
+    <File Path="docs/adr/0003-explicit-usings-in-multi-target-projects.md" />
+    <File Path="docs/adr/0004-invariant-casing-except-totitlecase.md" />
+    <File Path="docs/adr/0005-left-right-null-tolerant.md" />
+    <File Path="docs/adr/TEMPLATE.md" />
+    <File Path="docs/adr/index.md" />
+  </Folder>
+  <Folder Name="/.root/docs/migrations/">
+    <File Path="docs/migrations/README.md" />
+    <File Path="docs/migrations/TEMPLATE-major-version-migration.md" />
   </Folder>
   <Folder Name="/benchmarks/">
     <Project Path="benchmarks/Wolfgang.Extensions.String.Benchmarks/Wolfgang.Extensions.String.Benchmarks.csproj" />

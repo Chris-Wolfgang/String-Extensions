@@ -5,6 +5,7 @@
     <!-- Benchmark targets net8.0 only; BenchmarkDotNet runs against a single TFM. -->
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
