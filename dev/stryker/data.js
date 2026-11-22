@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794748413064,
+  "lastUpdate": 1795355401657,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "Mutation score": [
@@ -156,6 +156,33 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/add7633dff9f994eebbaef7787cf01f59546df70"
         },
         "date": 1794748410967,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Mutation score (tests/Wolfgang.Extensions.String.Tests.Unit)",
+            "value": 100,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang",
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "789955bce63a00a5d426f4d3975b00f893a61403",
+          "message": "docs: list the not-yet-required checks; README no longer says all five legs gate (#366) (#373)\n\nThe active ruleset requires 8 contexts. RELEASE-WORKFLOW-SETUP.md listed\nChangelog Fragment Check as required and omitted Stage 4/5, both AOT\nsmoke legs and Reproducible build; README said all five test legs must\npass although the ARM64 stages are not required.\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-11-21T20:54:56Z",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/789955bce63a00a5d426f4d3975b00f893a61403"
+        },
+        "date": 1795355398941,
         "tool": "customBiggerIsBetter",
         "benches": [
           {
