@@ -57,6 +57,7 @@
     <File Path="docs/scorecard-baseline.md" />
   </Folder>
   <Folder Name="/.root/docs/adr/">
+    <File Path="docs/adr/0000-record-architecture-decisions.md" />
     <File Path="docs/adr/0001-pin-assemblyversion-at-1-0-0-0.md" />
     <File Path="docs/adr/0002-publicapianalyzers-opt-in-per-project.md" />
     <File Path="docs/adr/0003-explicit-usings-in-multi-target-projects.md" />
