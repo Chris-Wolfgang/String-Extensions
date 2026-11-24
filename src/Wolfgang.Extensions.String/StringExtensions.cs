@@ -255,8 +255,9 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Converts a string to kebab case: every letter is lower-cased, separator characters become dashes,
-    /// and a dash is put between the words of a PascalCase or camelCase identifier.
+    /// Converts a string to kebab case: every letter is lower-cased and exactly one dash is put between
+    /// words, whether they were divided by separator characters, by dashes, or by the case boundaries of
+    /// a PascalCase or camelCase identifier.
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
@@ -264,8 +265,10 @@ public static class StringExtensions
     /// </returns>
     /// <remarks>
     /// <para>
-    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are replaced with dashes.
-    /// Control characters and punctuation are preserved.
+    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> divide words, and so
+    /// does a dash already in the string. A run of them becomes a single dash, and the result neither starts
+    /// nor ends with one: <c>"  two  words  "</c> is <c>two-words</c>. Control characters and other punctuation
+    /// are preserved.
     /// </para>
     /// <para>
     /// A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
@@ -355,8 +358,9 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Converts a string to snake case: every letter is lower-cased, separator characters become underscores,
-    /// and a underscore is put between the words of a PascalCase or camelCase identifier.
+    /// Converts a string to snake case: every letter is lower-cased and exactly one underscore is put between
+    /// words, whether they were divided by separator characters, by underscores, or by the case boundaries of
+    /// a PascalCase or camelCase identifier.
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
@@ -364,8 +368,10 @@ public static class StringExtensions
     /// </returns>
     /// <remarks>
     /// <para>
-    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are replaced with underscores.
-    /// Control characters and punctuation are preserved.
+    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> divide words, and so
+    /// does a underscore already in the string. A run of them becomes a single underscore, and the result neither starts
+    /// nor ends with one: <c>"  two  words  "</c> is <c>two_words</c>. Control characters and other punctuation
+    /// are preserved.
     /// </para>
     /// <para>
     /// A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
@@ -429,8 +435,10 @@ public static class StringExtensions
 
 
 
-    // Lower-cases s, turns each separator character into the delimiter, and puts the delimiter
-    // between the words of a PascalCase or camelCase identifier.
+    // Lower-cases s and puts exactly one delimiter between its words. Words are divided by separator
+    // characters, by the delimiter itself, and by the case boundaries of a PascalCase or camelCase
+    // identifier. Nothing is written for a run of dividers until the next word starts, so a run
+    // becomes one delimiter and the result neither starts nor ends with one.
     private static string ToDelimitedCase(string s, char delimiter)
     {
         // Every character can gain at most one delimiter in front of it.
@@ -438,20 +446,24 @@ public static class StringExtensions
 
         var outputIndex = 0;
 
+        var delimiterPending = false;
+
         for (var index = 0; index < s.Length; index++)
         {
             var chr = s[index];
 
-            if (char.IsSeparator(chr))
+            if (chr == delimiter || char.IsSeparator(chr))
             {
-                output[outputIndex++] = delimiter;
+                delimiterPending = outputIndex > 0;
                 continue;
             }
 
-            if (StartsWordInsideIdentifier(s, index))
+            if (delimiterPending || StartsWordInsideIdentifier(s, index))
             {
                 output[outputIndex++] = delimiter;
             }
+
+            delimiterPending = false;
 
             output[outputIndex++] = char.ToLowerInvariant(chr);
         }

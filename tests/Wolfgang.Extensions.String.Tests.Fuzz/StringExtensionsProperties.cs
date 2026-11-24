@@ -115,7 +115,7 @@ public class StringExtensionsProperties
 
 
     [FuzzProperty]
-    public bool ToKebabCase_lower_cases_replaces_separators_with_dashes_and_splits_identifiers(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
+    public bool ToKebabCase_lower_cases_and_puts_one_dash_between_words(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
     {
         var text = Compose(first, rest, separatorPicks);
 
@@ -125,7 +125,7 @@ public class StringExtensionsProperties
 
 
     [FuzzProperty]
-    public bool ToSnakeCase_lower_cases_replaces_separators_with_underscores_and_splits_identifiers(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
+    public bool ToSnakeCase_lower_cases_and_puts_one_underscore_between_words(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
     {
         var text = Compose(first, rest, separatorPicks);
 
@@ -206,21 +206,26 @@ public class StringExtensionsProperties
 
 
 
-    // The oracle for kebab and snake case, written a different way from the library: each character
-    // maps to itself lower-cased, to the delimiter when it is a separator, or to the delimiter plus
-    // itself lower-cased when it starts a word inside an identifier.
+    // The oracle for kebab and snake case, written a different way from the library: split the text
+    // into the pieces between separators and delimiters, split each piece at its case boundaries,
+    // and join everything with one delimiter.
     private static string MapEachChar(string s, char separatorReplacement) =>
-        string.Concat(s.Select((_, i) => MapChar(s, i, separatorReplacement)));
+        string.Join
+        (
+            separatorReplacement.ToString(),
+            s
+                .Split
+                (
+                    s.Where(char.IsSeparator).Append(separatorReplacement).Distinct().ToArray(),
+                    StringSplitOptions.RemoveEmptyEntries
+                )
+                .Select(piece => string.Concat(piece.Select((_, i) => MapChar(piece, i, separatorReplacement))))
+        );
 
 
 
     private static string MapChar(string s, int i, char separatorReplacement)
     {
-        if (char.IsSeparator(s[i]))
-        {
-            return separatorReplacement.ToString();
-        }
-
         var lower = char.ToLowerInvariant(s[i]).ToString();
 
         return StartsWord(s, i) ? separatorReplacement + lower : lower;

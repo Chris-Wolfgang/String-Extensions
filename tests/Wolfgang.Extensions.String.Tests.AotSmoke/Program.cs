@@ -28,9 +28,9 @@ Throws<ArgumentOutOfRangeException>("PadCenter negative", () => "x".PadCenter(-1
 // Case conversions.
 const string input = "  user LOGIN count  ";
 Check("ToCamelCase", string.Equals(input.ToCamelCase(), "userLoginCount", StringComparison.Ordinal));
-Check("ToKebabCase", string.Equals(input.ToKebabCase(), "--user-login-count--", StringComparison.Ordinal));
+Check("ToKebabCase", string.Equals(input.ToKebabCase(), "user-login-count", StringComparison.Ordinal));
 Check("ToPascalCase", string.Equals(input.ToPascalCase(), "UserLoginCount", StringComparison.Ordinal));
-Check("ToSnakeCase", string.Equals(input.ToSnakeCase(), "__user_login_count__", StringComparison.Ordinal));
+Check("ToSnakeCase", string.Equals(input.ToSnakeCase(), "user_login_count", StringComparison.Ordinal));
 Check("ToTitleCase", string.Equals("user login count".ToTitleCase(), "User Login Count", StringComparison.Ordinal));
 Throws<ArgumentNullException>("ToCamelCase null", () => ((string)null!).ToCamelCase());
 Throws<ArgumentNullException>("ToKebabCase null", () => ((string)null!).ToKebabCase());

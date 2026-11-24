@@ -39,8 +39,8 @@ public class ToSnakeCaseTests
     [InlineData("A STRING IN ALL UPPER!", "a_string_in_all_upper!")]
     [InlineData("a-string-with-no-spaces.", "a-string-with-no-spaces.")]
     [InlineData("\nControl\tCHARACTERS\aremain\nand\tdon't\acause\nunderscores", "\ncontrol\tcharacters\aremain\nand\tdon't\acause\nunderscores")]
-    [InlineData(" A STRING starting with a leading and trailing space ", "_a_string_starting_with_a_leading_and_trailing_space_")]
-    [InlineData("  consecutive  spaces  ", "__consecutive__spaces__")]
+    [InlineData(" A STRING starting with a leading and trailing space ", "a_string_starting_with_a_leading_and_trailing_space")]
+    [InlineData("  consecutive  spaces  ", "consecutive_spaces")]
     public void ToSnakeCase_when_passed_valid_string_converts_properly(string input, string expectedResult)
     {
         Assert.Equal(expectedResult, input.ToSnakeCase());
@@ -74,10 +74,27 @@ public class ToSnakeCaseTests
     [InlineData("User LoginCount", "user_login_count")]
     [InlineData("A Sample", "a_sample")]
     [InlineData("already_delimited", "already_delimited")]
-    [InlineData("Trailing ", "trailing_")]
-    [InlineData("Two  Spaces", "two__spaces")]
-    public void ToSnakeCase_when_a_separator_already_divides_two_words_adds_no_second_delimiter(string input, string expectedResult)
+    [InlineData("Trailing ", "trailing")]
+    [InlineData("Two  Spaces", "two_spaces")]
+    [InlineData("Trailing_", "trailing")]
+    [InlineData("__Leading", "leading")]
+    [InlineData("a___b", "a_b")]
+    [InlineData("With _ Both", "with_both")]
+    [InlineData("User_LoginCount", "user_login_count")]
+    public void ToSnakeCase_when_words_are_divided_more_than_once_puts_one_delimiter_between_them_and_none_at_the_ends(string input, string expectedResult)
     {
         Assert.Equal(expectedResult, input.ToSnakeCase());
+    }
+
+
+
+    [Theory]
+    [InlineData(" ")]
+    [InlineData("   ")]
+    [InlineData("_")]
+    [InlineData("_ _")]
+    public void ToSnakeCase_when_passed_only_dividers_returns_empty_string(string input)
+    {
+        Assert.Equal(string.Empty, input.ToSnakeCase());
     }
 }

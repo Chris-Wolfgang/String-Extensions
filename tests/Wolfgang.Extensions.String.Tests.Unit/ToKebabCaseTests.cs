@@ -39,8 +39,8 @@ public class ToKebabCaseTests
     [InlineData("A STRING IN ALL UPPER!", "a-string-in-all-upper!")]
     [InlineData("a-string-with-no-spaces.", "a-string-with-no-spaces.")]
     [InlineData("\nControl\tCHARACTERS\aremain\nand\tdon't\acause\nunderscores", "\ncontrol\tcharacters\aremain\nand\tdon't\acause\nunderscores")]
-    [InlineData(" A STRING starting with a leading and trailing space ", "-a-string-starting-with-a-leading-and-trailing-space-")]
-    [InlineData("  consecutive  spaces  ", "--consecutive--spaces--")]
+    [InlineData(" A STRING starting with a leading and trailing space ", "a-string-starting-with-a-leading-and-trailing-space")]
+    [InlineData("  consecutive  spaces  ", "consecutive-spaces")]
     public void ToKebabCase_when_passed_valid_string_converts_properly(string input, string expectedResult)
     {
         Assert.Equal(expectedResult, input.ToKebabCase());
@@ -74,10 +74,27 @@ public class ToKebabCaseTests
     [InlineData("User LoginCount", "user-login-count")]
     [InlineData("A Sample", "a-sample")]
     [InlineData("already-delimited", "already-delimited")]
-    [InlineData("Trailing ", "trailing-")]
-    [InlineData("Two  Spaces", "two--spaces")]
-    public void ToKebabCase_when_a_separator_already_divides_two_words_adds_no_second_delimiter(string input, string expectedResult)
+    [InlineData("Trailing ", "trailing")]
+    [InlineData("Two  Spaces", "two-spaces")]
+    [InlineData("Trailing-", "trailing")]
+    [InlineData("--Leading", "leading")]
+    [InlineData("a---b", "a-b")]
+    [InlineData("With - Both", "with-both")]
+    [InlineData("User-LoginCount", "user-login-count")]
+    public void ToKebabCase_when_words_are_divided_more_than_once_puts_one_delimiter_between_them_and_none_at_the_ends(string input, string expectedResult)
     {
         Assert.Equal(expectedResult, input.ToKebabCase());
+    }
+
+
+
+    [Theory]
+    [InlineData(" ")]
+    [InlineData("   ")]
+    [InlineData("-")]
+    [InlineData("- -")]
+    public void ToKebabCase_when_passed_only_dividers_returns_empty_string(string input)
+    {
+        Assert.Equal(string.Empty, input.ToKebabCase());
     }
 }
