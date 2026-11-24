@@ -369,7 +369,7 @@ public static class StringExtensions
     /// <remarks>
     /// <para>
     /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> divide words, and so
-    /// does a underscore already in the string. A run of them becomes a single underscore, and the result neither starts
+    /// does an underscore already in the string. A run of them becomes a single underscore, and the result neither starts
     /// nor ends with one: <c>"  two  words  "</c> is <c>two_words</c>. Control characters and other punctuation
     /// are preserved.
     /// </para>
