@@ -8,6 +8,7 @@ The format is [Michael Nygard's ADR](https://cognitect.com/blog/2011/11/15/docum
 
 | # | Title | Status |
 |---|---|---|
+| [0000](0000-record-architecture-decisions.md) | Record architecture decisions | Accepted |
 | [0001](0001-pin-assemblyversion-at-1-0-0-0.md) | Pin `AssemblyVersion` at `1.0.0.0`; bump only on a breaking API change | Accepted |
 | [0002](0002-publicapianalyzers-opt-in-per-project.md) | `PublicApiAnalyzers` is opt-in per project through the presence of `PublicAPI.*.txt` | Accepted |
 | [0003](0003-explicit-usings-in-multi-target-projects.md) | Explicit `using` directives in multi-target projects; no implicit or global usings | Accepted |
