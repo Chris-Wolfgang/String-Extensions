@@ -45,4 +45,39 @@ public class ToKebabCaseTests
     {
         Assert.Equal(expectedResult, input.ToKebabCase());
     }
+
+
+
+    [Theory]
+    [InlineData("Id", "id")]
+    [InlineData("UserLoginCount", "user-login-count")]
+    [InlineData("userLoginCount", "user-login-count")]
+    [InlineData("ZoneGroupId", "zone-group-id")]
+    [InlineData("SKUCode", "sku-code")]
+    [InlineData("ZoneSKU", "zone-sku")]
+    [InlineData("GS1Barcode", "gs1-barcode")]
+    [InlineData("Line2Qty", "line2-qty")]
+    [InlineData("ResultSha256", "result-sha256")]
+    [InlineData("Sha256Hash", "sha256-hash")]
+    [InlineData("IANAZone", "iana-zone")]
+    [InlineData("ID", "id")]
+    [InlineData("oid", "oid")]
+    public void ToKebabCase_when_passed_an_identifier_splits_it_into_its_words(string input, string expectedResult)
+    {
+        Assert.Equal(expectedResult, input.ToKebabCase());
+    }
+
+
+
+    [Theory]
+    [InlineData("With Space", "with-space")]
+    [InlineData("User LoginCount", "user-login-count")]
+    [InlineData("A Sample", "a-sample")]
+    [InlineData("already-delimited", "already-delimited")]
+    [InlineData("Trailing ", "trailing-")]
+    [InlineData("Two  Spaces", "two--spaces")]
+    public void ToKebabCase_when_a_separator_already_divides_two_words_adds_no_second_delimiter(string input, string expectedResult)
+    {
+        Assert.Equal(expectedResult, input.ToKebabCase());
+    }
 }

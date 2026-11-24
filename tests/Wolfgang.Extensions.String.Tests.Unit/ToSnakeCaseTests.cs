@@ -45,4 +45,39 @@ public class ToSnakeCaseTests
     {
         Assert.Equal(expectedResult, input.ToSnakeCase());
     }
+
+
+
+    [Theory]
+    [InlineData("Id", "id")]
+    [InlineData("UserLoginCount", "user_login_count")]
+    [InlineData("userLoginCount", "user_login_count")]
+    [InlineData("ZoneGroupId", "zone_group_id")]
+    [InlineData("SKUCode", "sku_code")]
+    [InlineData("ZoneSKU", "zone_sku")]
+    [InlineData("GS1Barcode", "gs1_barcode")]
+    [InlineData("Line2Qty", "line2_qty")]
+    [InlineData("ResultSha256", "result_sha256")]
+    [InlineData("Sha256Hash", "sha256_hash")]
+    [InlineData("IANAZone", "iana_zone")]
+    [InlineData("ID", "id")]
+    [InlineData("oid", "oid")]
+    public void ToSnakeCase_when_passed_an_identifier_splits_it_into_its_words(string input, string expectedResult)
+    {
+        Assert.Equal(expectedResult, input.ToSnakeCase());
+    }
+
+
+
+    [Theory]
+    [InlineData("With Space", "with_space")]
+    [InlineData("User LoginCount", "user_login_count")]
+    [InlineData("A Sample", "a_sample")]
+    [InlineData("already_delimited", "already_delimited")]
+    [InlineData("Trailing ", "trailing_")]
+    [InlineData("Two  Spaces", "two__spaces")]
+    public void ToSnakeCase_when_a_separator_already_divides_two_words_adds_no_second_delimiter(string input, string expectedResult)
+    {
+        Assert.Equal(expectedResult, input.ToSnakeCase());
+    }
 }

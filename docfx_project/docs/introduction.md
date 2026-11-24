@@ -10,7 +10,7 @@ The package is published on NuGet as [`Wolfgang.Extensions.String`](https://www.
 
 ## Behaviour worth knowing
 
-- `ToCamelCase`, `ToKebabCase`, `ToPascalCase` and `ToSnakeCase` treat the characters for which `char.IsSeparator` returns `true` (spaces and other Unicode separators) as word boundaries. Punctuation and control characters are kept. They use invariant casing, so the result does not depend on the current culture.
+- `ToCamelCase`, `ToKebabCase`, `ToPascalCase` and `ToSnakeCase` treat the characters for which `char.IsSeparator` returns `true` (spaces and other Unicode separators) as word boundaries. Punctuation and control characters are kept. They use invariant casing, so the result does not depend on the current culture. `ToKebabCase` and `ToSnakeCase` also start a word at a case boundary inside an identifier, so `"UserLoginCount".ToSnakeCase()` is `user_login_count`, `"SKUCode"` is `sku_code` and `"Line2Qty"` is `line2_qty`.
 - `ToTitleCase` delegates to `TextInfo.ToTitleCase` of the **current** culture, and leaves words that are entirely upper case unchanged.
 - `PadCenter` and the case conversions throw `ArgumentNullException` for a `null` input. `Left`, `Right` and `PadCenter` throw `ArgumentOutOfRangeException` for a negative length or width.
 

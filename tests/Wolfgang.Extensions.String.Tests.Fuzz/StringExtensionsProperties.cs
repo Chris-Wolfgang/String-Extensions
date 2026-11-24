@@ -115,7 +115,7 @@ public class StringExtensionsProperties
 
 
     [FuzzProperty]
-    public bool ToKebabCase_lower_cases_and_replaces_separators_with_dashes(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
+    public bool ToKebabCase_lower_cases_replaces_separators_with_dashes_and_splits_identifiers(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
     {
         var text = Compose(first, rest, separatorPicks);
 
@@ -125,7 +125,7 @@ public class StringExtensionsProperties
 
 
     [FuzzProperty]
-    public bool ToSnakeCase_lower_cases_and_replaces_separators_with_underscores(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
+    public bool ToSnakeCase_lower_cases_replaces_separators_with_underscores_and_splits_identifiers(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
     {
         var text = Compose(first, rest, separatorPicks);
 
@@ -206,8 +206,42 @@ public class StringExtensionsProperties
 
 
 
+    // The oracle for kebab and snake case, written a different way from the library: each character
+    // maps to itself lower-cased, to the delimiter when it is a separator, or to the delimiter plus
+    // itself lower-cased when it starts a word inside an identifier.
     private static string MapEachChar(string s, char separatorReplacement) =>
-        new(s.Select(c => char.IsSeparator(c) ? separatorReplacement : char.ToLowerInvariant(c)).ToArray());
+        string.Concat(s.Select((_, i) => MapChar(s, i, separatorReplacement)));
+
+
+
+    private static string MapChar(string s, int i, char separatorReplacement)
+    {
+        if (char.IsSeparator(s[i]))
+        {
+            return separatorReplacement.ToString();
+        }
+
+        var lower = char.ToLowerInvariant(s[i]).ToString();
+
+        return StartsWord(s, i) ? separatorReplacement + lower : lower;
+    }
+
+
+
+    // An upper-case letter starts a word when a lower-case letter or a digit comes before it, or when
+    // an upper-case letter comes before it and a lower-case letter after it.
+    private static bool StartsWord(string s, int i)
+    {
+        if (i == 0 || !char.IsUpper(s[i]))
+        {
+            return false;
+        }
+
+        var lowerOrDigitBefore = char.IsLower(s[i - 1]) || char.IsDigit(s[i - 1]);
+        var endsUpperRun = char.IsUpper(s[i - 1]) && i + 1 < s.Length && char.IsLower(s[i + 1]);
+
+        return lowerOrDigitBefore || endsUpperRun;
+    }
 
 
 

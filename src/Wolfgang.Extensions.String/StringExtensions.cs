@@ -255,15 +255,24 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Converts all letters to lower case and replaces separator characters with dashes.
+    /// Converts a string to kebab case: every letter is lower-cased, separator characters become dashes,
+    /// and a dash is put between the words of a PascalCase or camelCase identifier.
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
     /// The specified string in kebab case.
     /// </returns>
     /// <remarks>
+    /// <para>
     /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are replaced with dashes.
     /// Control characters and punctuation are preserved.
+    /// </para>
+    /// <para>
+    /// A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
+    /// last upper-case letter of a run that a lower-case letter follows. An acronym therefore stays
+    /// together and a digit stays with the word before it: <c>SKUCode</c> is <c>sku-code</c> and
+    /// <c>Line2Qty</c> is <c>line2-qty</c>.
+    /// </para>
     /// </remarks>
     /// <example>
     /// <code>
@@ -271,6 +280,9 @@ public static class StringExtensions
     ///
     /// var kebab = "A sample string for processing!".ToKebabCase();
     /// // kebab == "a-sample-string-for-processing!"
+    ///
+    /// var fromIdentifier = "UserLoginCount".ToKebabCase();
+    /// // fromIdentifier == "user-login-count"
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
@@ -280,23 +292,7 @@ public static class StringExtensions
     {
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
-        var output = new char[s.Length];
-
-        var outputIndex = 0;
-
-        foreach (var chr in s)
-        {
-            if (char.IsSeparator(chr))
-            {
-                output[outputIndex++] = '-';
-            }
-            else
-            {
-                output[outputIndex++] = char.ToLowerInvariant(chr);
-            }
-        }
-
-        return new string(output, 0, outputIndex);
+        return ToDelimitedCase(s, '-');
     }
 
 
@@ -359,15 +355,24 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Converts all letters to lower case and replaces separator characters with underscores.
+    /// Converts a string to snake case: every letter is lower-cased, separator characters become underscores,
+    /// and a underscore is put between the words of a PascalCase or camelCase identifier.
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
     /// The specified string in snake case.
     /// </returns>
     /// <remarks>
+    /// <para>
     /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are replaced with underscores.
     /// Control characters and punctuation are preserved.
+    /// </para>
+    /// <para>
+    /// A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
+    /// last upper-case letter of a run that a lower-case letter follows. An acronym therefore stays
+    /// together and a digit stays with the word before it: <c>SKUCode</c> is <c>sku_code</c> and
+    /// <c>Line2Qty</c> is <c>line2_qty</c>.
+    /// </para>
     /// </remarks>
     /// <example>
     /// <code>
@@ -375,6 +380,9 @@ public static class StringExtensions
     ///
     /// var snake = "A sample string for processing!".ToSnakeCase();
     /// // snake == "a_sample_string_for_processing!"
+    ///
+    /// var fromIdentifier = "UserLoginCount".ToSnakeCase();
+    /// // fromIdentifier == "user_login_count"
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
@@ -384,23 +392,7 @@ public static class StringExtensions
     {
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
-        var output = new char[s.Length];
-
-        var outputIndex = 0;
-
-        foreach (var chr in s)
-        {
-            if (char.IsSeparator(chr))
-            {
-                output[outputIndex++] = '_';
-            }
-            else
-            {
-                output[outputIndex++] = char.ToLowerInvariant(chr);
-            }
-        }
-
-        return new string(output, 0, outputIndex);
+        return ToDelimitedCase(s, '_');
     }
 
 
@@ -433,5 +425,59 @@ public static class StringExtensions
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
         return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s);
+    }
+
+
+
+    // Lower-cases s, turns each separator character into the delimiter, and puts the delimiter
+    // between the words of a PascalCase or camelCase identifier.
+    private static string ToDelimitedCase(string s, char delimiter)
+    {
+        // Every character can gain at most one delimiter in front of it.
+        var output = new char[s.Length * 2];
+
+        var outputIndex = 0;
+
+        for (var index = 0; index < s.Length; index++)
+        {
+            var chr = s[index];
+
+            if (char.IsSeparator(chr))
+            {
+                output[outputIndex++] = delimiter;
+                continue;
+            }
+
+            if (StartsWordInsideIdentifier(s, index))
+            {
+                output[outputIndex++] = delimiter;
+            }
+
+            output[outputIndex++] = char.ToLowerInvariant(chr);
+        }
+
+        return new string(output, 0, outputIndex);
+    }
+
+
+
+    // True when the upper-case letter at index starts a new word without a separator before it:
+    // it follows a lower-case letter or a digit ("userLogin", "Line2Qty"), or it is the last
+    // letter of an upper-case run and a lower-case letter follows it ("SKUCode").
+    private static bool StartsWordInsideIdentifier(string s, int index)
+    {
+        if (index == 0 || !char.IsUpper(s[index]))
+        {
+            return false;
+        }
+
+        var before = s[index - 1];
+
+        if (char.IsLower(before) || char.IsDigit(before))
+        {
+            return true;
+        }
+
+        return char.IsUpper(before) && index + 1 < s.Length && char.IsLower(s[index + 1]);
     }
 }

@@ -81,9 +81,9 @@ authoritative list (kept in sync with source on every release), see the
 | `PadCenter(this string, int totalWidth)` | `string` | Centers the string within `totalWidth`, padding both sides with spaces. When padding is uneven the extra character goes on the right. Returns the original string when it is already at least `totalWidth` long. |
 | `PadCenter(this string, int totalWidth, char paddingChar)` | `string` | As above, padding with `paddingChar` instead of spaces. |
 | `ToCamelCase(this string)` | `string` | Converts to `camelCase`. Separator characters are treated as word boundaries and removed. |
-| `ToKebabCase(this string)` | `string` | Converts to `kebab-case`. Separator characters become dashes. |
+| `ToKebabCase(this string)` | `string` | Converts to `kebab-case`. Separator characters become dashes, and the words of a PascalCase or camelCase identifier are split: `"UserLoginCount"` is `user-login-count`. |
 | `ToPascalCase(this string)` | `string` | Converts to `PascalCase`. Separator characters are treated as word boundaries and removed. |
-| `ToSnakeCase(this string)` | `string` | Converts to `snake_case`. Separator characters become underscores. |
+| `ToSnakeCase(this string)` | `string` | Converts to `snake_case`. Separator characters become underscores, and the words of a PascalCase or camelCase identifier are split: `"UserLoginCount"` is `user_login_count`. |
 | `ToTitleCase(this string)` | `string` | Converts to `Title Case`, preserving spaces and punctuation. Delegates to `TextInfo.ToTitleCase` using the current culture. |
 
 `Left` / `Right` are length-clamping and null-tolerant. `PadCenter` and the `ToXxxCase` methods throw `ArgumentNullException` for a `null` input; `PadCenter` throws `ArgumentOutOfRangeException` for a negative width. Separator handling uses `char.IsSeparator`, so control characters and punctuation are preserved.
