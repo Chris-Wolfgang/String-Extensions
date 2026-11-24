@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using FsCheck;
@@ -135,14 +136,14 @@ public class StringExtensionsProperties
 
 
     [FuzzProperty]
-    public bool ToPascalCase_capitalizes_every_word_and_drops_separators(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
+    public bool ToPascalCase_capitalizes_every_word_of_text_and_identifiers_and_drops_separators(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
     {
         var text = Compose(first, rest, separatorPicks);
 
         return string.Equals
         (
             text.ToPascalCase(),
-            string.Concat(Words(text).Select(Capitalize)),
+            string.Concat(Words(text).SelectMany(IdentifierWords).Select(Capitalize)),
             StringComparison.Ordinal
         );
     }
@@ -150,14 +151,14 @@ public class StringExtensionsProperties
 
 
     [FuzzProperty]
-    public bool ToCamelCase_lower_cases_the_first_word_and_capitalizes_the_rest(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
+    public bool ToCamelCase_lower_cases_the_first_word_and_capitalizes_the_rest_of_text_and_identifiers(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
     {
         var text = Compose(first, rest, separatorPicks);
 
         return string.Equals
         (
             text.ToCamelCase(),
-            string.Concat(Words(text).Select((word, index) => index == 0 ? LowerCase(word) : Capitalize(word))),
+            string.Concat(Words(text).SelectMany(IdentifierWords).Select((word, index) => index == 0 ? LowerCase(word) : Capitalize(word))),
             StringComparison.Ordinal
         );
     }
@@ -258,6 +259,26 @@ public class StringExtensionsProperties
             s.Where(char.IsSeparator).Append('\u2028').Distinct().ToArray(),
             StringSplitOptions.RemoveEmptyEntries
         );
+
+
+
+    // The words inside one piece of text that has no separators: it is cut in front of every
+    // character that starts a word inside an identifier.
+    private static IEnumerable<string> IdentifierWords(string piece)
+    {
+        var start = 0;
+
+        for (var i = 1; i < piece.Length; i++)
+        {
+            if (StartsWord(piece, i))
+            {
+                yield return piece.Substring(start, i - start);
+                start = i;
+            }
+        }
+
+        yield return piece.Substring(start);
+    }
 
 
 

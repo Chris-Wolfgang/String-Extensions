@@ -45,4 +45,28 @@ public class ToPascalCaseTests
     {
         Assert.Equal(expectedResult, input.ToPascalCase());
     }
+
+
+
+    [Theory]
+    [InlineData("UserLoginCount", "UserLoginCount")]
+    [InlineData("userLoginCount", "UserLoginCount")]
+    [InlineData("Id", "Id")]
+    [InlineData("ID", "Id")]
+    [InlineData("ZoneGroupId", "ZoneGroupId")]
+    [InlineData("SKUCode", "SkuCode")]
+    [InlineData("ZoneSKU", "ZoneSku")]
+    [InlineData("GS1Barcode", "Gs1Barcode")]
+    [InlineData("Line2Qty", "Line2Qty")]
+    [InlineData("ResultSha256", "ResultSha256")]
+    [InlineData("IANAZone", "IanaZone")]
+    [InlineData("oid", "Oid")]
+    [InlineData("user LoginCount", "UserLoginCount")]
+    [InlineData("User loginCount", "UserLoginCount")]
+    [InlineData(" UserLogin  count ", "UserLoginCount")]
+    [InlineData("user_loginCount", "User_loginCount")]
+    public void ToPascalCase_when_passed_an_identifier_keeps_its_words_apart(string input, string expectedResult)
+    {
+        Assert.Equal(expectedResult, input.ToPascalCase());
+    }
 }

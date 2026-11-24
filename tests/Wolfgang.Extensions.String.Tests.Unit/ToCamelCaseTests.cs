@@ -45,4 +45,28 @@ public class ToCamelCaseTests
     {
         Assert.Equal(expectedResult, input.ToCamelCase());
     }
+
+
+
+    [Theory]
+    [InlineData("UserLoginCount", "userLoginCount")]
+    [InlineData("userLoginCount", "userLoginCount")]
+    [InlineData("Id", "id")]
+    [InlineData("ID", "id")]
+    [InlineData("ZoneGroupId", "zoneGroupId")]
+    [InlineData("SKUCode", "skuCode")]
+    [InlineData("ZoneSKU", "zoneSku")]
+    [InlineData("GS1Barcode", "gs1Barcode")]
+    [InlineData("Line2Qty", "line2Qty")]
+    [InlineData("ResultSha256", "resultSha256")]
+    [InlineData("IANAZone", "ianaZone")]
+    [InlineData("oid", "oid")]
+    [InlineData("user LoginCount", "userLoginCount")]
+    [InlineData("User loginCount", "userLoginCount")]
+    [InlineData(" UserLogin  count ", "userLoginCount")]
+    [InlineData("user_loginCount", "user_loginCount")]
+    public void ToCamelCase_when_passed_an_identifier_keeps_its_words_apart(string input, string expectedResult)
+    {
+        Assert.Equal(expectedResult, input.ToCamelCase());
+    }
 }
