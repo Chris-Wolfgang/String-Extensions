@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace Wolfgang.Extensions.String;
@@ -790,13 +791,7 @@ public static class StringExtensions
 
     private static IEnumerable<string> WithoutEmptyWords(IEnumerable<string> words)
     {
-        foreach (var word in words)
-        {
-            if (!string.IsNullOrEmpty(word))
-            {
-                yield return word;
-            }
-        }
+        return words.Where(word => !string.IsNullOrEmpty(word));
     }
 
 
@@ -811,7 +806,7 @@ public static class StringExtensions
         // not end the word it is in.
         var text = keepPunctuation ? s : RemoveApostrophes(s);
 
-        var splitAtCaseChanges = (boundaries & WordBoundaries.CaseChanges) != 0;
+        var splitAtCaseChanges = (boundaries & WordBoundaries.CaseChanges) != WordBoundaries.None;
 
         var start = -1;
 
@@ -851,17 +846,17 @@ public static class StringExtensions
     // Whether a character that is not part of a word divides words when punctuation is kept.
     private static bool IsBoundary(char chr, WordBoundaries boundaries)
     {
-        if ((boundaries & WordBoundaries.Separators) != 0 && char.IsSeparator(chr))
+        if ((boundaries & WordBoundaries.Separators) != WordBoundaries.None && char.IsSeparator(chr))
         {
             return true;
         }
 
-        if ((boundaries & WordBoundaries.Delimiters) != 0 && (chr == '_' || chr == '-'))
+        if ((boundaries & WordBoundaries.Delimiters) != WordBoundaries.None && (chr == '_' || chr == '-'))
         {
             return true;
         }
 
-        return (boundaries & WordBoundaries.ControlCharacters) != 0 && char.IsControl(chr);
+        return (boundaries & WordBoundaries.ControlCharacters) != WordBoundaries.None && char.IsControl(chr);
     }
 
 
@@ -941,15 +936,7 @@ public static class StringExtensions
     // no case, counts as well, and comes out the same either way.
     private static bool IsAcronym(string word)
     {
-        foreach (var chr in word)
-        {
-            if (char.IsLower(chr))
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return !word.Any(char.IsLower);
     }
 
 

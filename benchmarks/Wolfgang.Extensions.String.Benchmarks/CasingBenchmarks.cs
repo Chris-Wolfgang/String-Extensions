@@ -3,9 +3,9 @@ using BenchmarkDotNet.Attributes;
 namespace Wolfgang.Extensions.String.Benchmarks;
 
 /// <summary>
-/// Measures the casing conversions (<see cref="StringExtensions.ToCamelCase"/>,
-/// <see cref="StringExtensions.ToPascalCase"/>, <see cref="StringExtensions.ToKebabCase"/>,
-/// <see cref="StringExtensions.ToSnakeCase"/>, <see cref="StringExtensions.ToTitleCase"/>)
+/// Measures the casing conversions (<see cref="StringExtensions.ToCamelCase(string)"/>,
+/// <see cref="StringExtensions.ToPascalCase(string)"/>, <see cref="StringExtensions.ToKebabCase(string)"/>,
+/// <see cref="StringExtensions.ToSnakeCase(string)"/>, <see cref="StringExtensions.ToTitleCase"/>)
 /// over a representative multi-word input. <see cref="StringExtensions.ToTitleCase"/>
 /// delegates to <see cref="System.Globalization.TextInfo.ToTitleCase"/> and serves as the
 /// BCL-backed reference point.

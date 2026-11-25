@@ -289,6 +289,22 @@ public class CaseConversionOptionsTests
 
 
 
+    [Theory]
+    [InlineData("iPhone case", "IphoneCase")]
+    [InlineData("McDonald farm", "McdonaldFarm")]
+    public void ToPascalCase_when_acronyms_are_preserved_still_cases_a_word_that_has_a_lower_case_letter(string input, string expectedResult)
+    {
+        var options = new CaseConversionOptions
+        {
+            Acronyms = AcronymHandling.Preserve,
+            Boundaries = WordBoundaries.All & ~WordBoundaries.CaseChanges,
+        };
+
+        Assert.Equal(expectedResult, input.ToPascalCase(options));
+    }
+
+
+
     [Fact]
     public void ToSnakeCase_when_acronyms_are_preserved_lower_cases_them_all_the_same()
     {
