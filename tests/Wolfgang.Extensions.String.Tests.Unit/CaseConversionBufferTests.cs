@@ -136,8 +136,9 @@ public class CaseConversionBufferTests
         var conversion = GC.GetAllocatedBytesForCurrentThread() - start;
 
         // A temporary array of 256 characters is 536 bytes; 64 bytes a call leaves room for noise
-        // from the test host and none for the array.
-        Assert.InRange(conversion, resultOnly, resultOnly + (Calls * 64));
+        // from the test host and none for the array. Only the upper limit is checked: the noise
+        // can land in either loop, so the conversions may measure a few bytes under the strings.
+        Assert.InRange(conversion, 0L, resultOnly + (Calls * 64));
     }
 #endif
 }
