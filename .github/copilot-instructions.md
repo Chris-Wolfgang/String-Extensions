@@ -12,6 +12,9 @@ A shipped .NET library, published to NuGet as `Wolfgang.Extensions.String`. It i
   is a run of letters and digits, everything else is a boundary and is dropped, an apostrophe is removed, and
   a case boundary inside an identifier starts a word. They differ only in casing and delimiter, and use
   invariant casing (ADR 0006).
+- The `CaseConversionOptions` overloads and `SplitWords` build a word list (`SplitWordsIterator`, or the caller's
+  `WordSplitter`) and format it (`FormatWords`). The methods without options must stay on the single pass in
+  `JoinWords`; tests compare the two paths (ADR 0007).
 - `ToTitleCase` — delegates to `TextInfo.ToTitleCase` of the current culture.
 
 `PadCenter` and the case conversions throw `ArgumentNullException` (parameter `s`) for a null input; `Left`, `Right`

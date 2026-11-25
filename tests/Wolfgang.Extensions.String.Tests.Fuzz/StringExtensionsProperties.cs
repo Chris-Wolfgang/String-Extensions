@@ -131,6 +131,7 @@ public class StringExtensionsProperties
 
         var words = Words(text);
 
+        Assert.Equal(words, text.SplitWords());
         Assert.Equal(string.Join("_", words.Select(LowerCase)), text.ToSnakeCase());
         Assert.Equal(string.Join("-", words.Select(LowerCase)), text.ToKebabCase());
         Assert.Equal(string.Concat(words.Select(Capitalize)), text.ToPascalCase());
@@ -185,6 +186,32 @@ public class StringExtensionsProperties
             string.Concat(Words(text).Select((word, index) => index == 0 ? LowerCase(word) : Capitalize(word))),
             StringComparison.Ordinal
         );
+    }
+
+
+
+    // The overloads build a word list and format it; the methods without options walk the string
+    // once. With new options the two must agree on every input.
+    [FuzzProperty]
+    public bool Case_conversions_with_new_options_match_the_methods_without_options(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
+    {
+        var text = Compose(first, rest, separatorPicks);
+        var options = new CaseConversionOptions();
+
+        return string.Equals(text.ToCamelCase(options), text.ToCamelCase(), StringComparison.Ordinal)
+            && string.Equals(text.ToKebabCase(options), text.ToKebabCase(), StringComparison.Ordinal)
+            && string.Equals(text.ToPascalCase(options), text.ToPascalCase(), StringComparison.Ordinal)
+            && string.Equals(text.ToSnakeCase(options), text.ToSnakeCase(), StringComparison.Ordinal);
+    }
+
+
+
+    [FuzzProperty]
+    public bool SplitWords_returns_the_reference_word_list(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
+    {
+        var text = Compose(first, rest, separatorPicks);
+
+        return text.SplitWords().SequenceEqual(Words(text), StringComparer.Ordinal);
     }
 
 

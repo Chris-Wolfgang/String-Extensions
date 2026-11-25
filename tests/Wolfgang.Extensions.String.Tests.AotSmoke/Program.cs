@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Wolfgang.Extensions.String;
 
 // Native AOT smoke consumer. Calls every public method of StringExtensions at least once, including
@@ -37,6 +38,29 @@ Throws<ArgumentNullException>("ToKebabCase null", () => ((string)null!).ToKebabC
 Throws<ArgumentNullException>("ToPascalCase null", () => ((string)null!).ToPascalCase());
 Throws<ArgumentNullException>("ToSnakeCase null", () => ((string)null!).ToSnakeCase());
 Throws<ArgumentNullException>("ToTitleCase null", () => ((string)null!).ToTitleCase());
+
+// Case conversions with options, and SplitWords.
+var keep = new CaseConversionOptions
+{
+    Punctuation = PunctuationHandling.Keep,
+    Boundaries = WordBoundaries.Separators,
+    Acronyms = AcronymHandling.Preserve,
+};
+var custom = new CaseConversionOptions { WordSplitter = text => text.Split('|') };
+Check("ToCamelCase options", string.Equals("big ID, here".ToCamelCase(keep), "bigID,Here", StringComparison.Ordinal));
+Check("ToKebabCase options", string.Equals("Hello, World!".ToKebabCase(keep), "hello,-world!", StringComparison.Ordinal));
+Check("ToPascalCase options", string.Equals("(hello) SKU".ToPascalCase(keep), "(Hello)SKU", StringComparison.Ordinal));
+Check("ToSnakeCase options", string.Equals("Hello, World!".ToSnakeCase(keep), "hello,_world!", StringComparison.Ordinal));
+Check("ToSnakeCase splitter", string.Equals("One|Two Three".ToSnakeCase(custom), "one_two three", StringComparison.Ordinal));
+Check("SplitWords", "SKUCode for user_login!".SplitWords().SequenceEqual(new[] { "SKU", "Code", "for", "user", "login" }, StringComparer.Ordinal));
+Check("SplitWords options", "Hello, World!".SplitWords(keep).SequenceEqual(new[] { "Hello,", "World!" }, StringComparer.Ordinal));
+Throws<ArgumentNullException>("ToCamelCase null options", () => "x".ToCamelCase(null!));
+Throws<ArgumentNullException>("ToKebabCase null options", () => "x".ToKebabCase(null!));
+Throws<ArgumentNullException>("ToPascalCase null options", () => "x".ToPascalCase(null!));
+Throws<ArgumentNullException>("ToSnakeCase null options", () => "x".ToSnakeCase(null!));
+Throws<ArgumentNullException>("SplitWords null", () => string.Concat(((string)null!).SplitWords()));
+Throws<ArgumentNullException>("SplitWords null options", () => string.Concat("x".SplitWords(null!)));
+Throws<InvalidOperationException>("ToSnakeCase splitter null", () => "x".ToSnakeCase(new CaseConversionOptions { WordSplitter = _ => null! }));
 
 if (failures > 0)
 {

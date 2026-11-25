@@ -38,6 +38,16 @@ using Wolfgang.Extensions.String;
 "A sample string for processing".ToPascalCase();  // "ASampleStringForProcessing"
 "A sample string for processing".ToSnakeCase();   // "a_sample_string_for_processing"
 "a sample string for processing".ToTitleCase();   // "A Sample String For Processing"
+
+// Case conversions with your own word rules
+var keep = new CaseConversionOptions { Punctuation = PunctuationHandling.Keep };
+"Hello, World!".ToSnakeCase(keep);                // "hello,_world!"
+
+var acronyms = new CaseConversionOptions { Acronyms = AcronymHandling.Preserve };
+"SKUCode".ToPascalCase(acronyms);                 // "SKUCode"
+
+// The words themselves
+"SKUCode for user_login!".SplitWords();           // "SKU", "Code", "for", "user", "login"
 ```
 
 ## Supported frameworks

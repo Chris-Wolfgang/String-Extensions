@@ -11,6 +11,7 @@ The package is published on NuGet as [`Wolfgang.Extensions.String`](https://www.
 ## Behaviour worth knowing
 
 - `ToCamelCase`, `ToKebabCase`, `ToPascalCase` and `ToSnakeCase` split the string into words by one shared rule and differ only in casing and in what goes between the words. A word is a run of letters and digits; every other character (white space, punctuation, symbols, control characters, `_` and `-`) ends the word and is left out, except an apostrophe, which is removed without ending the word. A word also starts at a case boundary inside an identifier, so `"SKUCode".ToSnakeCase()` is `sku_code`, `"Line2Qty"` is `line2_qty` and `"user_login_count".ToPascalCase()` is `UserLoginCount`. They use invariant casing, so the result does not depend on the current culture.
+- Each of the four has an overload that takes a `CaseConversionOptions`: keep punctuation in the words (`Punctuation`), choose what divides words (`Boundaries`), leave acronyms in upper case (`Acronyms`), or supply your own word splitter (`WordSplitter`). A new `CaseConversionOptions` holds the default rules. `SplitWords` returns the words themselves.
 - `ToTitleCase` delegates to `TextInfo.ToTitleCase` of the **current** culture, and leaves words that are entirely upper case unchanged.
 - `PadCenter` and the case conversions throw `ArgumentNullException` for a `null` input. `Left`, `Right` and `PadCenter` throw `ArgumentOutOfRangeException` for a negative length or width.
 
