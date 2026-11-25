@@ -15,7 +15,7 @@ The net462 and netstandard2.0 builds reference `System.Memory`. The net8.0 and n
 
 Spans are used inside the library only. No span or memory type appears on the public surface, so a consumer never has to reference the package to call the library.
 
-`JoinWords`, the single pass behind the conversions without options, builds its result in a 256-character buffer on the stack when the result is sure to fit (a string of up to 128 characters, since each character can gain one delimiter) and in a heap array otherwise.
+`JoinWords`, the single pass behind the conversions without options, builds its result in a buffer on the stack when the result is sure to fit in 256 characters (a string of up to 128 characters, since each character can gain one delimiter) and in a heap array otherwise. The stack buffer is sized to the string, and the loop that fills it is a method of its own that receives the buffer as a parameter: a first version with a fixed 256-character buffer and the loop inline halved the allocation but ran about twice as slowly in the benchmark job.
 
 ## Consequences
 

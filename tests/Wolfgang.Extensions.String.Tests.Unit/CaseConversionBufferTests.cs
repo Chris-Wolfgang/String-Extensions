@@ -10,6 +10,7 @@ namespace Wolfgang.Extensions.String.Tests.Unit;
 /// The buffer the case conversions build their result in: on the stack for a string of up to 128
 /// characters, on the heap for a longer one. The result must be the same either way.
 /// </summary>
+[Collection(AllocationMeasurements.Name)]
 public class CaseConversionBufferTests
 {
     // "aBaB...": every pair is a word boundary, so the result is as long as a result can get.
@@ -83,6 +84,21 @@ public class CaseConversionBufferTests
 
         Assert.Equal(129, input.Length);
         Assert.Equal(expected, input.ToSnakeCase());
+    }
+
+
+
+    // A million characters need a buffer of four megabytes, more than the stack of a thread that
+    // runs tests holds, so this only passes when a long string's buffer is on the heap.
+    [Fact]
+    public void ToSnakeCase_when_the_string_is_too_long_for_any_stack_returns_all_of_it()
+    {
+        var input = new string('a', 1000000);
+
+        var result = input.ToSnakeCase();
+
+        Assert.Equal(1000000, result.Length);
+        Assert.Equal(input, result);
     }
 
 
