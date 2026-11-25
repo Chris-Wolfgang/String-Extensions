@@ -29,7 +29,7 @@ The four conversions share one private routine, `JoinWords`, and differ only in 
 The words of a string are found by these rules, in this order:
 
 1. **Apostrophes are removed first** (`'` U+0027 and `’` U+2019). They do not end a word: `don't` is the word `dont`.
-2. **A word is a run of letters and digits.** A combining mark counts as part of its word, and so does a surrogate pair that is a letter or a digit.
+2. **A word is a run of letters and digits.** A combining mark counts as part of its word, and so does a surrogate pair that is a letter or a digit. "Digit" here means any number character: a superscript, a fraction or a Roman numeral is kept like `0` to `9`, so `x²` stays `x²`.
 3. **Every other character ends the word and is left out**: white space, punctuation, symbols, control characters, `_`, `-`, emoji, and a surrogate that has no partner.
 4. **A word also starts at a case boundary**: at an upper-case letter that follows a lower-case letter or a digit (`userLogin`, `Line2Qty`), and at the last upper-case letter of a run that a lower-case letter follows (`SKUCode` is `SKU` and `Code`).
 

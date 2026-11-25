@@ -668,9 +668,9 @@ public static class StringExtensions
 
 
 
-    // The most characters JoinWords builds on the stack: enough for a string of up to 128
-    // characters, which covers identifiers and most phrases, and small next to a thread's stack.
-    private const int StackBufferLength = 256;
+    // The longest string whose result JoinWords builds on the stack. It covers identifiers and
+    // most phrases, and its buffer (twice as many characters) is small next to a thread's stack.
+    private const int LongestStringOnTheStack = 128;
 
 
 
@@ -683,12 +683,12 @@ public static class StringExtensions
         // the rules about what comes before and after a letter true of the word itself.
         var text = RemoveApostrophes(s);
 
-        // Every character can gain at most one delimiter in front of it.
-        var needed = text.Length * 2;
-
-        var output = needed <= StackBufferLength
-            ? stackalloc char[needed]
-            : new char[needed];
+        // Every character can gain at most one delimiter in front of it, so the buffer is twice
+        // the string. The choice is made on the length of the string, not on the doubled length:
+        // doubling a very long string's length overflows, and must not pick the stack.
+        var output = text.Length <= LongestStringOnTheStack
+            ? stackalloc char[text.Length * 2]
+            : new char[text.Length * 2];
 
         var length = WriteWords(text, output, delimiter, casing);
 
@@ -762,26 +762,27 @@ public static class StringExtensions
 
 
 
-    // True when the character at index belongs to a word: a letter, a digit, a combining mark (so an
+    // True when the character at index belongs to a word: a letter, a number (a digit, or a
+    // character such as a superscript two, a fraction or a Roman numeral), a combining mark (so an
     // accent written as its own character stays with its letter), or either half of a surrogate
-    // pair that is a letter or a digit.
+    // pair that is a letter or a number.
     private static bool IsWordCharacter(string s, int index)
     {
         var chr = s[index];
 
-        if (char.IsLetterOrDigit(chr))
+        if (char.IsLetter(chr) || char.IsNumber(chr))
         {
             return true;
         }
 
         if (char.IsHighSurrogate(chr))
         {
-            return index + 1 < s.Length && char.IsLowSurrogate(s[index + 1]) && char.IsLetterOrDigit(s, index);
+            return index + 1 < s.Length && char.IsLowSurrogate(s[index + 1]) && IsLetterOrNumber(s, index);
         }
 
         if (char.IsLowSurrogate(chr))
         {
-            return index > 0 && char.IsHighSurrogate(s[index - 1]) && char.IsLetterOrDigit(s, index - 1);
+            return index > 0 && char.IsHighSurrogate(s[index - 1]) && IsLetterOrNumber(s, index - 1);
         }
 
         var category = char.GetUnicodeCategory(chr);
@@ -789,6 +790,14 @@ public static class StringExtensions
         return category == UnicodeCategory.NonSpacingMark
             || category == UnicodeCategory.SpacingCombiningMark
             || category == UnicodeCategory.EnclosingMark;
+    }
+
+
+
+    // Whether the surrogate pair that starts at index is a letter or a number.
+    private static bool IsLetterOrNumber(string s, int index)
+    {
+        return char.IsLetter(s, index) || char.IsNumber(s, index);
     }
 
 
@@ -964,7 +973,7 @@ public static class StringExtensions
 
 
     // True when the upper-case letter at index starts a new word without a boundary before it:
-    // it follows a lower-case letter or a digit ("userLogin", "Line2Qty"), or it is the last
+    // it follows a lower-case letter or a number ("userLogin", "Line2Qty"), or it is the last
     // letter of an upper-case run and a lower-case letter follows it ("SKUCode").
     private static bool StartsWordInsideIdentifier(string s, int index)
     {
@@ -975,7 +984,7 @@ public static class StringExtensions
 
         var before = s[index - 1];
 
-        if (char.IsLower(before) || char.IsDigit(before))
+        if (char.IsLower(before) || char.IsNumber(before))
         {
             return true;
         }

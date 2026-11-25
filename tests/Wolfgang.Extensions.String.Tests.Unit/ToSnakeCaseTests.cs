@@ -219,4 +219,26 @@ public class ToSnakeCaseTests
     {
         Assert.Equal(string.Empty, "''\u2019".ToSnakeCase());
     }
+
+
+
+    [Theory]
+    [InlineData("x\u00B2", "x\u00B2")]
+    [InlineData("\u00BD cup", "\u00BD_cup")]
+    [InlineData("\u3007 a", "\u3007_a")]
+    [InlineData("a \uD800\uDD07", "a_\uD800\uDD07")]
+    public void ToSnakeCase_when_the_string_has_a_number_that_is_not_a_digit_keeps_it(string input, string expected)
+    {
+        // A superscript two, a fraction, the ideographic zero, and AEGEAN N\uMBER ONE (\u+10107, the
+        // pair D800 DD07) are numbers, not decimal digits.
+        Assert.Equal(expected, input.ToSnakeCase());
+    }
+
+
+
+    [Fact]
+    public void ToSnakeCase_when_an_upper_case_letter_follows_a_number_that_is_not_a_digit_starts_a_word()
+    {
+        Assert.Equal("m\u00B2_area", "m\u00B2Area".ToSnakeCase());
+    }
 }

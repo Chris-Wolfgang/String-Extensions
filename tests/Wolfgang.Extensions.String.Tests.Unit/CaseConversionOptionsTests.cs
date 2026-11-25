@@ -450,6 +450,94 @@ public class CaseConversionOptionsTests
 
 
 
+    [Theory]
+    [InlineData(PunctuationHandling.Drop)]
+    [InlineData(PunctuationHandling.Keep)]
+    public void Punctuation_when_set_to_a_member_returns_it(PunctuationHandling value)
+    {
+        var options = new CaseConversionOptions { Punctuation = value };
+
+        Assert.Equal(value, options.Punctuation);
+    }
+
+
+
+    [Fact]
+    public void Punctuation_when_set_to_a_value_that_is_not_a_member_throws_ArgumentOutOfRangeException()
+    {
+        var options = new CaseConversionOptions();
+
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => options.Punctuation = (PunctuationHandling)2);
+
+        Assert.Equal("value", exception.ParamName);
+        Assert.Equal((PunctuationHandling)2, exception.ActualValue);
+        Assert.StartsWith("The value is not a member of PunctuationHandling.", exception.Message, StringComparison.Ordinal);
+        Assert.Equal(PunctuationHandling.Drop, options.Punctuation);
+    }
+
+
+
+    [Theory]
+    [InlineData(AcronymHandling.AsWord)]
+    [InlineData(AcronymHandling.Preserve)]
+    public void Acronyms_when_set_to_a_member_returns_it(AcronymHandling value)
+    {
+        var options = new CaseConversionOptions { Acronyms = value };
+
+        Assert.Equal(value, options.Acronyms);
+    }
+
+
+
+    [Fact]
+    public void Acronyms_when_set_to_a_value_that_is_not_a_member_throws_ArgumentOutOfRangeException()
+    {
+        var options = new CaseConversionOptions();
+
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => options.Acronyms = (AcronymHandling)2);
+
+        Assert.Equal("value", exception.ParamName);
+        Assert.Equal((AcronymHandling)2, exception.ActualValue);
+        Assert.StartsWith("The value is not a member of AcronymHandling.", exception.Message, StringComparison.Ordinal);
+        Assert.Equal(AcronymHandling.AsWord, options.Acronyms);
+    }
+
+
+
+    [Theory]
+    [InlineData(WordBoundaries.None)]
+    [InlineData(WordBoundaries.Separators)]
+    [InlineData(WordBoundaries.Delimiters)]
+    [InlineData(WordBoundaries.CaseChanges)]
+    [InlineData(WordBoundaries.ControlCharacters)]
+    [InlineData(WordBoundaries.All)]
+    public void Boundaries_when_set_to_members_returns_them(WordBoundaries value)
+    {
+        var options = new CaseConversionOptions { Boundaries = value };
+
+        Assert.Equal(value, options.Boundaries);
+    }
+
+
+
+    [Theory]
+    [InlineData((WordBoundaries)16)]
+    [InlineData(WordBoundaries.All | (WordBoundaries)16)]
+    [InlineData((WordBoundaries)(-1))]
+    public void Boundaries_when_set_to_a_value_with_a_bit_that_is_not_a_member_throws_ArgumentOutOfRangeException(WordBoundaries value)
+    {
+        var options = new CaseConversionOptions { Boundaries = WordBoundaries.Separators };
+
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => options.Boundaries = value);
+
+        Assert.Equal("value", exception.ParamName);
+        Assert.Equal(value, exception.ActualValue);
+        Assert.StartsWith("The value has a bit that is not a member of WordBoundaries.", exception.Message, StringComparison.Ordinal);
+        Assert.Equal(WordBoundaries.Separators, options.Boundaries);
+    }
+
+
+
     // The expected words of a row, which are written with a bar between them.
     private static string[] Bars(string? words)
     {

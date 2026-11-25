@@ -24,18 +24,56 @@ namespace Wolfgang.Extensions.String;
 /// </example>
 public sealed class CaseConversionOptions
 {
+    private PunctuationHandling _punctuation = PunctuationHandling.Drop;
+
+    private WordBoundaries _boundaries = WordBoundaries.All;
+
+    private AcronymHandling _acronyms = AcronymHandling.AsWord;
+
+
+
     /// <summary>
     /// What happens to a character that is neither a letter nor a digit. The default is
     /// <see cref="PunctuationHandling.Drop"/>.
     /// </summary>
-    public PunctuationHandling Punctuation { get; set; } = PunctuationHandling.Drop;
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// The value is not a member of <see cref="PunctuationHandling"/>.
+    /// </exception>
+    public PunctuationHandling Punctuation
+    {
+        get => _punctuation;
+        set
+        {
+            if (value != PunctuationHandling.Drop && value != PunctuationHandling.Keep)
+            {
+                throw new ArgumentOutOfRangeException(nameof(value), value, "The value is not a member of PunctuationHandling.");
+            }
+
+            _punctuation = value;
+        }
+    }
 
 
 
     /// <summary>
     /// What divides one word from the next. The default is <see cref="WordBoundaries.All"/>.
     /// </summary>
-    public WordBoundaries Boundaries { get; set; } = WordBoundaries.All;
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// The value has a bit that is not a member of <see cref="WordBoundaries"/>.
+    /// </exception>
+    public WordBoundaries Boundaries
+    {
+        get => _boundaries;
+        set
+        {
+            if ((value & ~WordBoundaries.All) != WordBoundaries.None)
+            {
+                throw new ArgumentOutOfRangeException(nameof(value), value, "The value has a bit that is not a member of WordBoundaries.");
+            }
+
+            _boundaries = value;
+        }
+    }
 
 
 
@@ -43,7 +81,22 @@ public sealed class CaseConversionOptions
     /// How camel case and Pascal case treat a word written entirely in upper case. The default is
     /// <see cref="AcronymHandling.AsWord"/>.
     /// </summary>
-    public AcronymHandling Acronyms { get; set; } = AcronymHandling.AsWord;
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// The value is not a member of <see cref="AcronymHandling"/>.
+    /// </exception>
+    public AcronymHandling Acronyms
+    {
+        get => _acronyms;
+        set
+        {
+            if (value != AcronymHandling.AsWord && value != AcronymHandling.Preserve)
+            {
+                throw new ArgumentOutOfRangeException(nameof(value), value, "The value is not a member of AcronymHandling.");
+            }
+
+            _acronyms = value;
+        }
+    }
 
 
 
