@@ -199,30 +199,37 @@ public static class StringExtensions
 
 
     /// <summary>
-    /// Converts a string to camelCase: the first word is lower-cased, every later word is capitalized with the
-    /// rest of its letters lower-cased, and all separator characters are removed.
+    /// Converts a string to camelCase: its words run together, the first in lower case and every later one
+    /// with its first letter in upper case and the rest in lower case.
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
-    /// The specified string in camel case.
+    /// The specified string in camel case. It is empty when the string has no letters or digits.
     /// </returns>
     /// <remarks>
     /// <para>
-    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are treated as word
-    /// boundaries and removed from the output. Control characters and punctuation are preserved.
+    /// The string is first split into words, by the rule every case conversion shares. A word is a run of
+    /// letters and digits. Every other character (white space, punctuation, symbols, control characters,
+    /// underscores and dashes) ends the word and is left out. An apostrophe is removed without ending the
+    /// word, so <c>don't</c> is the one word <c>dont</c>.
     /// </para>
     /// <para>
     /// A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
-    /// last upper-case letter of a run that a lower-case letter follows, so the words of an identifier
-    /// are kept apart: <c>UserLoginCount</c> is <c>userLoginCount</c> and <c>SKUCode</c> is <c>skuCode</c>.
+    /// last upper-case letter of a run that a lower-case letter follows. An acronym is therefore one word
+    /// and a digit stays with the word before it: <c>SKUCode</c> is <c>SKU</c> and <c>Code</c>, and
+    /// <c>Line2Qty</c> is <c>Line2</c> and <c>Qty</c>.
+    /// </para>
+    /// <para>
+    /// Letters are cased one <see cref="char"/> at a time with the invariant culture, so the result does not
+    /// depend on the current culture.
     /// </para>
     /// </remarks>
     /// <example>
     /// <code>
     /// using Wolfgang.Extensions.String;
     ///
-    /// var camel = " A sample string for processing! ".ToCamelCase();
-    /// // camel == "aSampleStringForProcessing!"
+    /// var camel = " A sample string, for processing! ".ToCamelCase();
+    /// // camel == "aSampleStringForProcessing"
     ///
     /// var fromIdentifier = "UserLoginCount".ToCamelCase();
     /// // fromIdentifier == "userLoginCount"
@@ -235,68 +242,42 @@ public static class StringExtensions
     {
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
-        var output = new char[s.Length];
-
-        // A word starts after a separator, but only once something has been written: the first
-        // word stays lower case even when the input starts with separators.
-        var capitalizeNext = false;
-
-        var outputIndex = 0;
-
-        for (var index = 0; index < s.Length; index++)
-        {
-            var chr = s[index];
-
-            if (char.IsSeparator(chr))
-            {
-                capitalizeNext = outputIndex > 0;
-                // eat char
-            }
-            else
-            {
-                // A word also starts at a case boundary inside an identifier. Something has always
-                // been written by then, because the boundary follows a letter or a digit.
-                output[outputIndex++] = capitalizeNext || StartsWordInsideIdentifier(s, index)
-                    ? char.ToUpperInvariant(chr)
-                    : char.ToLowerInvariant(chr);
-                capitalizeNext = false;
-            }
-        }
-
-        return new string(output, 0, outputIndex);
+        return JoinWords(s, NoDelimiter, WordCasing.CapitalizedAfterFirst);
     }
 
 
 
     /// <summary>
-    /// Converts a string to kebab case: every letter is lower-cased and exactly one dash is put between
-    /// words, whether they were divided by separator characters, by dashes, or by the case boundaries of
-    /// a PascalCase or camelCase identifier.
+    /// Converts a string to kebab case: its words in lower case with one dash between them.
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
-    /// The specified string in kebab case.
+    /// The specified string in kebab case. It is empty when the string has no letters or digits.
     /// </returns>
     /// <remarks>
     /// <para>
-    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> divide words, and so
-    /// does a dash already in the string. A run of them becomes a single dash, and the result neither starts
-    /// nor ends with one: <c>"  two  words  "</c> is <c>two-words</c>. Control characters and other punctuation
-    /// are preserved.
+    /// The string is first split into words, by the rule every case conversion shares. A word is a run of
+    /// letters and digits. Every other character (white space, punctuation, symbols, control characters,
+    /// underscores and dashes) ends the word and is left out. An apostrophe is removed without ending the
+    /// word, so <c>don't</c> is the one word <c>dont</c>.
     /// </para>
     /// <para>
     /// A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
-    /// last upper-case letter of a run that a lower-case letter follows. An acronym therefore stays
-    /// together and a digit stays with the word before it: <c>SKUCode</c> is <c>sku-code</c> and
-    /// <c>Line2Qty</c> is <c>line2-qty</c>.
+    /// last upper-case letter of a run that a lower-case letter follows. An acronym is therefore one word
+    /// and a digit stays with the word before it: <c>SKUCode</c> is <c>SKU</c> and <c>Code</c>, and
+    /// <c>Line2Qty</c> is <c>Line2</c> and <c>Qty</c>.
+    /// </para>
+    /// <para>
+    /// Letters are cased one <see cref="char"/> at a time with the invariant culture, so the result does not
+    /// depend on the current culture.
     /// </para>
     /// </remarks>
     /// <example>
     /// <code>
     /// using Wolfgang.Extensions.String;
     ///
-    /// var kebab = "A sample string for processing!".ToKebabCase();
-    /// // kebab == "a-sample-string-for-processing!"
+    /// var kebab = " A sample string, for processing! ".ToKebabCase();
+    /// // kebab == "a-sample-string-for-processing"
     ///
     /// var fromIdentifier = "UserLoginCount".ToKebabCase();
     /// // fromIdentifier == "user-login-count"
@@ -309,38 +290,45 @@ public static class StringExtensions
     {
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
-        return ToDelimitedCase(s, '-');
+        return JoinWords(s, '-', WordCasing.Lower);
     }
 
 
 
     /// <summary>
-    /// Converts a string to PascalCase: every word, including the first one, is capitalized with the rest of its
-    /// letters lower-cased, and all separator characters are removed.
+    /// Converts a string to PascalCase: its words run together, each with its first letter in upper case and
+    /// the rest in lower case.
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
-    /// The specified string in Pascal case.
+    /// The specified string in Pascal case. It is empty when the string has no letters or digits.
     /// </returns>
     /// <remarks>
     /// <para>
-    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are treated as word
-    /// boundaries and removed from the output. Control characters and punctuation are preserved.
+    /// The string is first split into words, by the rule every case conversion shares. A word is a run of
+    /// letters and digits. Every other character (white space, punctuation, symbols, control characters,
+    /// underscores and dashes) ends the word and is left out. An apostrophe is removed without ending the
+    /// word, so <c>don't</c> is the one word <c>dont</c>.
     /// </para>
     /// <para>
     /// A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
-    /// last upper-case letter of a run that a lower-case letter follows, so the words of an identifier
-    /// are kept apart: <c>userLoginCount</c> is <c>UserLoginCount</c> and <c>SKUCode</c> is <c>SkuCode</c>.
+    /// last upper-case letter of a run that a lower-case letter follows. An acronym is therefore one word
+    /// and a digit stays with the word before it: <c>SKUCode</c> is <c>SKU</c> and <c>Code</c>, and
+    /// <c>Line2Qty</c> is <c>Line2</c> and <c>Qty</c>.
+    /// </para>
+    /// <para>
+    /// Letters are cased one <see cref="char"/> at a time with the invariant culture, so the result does not
+    /// depend on the current culture.
     /// </para>
     /// </remarks>
     /// <example>
     /// <code>
     /// using Wolfgang.Extensions.String;
     ///
-    /// var pascal = " A sample string for processing! ".ToPascalCase();
-    /// // pascal == "ASampleStringForProcessing!"
+    /// var pascal = " A sample string, for processing! ".ToPascalCase();
+    /// // pascal == "ASampleStringForProcessing"
     ///
-    /// var fromIdentifier = "userLoginCount".ToPascalCase();
+    /// var fromIdentifier = "user_login_count".ToPascalCase();
     /// // fromIdentifier == "UserLoginCount"
     /// </code>
     /// </example>
@@ -351,67 +339,42 @@ public static class StringExtensions
     {
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
-        var output = new char[s.Length];
-
-        var isLastCharSeparator = true;
-
-        var outputIndex = 0;
-
-        for (var index = 0; index < s.Length; index++)
-        {
-            var chr = s[index];
-
-            if (char.IsSeparator(chr))
-            {
-                isLastCharSeparator = true;
-                // eat char
-            }
-            else if (isLastCharSeparator || StartsWordInsideIdentifier(s, index))
-            {
-                isLastCharSeparator = false;
-                output[outputIndex++] = char.ToUpperInvariant(chr);
-            }
-            else
-            {
-                isLastCharSeparator = false;
-                output[outputIndex++] = char.ToLowerInvariant(chr);
-            }
-        }
-
-        return new string(output, 0, outputIndex);
+        return JoinWords(s, NoDelimiter, WordCasing.Capitalized);
     }
 
 
 
     /// <summary>
-    /// Converts a string to snake case: every letter is lower-cased and exactly one underscore is put between
-    /// words, whether they were divided by separator characters, by underscores, or by the case boundaries of
-    /// a PascalCase or camelCase identifier.
+    /// Converts a string to snake case: its words in lower case with one underscore between them.
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
-    /// The specified string in snake case.
+    /// The specified string in snake case. It is empty when the string has no letters or digits.
     /// </returns>
     /// <remarks>
     /// <para>
-    /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> divide words, and so
-    /// does an underscore already in the string. A run of them becomes a single underscore, and the result neither starts
-    /// nor ends with one: <c>"  two  words  "</c> is <c>two_words</c>. Control characters and other punctuation
-    /// are preserved.
+    /// The string is first split into words, by the rule every case conversion shares. A word is a run of
+    /// letters and digits. Every other character (white space, punctuation, symbols, control characters,
+    /// underscores and dashes) ends the word and is left out. An apostrophe is removed without ending the
+    /// word, so <c>don't</c> is the one word <c>dont</c>.
     /// </para>
     /// <para>
     /// A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
-    /// last upper-case letter of a run that a lower-case letter follows. An acronym therefore stays
-    /// together and a digit stays with the word before it: <c>SKUCode</c> is <c>sku_code</c> and
-    /// <c>Line2Qty</c> is <c>line2_qty</c>.
+    /// last upper-case letter of a run that a lower-case letter follows. An acronym is therefore one word
+    /// and a digit stays with the word before it: <c>SKUCode</c> is <c>SKU</c> and <c>Code</c>, and
+    /// <c>Line2Qty</c> is <c>Line2</c> and <c>Qty</c>.
+    /// </para>
+    /// <para>
+    /// Letters are cased one <see cref="char"/> at a time with the invariant culture, so the result does not
+    /// depend on the current culture.
     /// </para>
     /// </remarks>
     /// <example>
     /// <code>
     /// using Wolfgang.Extensions.String;
     ///
-    /// var snake = "A sample string for processing!".ToSnakeCase();
-    /// // snake == "a_sample_string_for_processing!"
+    /// var snake = " A sample string, for processing! ".ToSnakeCase();
+    /// // snake == "a_sample_string_for_processing"
     ///
     /// var fromIdentifier = "UserLoginCount".ToSnakeCase();
     /// // fromIdentifier == "user_login_count"
@@ -424,7 +387,7 @@ public static class StringExtensions
     {
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
-        return ToDelimitedCase(s, '_');
+        return JoinWords(s, '_', WordCasing.Lower);
     }
 
 
@@ -461,37 +424,70 @@ public static class StringExtensions
 
 
 
-    // Lower-cases s and puts exactly one delimiter between its words. Words are divided by separator
-    // characters, by the delimiter itself, and by the case boundaries of a PascalCase or camelCase
-    // identifier. Nothing is written for a run of dividers until the next word starts, so a run
-    // becomes one delimiter and the result neither starts nor ends with one.
-    private static string ToDelimitedCase(string s, char delimiter)
+    // What JoinWords does with the letters of each word.
+    private enum WordCasing
     {
+        // Every letter in lower case.
+        Lower,
+
+        // The first character in upper case, the rest in lower case.
+        Capitalized,
+
+        // The first word in lower case, every later word capitalized.
+        CapitalizedAfterFirst,
+    }
+
+
+
+    // Passed to JoinWords as the delimiter when the words run together.
+    private const char NoDelimiter = '\0';
+
+
+
+    // The one place the case conversions split a string into words and put it back together. It
+    // walks the string once: a word is a run of letters and digits, every other character ends the
+    // word and is left out, and a word also starts at a case boundary inside an identifier. Each
+    // word is written in the casing asked for, with the delimiter (if any) between words.
+    private static string JoinWords(string s, char delimiter, WordCasing casing)
+    {
+        // An apostrophe is not a boundary: "don't" is one word. Taking apostrophes out first keeps
+        // the rules below about what comes before and after a letter true of the word itself.
+        var text = RemoveApostrophes(s);
+
         // Every character can gain at most one delimiter in front of it.
-        var output = new char[s.Length * 2];
+        var output = new char[delimiter == NoDelimiter ? text.Length : text.Length * 2];
 
         var outputIndex = 0;
 
-        var delimiterPending = false;
+        var wordCount = 0;
 
-        for (var index = 0; index < s.Length; index++)
+        var inWord = false;
+
+        for (var index = 0; index < text.Length; index++)
         {
-            var chr = s[index];
-
-            if (chr == delimiter || char.IsSeparator(chr))
+            if (!IsWordCharacter(text, index))
             {
-                delimiterPending = outputIndex > 0;
+                inWord = false;
                 continue;
             }
 
-            if (delimiterPending || StartsWordInsideIdentifier(s, index))
+            var startsWord = !inWord || StartsWordInsideIdentifier(text, index);
+
+            if (startsWord)
             {
-                output[outputIndex++] = delimiter;
+                if (wordCount > 0 && delimiter != NoDelimiter)
+                {
+                    output[outputIndex++] = delimiter;
+                }
+
+                wordCount++;
             }
 
-            delimiterPending = false;
+            inWord = true;
 
-            output[outputIndex++] = char.ToLowerInvariant(chr);
+            output[outputIndex++] = startsWord && IsCapitalized(casing, wordCount)
+                ? char.ToUpperInvariant(text[index])
+                : char.ToLowerInvariant(text[index]);
         }
 
         return new string(output, 0, outputIndex);
@@ -499,7 +495,87 @@ public static class StringExtensions
 
 
 
-    // True when the upper-case letter at index starts a new word without a separator before it:
+    // Whether the first character of the word with this number (counted from 1) is upper-cased.
+    private static bool IsCapitalized(WordCasing casing, int wordNumber)
+    {
+        return casing == WordCasing.Capitalized
+            || (casing == WordCasing.CapitalizedAfterFirst && wordNumber > 1);
+    }
+
+
+
+    private static bool IsApostrophe(char chr)
+    {
+        // The typewriter apostrophe and the typographic one (RIGHT SINGLE QUOTATION MARK).
+        return chr == '\'' || chr == '\u2019';
+    }
+
+
+
+    // Returns s itself when it has no apostrophe, which is the usual case.
+    private static string RemoveApostrophes(string s)
+    {
+        var first = 0;
+
+        while (first < s.Length && !IsApostrophe(s[first]))
+        {
+            first++;
+        }
+
+        if (first == s.Length)
+        {
+            return s;
+        }
+
+        var output = new char[s.Length - 1];
+
+        var outputIndex = 0;
+
+        foreach (var chr in s)
+        {
+            if (!IsApostrophe(chr))
+            {
+                output[outputIndex++] = chr;
+            }
+        }
+
+        return new string(output, 0, outputIndex);
+    }
+
+
+
+    // True when the character at index belongs to a word: a letter, a digit, a combining mark (so an
+    // accent written as its own character stays with its letter), or either half of a surrogate
+    // pair that is a letter or a digit.
+    private static bool IsWordCharacter(string s, int index)
+    {
+        var chr = s[index];
+
+        if (char.IsLetterOrDigit(chr))
+        {
+            return true;
+        }
+
+        if (char.IsHighSurrogate(chr))
+        {
+            return index + 1 < s.Length && char.IsLowSurrogate(s[index + 1]) && char.IsLetterOrDigit(s, index);
+        }
+
+        if (char.IsLowSurrogate(chr))
+        {
+            return index > 0 && char.IsHighSurrogate(s[index - 1]) && char.IsLetterOrDigit(s, index - 1);
+        }
+
+        var category = char.GetUnicodeCategory(chr);
+
+        return category == UnicodeCategory.NonSpacingMark
+            || category == UnicodeCategory.SpacingCombiningMark
+            || category == UnicodeCategory.EnclosingMark;
+    }
+
+
+
+    // True when the upper-case letter at index starts a new word without a boundary before it:
     // it follows a lower-case letter or a digit ("userLogin", "Line2Qty"), or it is the last
     // letter of an upper-case run and a lower-case letter follows it ("SKUCode").
     private static bool StartsWordInsideIdentifier(string s, int index)
