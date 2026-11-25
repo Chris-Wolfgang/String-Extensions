@@ -173,6 +173,8 @@ This library targets:
 - **.NET Standard:** 2.0
 - **.NET:** 8.0, 10.0
 
+On .NET 8 and later the package has no dependencies. On .NET Framework and .NET Standard 2.0 it depends on `System.Memory`.
+
 See the [NuGet package page](https://www.nuget.org/packages/Wolfgang.Extensions.String/) for the authoritative per-TFM compatibility matrix.
 
 **Test matrix.** Every pull request runs the test suite on five legs: Linux x64, Linux ARM64, Windows x64, Windows ARM64 and macOS ARM64. Windows x64 runs every target framework (the only leg with .NET Framework); Linux x64 runs .NET Core 3.1 and .NET 5.0 and later; the three ARM64 legs run .NET 6.0 and later.

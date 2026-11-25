@@ -668,6 +668,12 @@ public static class StringExtensions
 
 
 
+    // How many characters JoinWords can build on the stack: enough for a string of up to 128
+    // characters, which covers identifiers and most phrases, and small next to a thread's stack.
+    private const int StackBufferLength = 256;
+
+
+
     // The one place the case conversions split a string into words and put it back together. It
     // walks the string once: a word is a run of letters and digits, every other character ends the
     // word and is left out, and a word also starts at a case boundary inside an identifier. Each
@@ -679,7 +685,16 @@ public static class StringExtensions
         var text = RemoveApostrophes(s);
 
         // Every character can gain at most one delimiter in front of it.
-        var output = new char[text.Length * 2];
+        var needed = text.Length * 2;
+
+        // The result is built on the stack when it is sure to fit, so a short string costs one
+        // allocation: the result itself. A long one gets a buffer of its own.
+        Span<char> output = stackalloc char[StackBufferLength];
+
+        if (needed > StackBufferLength)
+        {
+            output = new char[needed];
+        }
 
         var outputIndex = 0;
 
@@ -714,7 +729,7 @@ public static class StringExtensions
                 : char.ToLowerInvariant(text[index]);
         }
 
-        return new string(output, 0, outputIndex);
+        return output.Slice(0, outputIndex).ToString();
     }
 
 
