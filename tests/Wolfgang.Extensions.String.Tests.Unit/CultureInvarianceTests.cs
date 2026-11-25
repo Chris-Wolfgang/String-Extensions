@@ -6,8 +6,8 @@ namespace Wolfgang.Extensions.String.Tests.Unit;
 
 /// <summary>
 /// Verifies that the casing conversions which are meant to be culture-independent
-/// (<see cref="StringExtensions.ToCamelCase"/>, <see cref="StringExtensions.ToPascalCase"/>,
-/// <see cref="StringExtensions.ToKebabCase"/>, <see cref="StringExtensions.ToSnakeCase"/>)
+/// (<see cref="StringExtensions.ToCamelCase(string)"/>, <see cref="StringExtensions.ToPascalCase(string)"/>,
+/// <see cref="StringExtensions.ToKebabCase(string)"/>, <see cref="StringExtensions.ToSnakeCase(string)"/>)
 /// produce identical output regardless of the ambient <see cref="CultureInfo.CurrentCulture"/>.
 /// The canonical trap is Turkish (tr-TR), where the default casing of <c>i</c>/<c>I</c>
 /// maps to the dotted/dotless variants (İ / ı); these methods use the invariant

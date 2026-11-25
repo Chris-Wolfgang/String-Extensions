@@ -1,8 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
-#if !NET8_0_OR_GREATER
+using System.Linq;
 using System.Text;
-#endif
 
 namespace Wolfgang.Extensions.String;
 
@@ -248,6 +248,45 @@ public static class StringExtensions
 
 
     /// <summary>
+    /// Converts a string to camel case, finding its words by the rules in <paramref name="options"/>.
+    /// </summary>
+    /// <param name="s">The string to convert.</param>
+    /// <param name="options">How the words of the string are found, and how an acronym is cased.</param>
+    /// <returns>
+    /// The specified string in camel case. It is empty when no word is found.
+    /// </returns>
+    /// <remarks>
+    /// With a new <see cref="CaseConversionOptions"/> the result is the same as
+    /// <see cref="ToCamelCase(string)"/> gives. When <see cref="CaseConversionOptions.WordSplitter"/> is
+    /// set, the words it returns are cased and joined as they are.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var options = new CaseConversionOptions { Boundaries = WordBoundaries.All &amp; ~WordBoundaries.CaseChanges };
+    ///
+    /// var camel = "iPhone case".ToCamelCase(options);
+    /// // camel == "iphoneCase"
+    /// </code>
+    /// </example>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="s"/> or <paramref name="options"/> is <see langword="null"/>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// <see cref="CaseConversionOptions.WordSplitter"/> returned <see langword="null"/>.
+    /// </exception>
+    public static string ToCamelCase(this string s, CaseConversionOptions options)
+    {
+        _ = s ?? throw new ArgumentNullException(nameof(s));
+        _ = options ?? throw new ArgumentNullException(nameof(options));
+
+        return FormatWords(FindWords(s, options), NoDelimiter, WordCasing.CapitalizedAfterFirst, options.Acronyms);
+    }
+
+
+
+    /// <summary>
     /// Converts a string to kebab case: its words in lower case with one dash between them.
     /// </summary>
     /// <param name="s">The string to convert.</param>
@@ -291,6 +330,45 @@ public static class StringExtensions
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
         return JoinWords(s, '-', WordCasing.Lower);
+    }
+
+
+
+    /// <summary>
+    /// Converts a string to kebab case, finding its words by the rules in <paramref name="options"/>.
+    /// </summary>
+    /// <param name="s">The string to convert.</param>
+    /// <param name="options">How the words of the string are found, and how an acronym is cased.</param>
+    /// <returns>
+    /// The specified string in kebab case. It is empty when no word is found.
+    /// </returns>
+    /// <remarks>
+    /// With a new <see cref="CaseConversionOptions"/> the result is the same as
+    /// <see cref="ToKebabCase(string)"/> gives. When <see cref="CaseConversionOptions.WordSplitter"/> is
+    /// set, the words it returns are cased and joined as they are.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var options = new CaseConversionOptions { Boundaries = WordBoundaries.All &amp; ~WordBoundaries.CaseChanges };
+    ///
+    /// var kebab = "iPhone case".ToKebabCase(options);
+    /// // kebab == "iphone-case"
+    /// </code>
+    /// </example>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="s"/> or <paramref name="options"/> is <see langword="null"/>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// <see cref="CaseConversionOptions.WordSplitter"/> returned <see langword="null"/>.
+    /// </exception>
+    public static string ToKebabCase(this string s, CaseConversionOptions options)
+    {
+        _ = s ?? throw new ArgumentNullException(nameof(s));
+        _ = options ?? throw new ArgumentNullException(nameof(options));
+
+        return FormatWords(FindWords(s, options), '-', WordCasing.Lower, options.Acronyms);
     }
 
 
@@ -345,6 +423,45 @@ public static class StringExtensions
 
 
     /// <summary>
+    /// Converts a string to Pascal case, finding its words by the rules in <paramref name="options"/>.
+    /// </summary>
+    /// <param name="s">The string to convert.</param>
+    /// <param name="options">How the words of the string are found, and how an acronym is cased.</param>
+    /// <returns>
+    /// The specified string in Pascal case. It is empty when no word is found.
+    /// </returns>
+    /// <remarks>
+    /// With a new <see cref="CaseConversionOptions"/> the result is the same as
+    /// <see cref="ToPascalCase(string)"/> gives. When <see cref="CaseConversionOptions.WordSplitter"/> is
+    /// set, the words it returns are cased and joined as they are.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var options = new CaseConversionOptions { Boundaries = WordBoundaries.All &amp; ~WordBoundaries.CaseChanges };
+    ///
+    /// var pascal = "iPhone case".ToPascalCase(options);
+    /// // pascal == "IphoneCase"
+    /// </code>
+    /// </example>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="s"/> or <paramref name="options"/> is <see langword="null"/>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// <see cref="CaseConversionOptions.WordSplitter"/> returned <see langword="null"/>.
+    /// </exception>
+    public static string ToPascalCase(this string s, CaseConversionOptions options)
+    {
+        _ = s ?? throw new ArgumentNullException(nameof(s));
+        _ = options ?? throw new ArgumentNullException(nameof(options));
+
+        return FormatWords(FindWords(s, options), NoDelimiter, WordCasing.Capitalized, options.Acronyms);
+    }
+
+
+
+    /// <summary>
     /// Converts a string to snake case: its words in lower case with one underscore between them.
     /// </summary>
     /// <param name="s">The string to convert.</param>
@@ -393,6 +510,45 @@ public static class StringExtensions
 
 
     /// <summary>
+    /// Converts a string to snake case, finding its words by the rules in <paramref name="options"/>.
+    /// </summary>
+    /// <param name="s">The string to convert.</param>
+    /// <param name="options">How the words of the string are found, and how an acronym is cased.</param>
+    /// <returns>
+    /// The specified string in snake case. It is empty when no word is found.
+    /// </returns>
+    /// <remarks>
+    /// With a new <see cref="CaseConversionOptions"/> the result is the same as
+    /// <see cref="ToSnakeCase(string)"/> gives. When <see cref="CaseConversionOptions.WordSplitter"/> is
+    /// set, the words it returns are cased and joined as they are.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var options = new CaseConversionOptions { Boundaries = WordBoundaries.All &amp; ~WordBoundaries.CaseChanges };
+    ///
+    /// var snake = "iPhone case".ToSnakeCase(options);
+    /// // snake == "iphone_case"
+    /// </code>
+    /// </example>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="s"/> or <paramref name="options"/> is <see langword="null"/>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// <see cref="CaseConversionOptions.WordSplitter"/> returned <see langword="null"/>.
+    /// </exception>
+    public static string ToSnakeCase(this string s, CaseConversionOptions options)
+    {
+        _ = s ?? throw new ArgumentNullException(nameof(s));
+        _ = options ?? throw new ArgumentNullException(nameof(options));
+
+        return FormatWords(FindWords(s, options), '_', WordCasing.Lower, options.Acronyms);
+    }
+
+
+
+    /// <summary>
     /// Capitalizes each word, leaving spaces and punctuation.
     /// </summary>
     /// <param name="s">The string to convert.</param>
@@ -420,6 +576,74 @@ public static class StringExtensions
         _ = s ?? throw new ArgumentNullException(nameof(s));
 
         return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s);
+    }
+
+
+
+    /// <summary>
+    /// Splits a string into its words by the rules the case conversions use: a word is a run of letters
+    /// and digits, every other character ends the word and is left out, an apostrophe is removed without
+    /// ending the word, and a word also starts at a case boundary inside an identifier.
+    /// </summary>
+    /// <param name="s">The string to split.</param>
+    /// <returns>
+    /// The words in the order they appear, with the casing they have in <paramref name="s"/>. The
+    /// sequence is produced as it is enumerated.
+    /// </returns>
+    /// <example>
+    /// <code>
+    /// using System.Linq;
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var words = "SKUCode for user_login!".SplitWords().ToArray();
+    /// // words == ["SKU", "Code", "for", "user", "login"]
+    /// </code>
+    /// </example>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="s"/> is <see langword="null"/>.
+    /// </exception>
+    public static IEnumerable<string> SplitWords(this string s)
+    {
+        _ = s ?? throw new ArgumentNullException(nameof(s));
+
+        return SplitWordsIterator(s, PunctuationHandling.Drop, WordBoundaries.All);
+    }
+
+
+
+    /// <summary>
+    /// Splits a string into its words by the rules in <paramref name="options"/>.
+    /// </summary>
+    /// <param name="s">The string to split.</param>
+    /// <param name="options">How the words of the string are found.</param>
+    /// <returns>
+    /// The words in the order they appear, with the casing they have in <paramref name="s"/>. When
+    /// <see cref="CaseConversionOptions.WordSplitter"/> is set, the result is what that function returns,
+    /// without its <see langword="null"/> and empty words.
+    /// </returns>
+    /// <example>
+    /// <code>
+    /// using System.Linq;
+    /// using Wolfgang.Extensions.String;
+    ///
+    /// var options = new CaseConversionOptions { Punctuation = PunctuationHandling.Keep };
+    ///
+    /// var words = "Hello, big World!".SplitWords(options).ToArray();
+    /// // words == ["Hello,", "big", "World!"]
+    /// </code>
+    /// </example>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="s"/> or <paramref name="options"/> is <see langword="null"/>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// <see cref="CaseConversionOptions.WordSplitter"/> returned <see langword="null"/>.
+    /// </exception>
+    public static IEnumerable<string> SplitWords(this string s, CaseConversionOptions options)
+    {
+        _ = s ?? throw new ArgumentNullException(nameof(s));
+        _ = options ?? throw new ArgumentNullException(nameof(options));
+
+        return WithoutEmptyWords(FindWords(s, options));
     }
 
 
@@ -543,6 +767,176 @@ public static class StringExtensions
         return category == UnicodeCategory.NonSpacingMark
             || category == UnicodeCategory.SpacingCombiningMark
             || category == UnicodeCategory.EnclosingMark;
+    }
+
+
+
+    // The words of s as the options ask for them: from the caller's splitter when there is one,
+    // from the built-in rules otherwise. The sequence may hold null or empty words; FormatWords and
+    // WithoutEmptyWords skip them.
+    private static IEnumerable<string> FindWords(string s, CaseConversionOptions options)
+    {
+        var splitter = options.WordSplitter;
+
+        if (splitter == null)
+        {
+            return SplitWordsIterator(s, options.Punctuation, options.Boundaries);
+        }
+
+        return splitter(s)
+            ?? throw new InvalidOperationException("The word splitter in the options returned null. Return an empty sequence for a string that has no words.");
+    }
+
+
+
+    private static IEnumerable<string> WithoutEmptyWords(IEnumerable<string> words)
+    {
+        return words.Where(word => !string.IsNullOrEmpty(word));
+    }
+
+
+
+    // The built-in rules as a sequence of words. JoinWords applies the same rules in one pass
+    // without building the words; a test compares the two over the same inputs.
+    private static IEnumerable<string> SplitWordsIterator(string s, PunctuationHandling punctuation, WordBoundaries boundaries)
+    {
+        var keepPunctuation = punctuation == PunctuationHandling.Keep;
+
+        // A kept apostrophe is punctuation like any other. A dropped one goes first, so that it does
+        // not end the word it is in.
+        var text = keepPunctuation ? s : RemoveApostrophes(s);
+
+        var splitAtCaseChanges = (boundaries & WordBoundaries.CaseChanges) != WordBoundaries.None;
+
+        var start = -1;
+
+        for (var index = 0; index < text.Length; index++)
+        {
+            var inWord = IsWordCharacter(text, index) || (keepPunctuation && !IsBoundary(text[index], boundaries));
+
+            if (!inWord)
+            {
+                if (start >= 0)
+                {
+                    yield return text.Substring(start, index - start);
+                }
+
+                start = -1;
+            }
+            else if (start < 0)
+            {
+                start = index;
+            }
+            else if (splitAtCaseChanges && StartsWordInsideIdentifier(text, index))
+            {
+                yield return text.Substring(start, index - start);
+
+                start = index;
+            }
+        }
+
+        if (start >= 0)
+        {
+            yield return text.Substring(start);
+        }
+    }
+
+
+
+    // Whether a character that is not part of a word divides words when punctuation is kept.
+    private static bool IsBoundary(char chr, WordBoundaries boundaries)
+    {
+        if ((boundaries & WordBoundaries.Separators) != WordBoundaries.None && char.IsSeparator(chr))
+        {
+            return true;
+        }
+
+        if ((boundaries & WordBoundaries.Delimiters) != WordBoundaries.None && (chr == '_' || chr == '-'))
+        {
+            return true;
+        }
+
+        return (boundaries & WordBoundaries.ControlCharacters) != WordBoundaries.None && char.IsControl(chr);
+    }
+
+
+
+    // Cases each word and joins the words with the delimiter, if there is one.
+    private static string FormatWords(IEnumerable<string> words, char delimiter, WordCasing casing, AcronymHandling acronyms)
+    {
+        var output = new StringBuilder();
+
+        var wordCount = 0;
+
+        foreach (var word in words)
+        {
+            if (string.IsNullOrEmpty(word))
+            {
+                continue;
+            }
+
+            if (wordCount > 0 && delimiter != NoDelimiter)
+            {
+                output.Append(delimiter);
+            }
+
+            wordCount++;
+
+            AppendWord(output, word, IsCapitalized(casing, wordCount), acronyms);
+        }
+
+        return output.ToString();
+    }
+
+
+
+    private static void AppendWord(StringBuilder output, string word, bool capitalize, AcronymHandling acronyms)
+    {
+        if (capitalize && acronyms == AcronymHandling.Preserve && IsAcronym(word))
+        {
+            output.Append(word);
+
+            return;
+        }
+
+        // The character that is upper-cased is the first one that belongs to a word, so a word kept
+        // with punctuation in front of it ("(hello") is still capitalized. word.Length is past the
+        // end, so it marks "no character".
+        var capitalizeAt = capitalize ? FirstWordCharacter(word) : word.Length;
+
+        for (var index = 0; index < word.Length; index++)
+        {
+            output.Append
+            (
+                index == capitalizeAt
+                    ? char.ToUpperInvariant(word[index])
+                    : char.ToLowerInvariant(word[index])
+            );
+        }
+    }
+
+
+
+    // The index of the first letter, digit or mark of the word, or its length when it has none.
+    private static int FirstWordCharacter(string word)
+    {
+        var index = 0;
+
+        while (index < word.Length && !IsWordCharacter(word, index))
+        {
+            index++;
+        }
+
+        return index;
+    }
+
+
+
+    // An acronym is a word with no lower-case letter. A word of digits, or one in a script that has
+    // no case, counts as well, and comes out the same either way.
+    private static bool IsAcronym(string word)
+    {
+        return !word.Any(char.IsLower);
     }
 
 
