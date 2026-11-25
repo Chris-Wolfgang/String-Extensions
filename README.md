@@ -80,9 +80,9 @@ authoritative list (kept in sync with source on every release), see the
 | `Right(this string? s, int length)` | `string?` | Returns the rightmost `length` characters. Returns the whole string when it is shorter than `length`; returns `null` for a `null` input. |
 | `PadCenter(this string, int totalWidth)` | `string` | Centers the string within `totalWidth`, padding both sides with spaces. When padding is uneven the extra character goes on the right. Returns the original string when it is already at least `totalWidth` long. |
 | `PadCenter(this string, int totalWidth, char paddingChar)` | `string` | As above, padding with `paddingChar` instead of spaces. |
-| `ToCamelCase(this string)` | `string` | Converts to `camelCase`. Separator characters are treated as word boundaries and removed. |
+| `ToCamelCase(this string)` | `string` | Converts to `camelCase`. Separator characters are treated as word boundaries and removed, and the words of an identifier are kept apart: `"UserLoginCount"` is `userLoginCount`. |
 | `ToKebabCase(this string)` | `string` | Converts to `kebab-case`. One dash goes between words, whether separator characters, dashes or the case boundaries of an identifier divided them: `"UserLoginCount"` and `" user  login count "` are both `user-login-count`. |
-| `ToPascalCase(this string)` | `string` | Converts to `PascalCase`. Separator characters are treated as word boundaries and removed. |
+| `ToPascalCase(this string)` | `string` | Converts to `PascalCase`. Separator characters are treated as word boundaries and removed, and the words of an identifier are kept apart: `"userLoginCount"` is `UserLoginCount`. |
 | `ToSnakeCase(this string)` | `string` | Converts to `snake_case`. One underscore goes between words, whether separator characters, underscores or the case boundaries of an identifier divided them: `"UserLoginCount"` and `" user  login count "` are both `user_login_count`. |
 | `ToTitleCase(this string)` | `string` | Converts to `Title Case`, preserving spaces and punctuation. Delegates to `TextInfo.ToTitleCase` using the current culture. |
 

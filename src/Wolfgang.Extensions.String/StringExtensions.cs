@@ -207,8 +207,15 @@ public static class StringExtensions
     /// The specified string in camel case.
     /// </returns>
     /// <remarks>
+    /// <para>
     /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are treated as word
     /// boundaries and removed from the output. Control characters and punctuation are preserved.
+    /// </para>
+    /// <para>
+    /// A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
+    /// last upper-case letter of a run that a lower-case letter follows, so the words of an identifier
+    /// are kept apart: <c>UserLoginCount</c> is <c>userLoginCount</c> and <c>SKUCode</c> is <c>skuCode</c>.
+    /// </para>
     /// </remarks>
     /// <example>
     /// <code>
@@ -216,6 +223,9 @@ public static class StringExtensions
     ///
     /// var camel = " A sample string for processing! ".ToCamelCase();
     /// // camel == "aSampleStringForProcessing!"
+    ///
+    /// var fromIdentifier = "UserLoginCount".ToCamelCase();
+    /// // fromIdentifier == "userLoginCount"
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
@@ -233,8 +243,10 @@ public static class StringExtensions
 
         var outputIndex = 0;
 
-        foreach (var chr in s)
+        for (var index = 0; index < s.Length; index++)
         {
+            var chr = s[index];
+
             if (char.IsSeparator(chr))
             {
                 capitalizeNext = outputIndex > 0;
@@ -242,7 +254,9 @@ public static class StringExtensions
             }
             else
             {
-                output[outputIndex++] = capitalizeNext
+                // A word also starts at a case boundary inside an identifier. Something has always
+                // been written by then, because the boundary follows a letter or a digit.
+                output[outputIndex++] = capitalizeNext || StartsWordInsideIdentifier(s, index)
                     ? char.ToUpperInvariant(chr)
                     : char.ToLowerInvariant(chr);
                 capitalizeNext = false;
@@ -309,8 +323,15 @@ public static class StringExtensions
     /// The specified string in Pascal case.
     /// </returns>
     /// <remarks>
+    /// <para>
     /// Characters where <see cref="char.IsSeparator(char)"/> returns <see langword="true"/> are treated as word
     /// boundaries and removed from the output. Control characters and punctuation are preserved.
+    /// </para>
+    /// <para>
+    /// A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
+    /// last upper-case letter of a run that a lower-case letter follows, so the words of an identifier
+    /// are kept apart: <c>userLoginCount</c> is <c>UserLoginCount</c> and <c>SKUCode</c> is <c>SkuCode</c>.
+    /// </para>
     /// </remarks>
     /// <example>
     /// <code>
@@ -318,6 +339,9 @@ public static class StringExtensions
     ///
     /// var pascal = " A sample string for processing! ".ToPascalCase();
     /// // pascal == "ASampleStringForProcessing!"
+    ///
+    /// var fromIdentifier = "userLoginCount".ToPascalCase();
+    /// // fromIdentifier == "UserLoginCount"
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
@@ -333,14 +357,16 @@ public static class StringExtensions
 
         var outputIndex = 0;
 
-        foreach (var chr in s)
+        for (var index = 0; index < s.Length; index++)
         {
+            var chr = s[index];
+
             if (char.IsSeparator(chr))
             {
                 isLastCharSeparator = true;
                 // eat char
             }
-            else if (isLastCharSeparator)
+            else if (isLastCharSeparator || StartsWordInsideIdentifier(s, index))
             {
                 isLastCharSeparator = false;
                 output[outputIndex++] = char.ToUpperInvariant(chr);
