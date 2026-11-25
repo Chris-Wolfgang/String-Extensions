@@ -58,6 +58,8 @@ var acronyms = new CaseConversionOptions { Acronyms = AcronymHandling.Preserve }
 | .NET Standard | 2.0 |
 | .NET | 8.0, 10.0 |
 
+On .NET 8 and later the package has no dependencies. On .NET Framework and .NET Standard 2.0 it depends on `System.Memory`.
+
 ## Where to next
 
 - The [API Reference](xref:Wolfgang.Extensions.String.StringExtensions) documents every overload, its exceptions and an example.

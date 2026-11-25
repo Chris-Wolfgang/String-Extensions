@@ -23,8 +23,13 @@ namespace Wolfgang.Extensions.String.Tests.Unit;
 /// <para>
 /// One allocation: <c>PadCenter</c> that pads allocates exactly its result string on .NET 8 and later
 /// (<c>string.Create</c>); the test compares it with a plain <c>new string(char, int)</c> of the same length.
-/// <c>Left</c> / <c>Right</c> that cut allocate the substring, and the case conversions allocate a work
-/// buffer plus the result; those are not asserted here.
+/// <c>Left</c> / <c>Right</c> that cut allocate the substring, which is not asserted here. What the case
+/// conversions allocate is asserted in <see cref="CaseConversionBufferTests"/>.
+/// </para>
+/// <para>
+/// The class shares a test collection with <see cref="CaseConversionBufferTests"/>, so the two never run at
+/// the same time: that class converts a very long string, and the garbage collection it causes would show
+/// up in a measurement taken on another thread.
 /// </para>
 /// <para>
 /// Guarded on NET5_0_OR_GREATER: <see cref="GC.GetAllocatedBytesForCurrentThread"/> does not exist on the
@@ -32,6 +37,7 @@ namespace Wolfgang.Extensions.String.Tests.Unit;
 /// is guarded on NET8_0_OR_GREATER.
 /// </para>
 /// </remarks>
+[Collection(AllocationMeasurements.Name)]
 public class ZeroAllocationTests
 {
     private const int Iterations = 10_000;
