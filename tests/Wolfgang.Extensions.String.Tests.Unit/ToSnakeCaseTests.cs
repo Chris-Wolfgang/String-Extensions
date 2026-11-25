@@ -149,4 +149,74 @@ public class ToSnakeCaseTests
     {
         Assert.Equal(string.Empty, input.ToSnakeCase());
     }
+
+
+
+    // A surrogate without its partner cannot be written in an attribute, so these build their input.
+    [Fact]
+    public void ToSnakeCase_when_the_string_ends_with_a_high_surrogate_drops_it()
+    {
+        var input = "ab" + new string('\uD801', 1);
+
+        Assert.Equal("ab", input.ToSnakeCase());
+    }
+
+
+
+    [Fact]
+    public void ToSnakeCase_when_a_high_surrogate_is_followed_by_a_letter_drops_the_surrogate_and_keeps_the_letter()
+    {
+        var input = "ab" + new string('\uD801', 1) + "cd";
+
+        Assert.Equal("ab_cd", input.ToSnakeCase());
+    }
+
+
+
+    [Fact]
+    public void ToSnakeCase_when_the_string_starts_with_a_low_surrogate_drops_it()
+    {
+        var input = new string('\uDC00', 1) + "ab";
+
+        Assert.Equal("ab", input.ToSnakeCase());
+    }
+
+
+
+    [Fact]
+    public void ToSnakeCase_when_a_low_surrogate_follows_a_letter_drops_the_surrogate_and_keeps_the_letters()
+    {
+        var input = "ab" + new string('\uDC00', 1) + "cd";
+
+        Assert.Equal("ab_cd", input.ToSnakeCase());
+    }
+
+
+
+    [Fact]
+    public void ToSnakeCase_when_two_high_surrogates_precede_a_low_one_keeps_only_the_pair()
+    {
+        // U+10400 is a letter: its pair is D801 DC00. The first D801 has no partner.
+        var input = new string('\uD801', 1) + "\uD801\uDC00";
+
+        Assert.Equal("\uD801\uDC00", input.ToSnakeCase());
+    }
+
+
+
+    [Fact]
+    public void ToSnakeCase_when_a_pair_is_followed_by_a_second_low_surrogate_keeps_only_the_pair()
+    {
+        var input = "\uD801\uDC00" + new string('\uDC00', 1) + "a";
+
+        Assert.Equal("\uD801\uDC00_a", input.ToSnakeCase());
+    }
+
+
+
+    [Fact]
+    public void ToSnakeCase_when_every_character_is_an_apostrophe_returns_empty_string()
+    {
+        Assert.Equal(string.Empty, "''\u2019".ToSnakeCase());
+    }
 }

@@ -455,7 +455,7 @@ public static class StringExtensions
         var text = RemoveApostrophes(s);
 
         // Every character can gain at most one delimiter in front of it.
-        var output = new char[delimiter == NoDelimiter ? text.Length : text.Length * 2];
+        var output = new char[text.Length * 2];
 
         var outputIndex = 0;
 
@@ -504,42 +504,14 @@ public static class StringExtensions
 
 
 
-    private static bool IsApostrophe(char chr)
-    {
-        // The typewriter apostrophe and the typographic one (RIGHT SINGLE QUOTATION MARK).
-        return chr == '\'' || chr == '\u2019';
-    }
-
-
-
-    // Returns s itself when it has no apostrophe, which is the usual case.
+    // Takes out the typewriter apostrophe and the typographic one (RIGHT SINGLE QUOTATION MARK).
+    // string.Replace compares ordinally and returns s itself when there is nothing to take out,
+    // which is the usual case.
     private static string RemoveApostrophes(string s)
     {
-        var first = 0;
-
-        while (first < s.Length && !IsApostrophe(s[first]))
-        {
-            first++;
-        }
-
-        if (first == s.Length)
-        {
-            return s;
-        }
-
-        var output = new char[s.Length - 1];
-
-        var outputIndex = 0;
-
-        foreach (var chr in s)
-        {
-            if (!IsApostrophe(chr))
-            {
-                output[outputIndex++] = chr;
-            }
-        }
-
-        return new string(output, 0, outputIndex);
+        return s
+            .Replace("'", string.Empty)
+            .Replace("\u2019", string.Empty);
     }
 
 
