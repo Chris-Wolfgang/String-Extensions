@@ -1,4 +1,6 @@
+#if NET5_0_OR_GREATER
 using System;
+#endif
 using System.Linq;
 using Xunit;
 
