@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using FsCheck;
+using Xunit;
 
 namespace Wolfgang.Extensions.String.Tests.Fuzz;
 
 /// <summary>
 /// Property-based fuzz tests for <see cref="StringExtensions"/>. Each property compares a method
 /// with a small reference model written out by hand (a <see cref="string.Substring(int, int)"/> for
-/// <c>Left</c> / <c>Right</c>, explicit padding arithmetic for <c>PadCenter</c>, a word split on
-/// <see cref="char.IsSeparator(char)"/> for the case conversions). A disagreement means the method
+/// <c>Left</c> / <c>Right</c>, explicit padding arithmetic for <c>PadCenter</c>, a word list built
+/// in two steps for the case conversions). A disagreement means the method
 /// gained or lost a behaviour that a hand-picked unit test did not pin down.
 /// </summary>
 /// <remarks>
@@ -115,12 +116,35 @@ public class StringExtensionsProperties
 
 
 
+    // Random strings almost never hold a valid surrogate pair or an apostrophe next to a letter, so
+    // these inputs are checked on every run as well.
+    [Theory]
+    [InlineData("")]
+    [InlineData("UserLoginCount")]
+    [InlineData("don't stop, O'Brien")]
+    [InlineData("\uD801\uDC00\uD801\uDC28 word")]
+    [InlineData("emoji \uD83D\uDE00 face")]
+    [InlineData("cafe\u0301Bar SKUCode Line2Qty")]
+    public void Case_conversions_when_passed_a_seed_input_match_the_reference_word_list(string text)
+    {
+        ArgumentNullException.ThrowIfNull(text);
+
+        var words = Words(text);
+
+        Assert.Equal(string.Join("_", words.Select(LowerCase)), text.ToSnakeCase());
+        Assert.Equal(string.Join("-", words.Select(LowerCase)), text.ToKebabCase());
+        Assert.Equal(string.Concat(words.Select(Capitalize)), text.ToPascalCase());
+        Assert.Equal(string.Concat(words.Select((word, index) => index == 0 ? LowerCase(word) : Capitalize(word))), text.ToCamelCase());
+    }
+
+
+
     [FuzzProperty]
     public bool ToKebabCase_lower_cases_and_puts_one_dash_between_words(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
     {
         var text = Compose(first, rest, separatorPicks);
 
-        return string.Equals(text.ToKebabCase(), MapEachChar(text, '-'), StringComparison.Ordinal);
+        return string.Equals(text.ToKebabCase(), string.Join("-", Words(text).Select(LowerCase)), StringComparison.Ordinal);
     }
 
 
@@ -130,20 +154,20 @@ public class StringExtensionsProperties
     {
         var text = Compose(first, rest, separatorPicks);
 
-        return string.Equals(text.ToSnakeCase(), MapEachChar(text, '_'), StringComparison.Ordinal);
+        return string.Equals(text.ToSnakeCase(), string.Join("_", Words(text).Select(LowerCase)), StringComparison.Ordinal);
     }
 
 
 
     [FuzzProperty]
-    public bool ToPascalCase_capitalizes_every_word_of_text_and_identifiers_and_drops_separators(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
+    public bool ToPascalCase_capitalizes_every_word_and_drops_everything_between_words(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
     {
         var text = Compose(first, rest, separatorPicks);
 
         return string.Equals
         (
             text.ToPascalCase(),
-            string.Concat(Words(text).SelectMany(IdentifierWords).Select(Capitalize)),
+            string.Concat(Words(text).Select(Capitalize)),
             StringComparison.Ordinal
         );
     }
@@ -151,14 +175,14 @@ public class StringExtensionsProperties
 
 
     [FuzzProperty]
-    public bool ToCamelCase_lower_cases_the_first_word_and_capitalizes_the_rest_of_text_and_identifiers(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
+    public bool ToCamelCase_lower_cases_the_first_word_capitalizes_the_rest_and_drops_everything_between_words(NonNull<string> first, NonNull<string>[] rest, byte[] separatorPicks)
     {
         var text = Compose(first, rest, separatorPicks);
 
         return string.Equals
         (
             text.ToCamelCase(),
-            string.Concat(Words(text).SelectMany(IdentifierWords).Select((word, index) => index == 0 ? LowerCase(word) : Capitalize(word))),
+            string.Concat(Words(text).Select((word, index) => index == 0 ? LowerCase(word) : Capitalize(word))),
             StringComparison.Ordinal
         );
     }
@@ -184,7 +208,14 @@ public class StringExtensionsProperties
     // from generated parts joined by real separators: ASCII space, NO-BREAK SPACE, EM SPACE, LINE
     // SEPARATOR and PARAGRAPH SEPARATOR (Zs, Zl and Zp). An empty first part gives leading separators,
     // empty later parts give runs of them.
-    private static readonly char[] Separators = [' ', '\u00A0', '\u2003', '\u2028', '\u2029'];
+    // What Compose puts between the generated parts: the Unicode separators, and the other characters
+    // the case conversions have a rule for (their delimiters, an apostrophe, control characters, a
+    // combining mark, and a letter and an emoji outside the Basic Multilingual Plane).
+    private static readonly string[] Separators =
+    [
+        " ", "\u00A0", "\u2003", "\u2028", "\u2029",
+        "_", "-", "'", "\u2019", "\t", "\n", ".", "e\u0301", "\uD801\uDC00", "\uD83D\uDE00",
+    ];
 
 
 
@@ -207,33 +238,6 @@ public class StringExtensionsProperties
 
 
 
-    // The oracle for kebab and snake case, written a different way from the library: split the text
-    // into the pieces between separators and delimiters, split each piece at its case boundaries,
-    // and join everything with one delimiter.
-    private static string MapEachChar(string s, char separatorReplacement) =>
-        string.Join
-        (
-            separatorReplacement.ToString(),
-            s
-                .Split
-                (
-                    s.Where(char.IsSeparator).Append(separatorReplacement).Distinct().ToArray(),
-                    StringSplitOptions.RemoveEmptyEntries
-                )
-                .Select(piece => string.Concat(piece.Select((_, i) => MapChar(piece, i, separatorReplacement))))
-        );
-
-
-
-    private static string MapChar(string s, int i, char separatorReplacement)
-    {
-        var lower = char.ToLowerInvariant(s[i]).ToString();
-
-        return StartsWord(s, i) ? separatorReplacement + lower : lower;
-    }
-
-
-
     // An upper-case letter starts a word when a lower-case letter or a digit comes before it, or when
     // an upper-case letter comes before it and a lower-case letter after it.
     private static bool StartsWord(string s, int i)
@@ -251,18 +255,67 @@ public class StringExtensionsProperties
 
 
 
-    // Splits on every char.IsSeparator character. U+2028 (itself a separator) is always in the list,
-    // so the array is never empty: string.Split with an empty array would split on white space instead.
-    private static string[] Words(string s) =>
-        s.Split
-        (
-            s.Where(char.IsSeparator).Append('\u2028').Distinct().ToArray(),
-            StringSplitOptions.RemoveEmptyEntries
-        );
+    // The oracle's word list, built a different way from the library's single pass: take the
+    // apostrophes out, mark which characters belong to words, cut the text into the marked runs, and
+    // cut each run at its case boundaries.
+    private static List<string> Words(string s)
+    {
+        var text = new string(s.Where(c => c != '\'' && c != '\u2019').ToArray());
+        var inWord = WordCharacterMask(text);
+        var words = new List<string>();
+        var start = -1;
+
+        for (var i = 0; i <= text.Length; i++)
+        {
+            if (i < text.Length && inWord[i])
+            {
+                start = start < 0 ? i : start;
+            }
+            else if (start >= 0)
+            {
+                words.AddRange(IdentifierWords(text.Substring(start, i - start)));
+                start = -1;
+            }
+        }
+
+        return words;
+    }
 
 
 
-    // The words inside one piece of text that has no separators: it is cut in front of every
+    // True at every position that is a letter, a digit or a combining mark; a surrogate pair is
+    // judged as one character and a surrogate on its own belongs to no word.
+    private static bool[] WordCharacterMask(string s)
+    {
+        var mask = new bool[s.Length];
+        var i = 0;
+
+        while (i < s.Length)
+        {
+            if (char.IsSurrogatePair(s, i))
+            {
+                mask[i] = char.IsLetterOrDigit(s, i);
+                mask[i + 1] = mask[i];
+                i += 2;
+            }
+            else
+            {
+                mask[i] = char.IsLetterOrDigit(s[i]) || IsMark(s[i]);
+                i++;
+            }
+        }
+
+        return mask;
+    }
+
+
+
+    private static bool IsMark(char c) =>
+        char.GetUnicodeCategory(c) is UnicodeCategory.NonSpacingMark or UnicodeCategory.SpacingCombiningMark or UnicodeCategory.EnclosingMark;
+
+
+
+    // The words inside one run of word characters: it is cut in front of every
     // character that starts a word inside an identifier.
     private static IEnumerable<string> IdentifierWords(string piece)
     {

@@ -35,13 +35,13 @@ public class ToKebabCaseTests
 
 
     [Theory]
-    [InlineData("a string in all lower.", "a-string-in-all-lower.")]
-    [InlineData("A STRING IN ALL UPPER!", "a-string-in-all-upper!")]
-    [InlineData("a-string-with-no-spaces.", "a-string-with-no-spaces.")]
-    [InlineData("\nControl\tCHARACTERS\aremain\nand\tdon't\acause\nunderscores", "\ncontrol\tcharacters\aremain\nand\tdon't\acause\nunderscores")]
-    [InlineData(" A STRING starting with a leading and trailing space ", "a-string-starting-with-a-leading-and-trailing-space")]
+    [InlineData("a string in all lower.", "a-string-in-all-lower")]
+    [InlineData("A STRING IN ALL UPPER!", "a-string-in-all-upper")]
+    [InlineData(" leading and trailing ", "leading-and-trailing")]
     [InlineData("  consecutive  spaces  ", "consecutive-spaces")]
-    public void ToKebabCase_when_passed_valid_string_converts_properly(string input, string expectedResult)
+    [InlineData("tab\tand\nnew line\r\nseparate", "tab-and-new-line-separate")]
+    [InlineData("no\u00A0break\u2003em\u2028line", "no-break-em-line")]
+    public void ToKebabCase_when_passed_text_joins_its_words(string input, string expectedResult)
     {
         Assert.Equal(expectedResult, input.ToKebabCase());
     }
@@ -49,20 +49,70 @@ public class ToKebabCaseTests
 
 
     [Theory]
-    [InlineData("Id", "id")]
+    [InlineData("hello, world!", "hello-world")]
+    [InlineData("(hello) world", "hello-world")]
+    [InlineData("say \"hello world\"", "say-hello-world")]
+    [InlineData("[draft] final report", "draft-final-report")]
+    [InlineData("$total amount", "total-amount")]
+    [InlineData("user@example.com", "user-example-com")]
+    [InlineData("a.b.c", "a-b-c")]
+    [InlineData("100% done", "100-done")]
+    [InlineData("9lives cat", "9lives-cat")]
+    [InlineData("emoji \uD83D\uDE00 face", "emoji-face")]
+    [InlineData("one/two\\three", "one-two-three")]
+    public void ToKebabCase_when_passed_punctuation_or_symbols_treats_them_as_word_boundaries_and_drops_them(string input, string expectedResult)
+    {
+        Assert.Equal(expectedResult, input.ToKebabCase());
+    }
+
+
+
+    [Theory]
+    [InlineData("don't stop", "dont-stop")]
+    [InlineData("it\u2019s here", "its-here")]
+    [InlineData("rock 'n' roll", "rock-n-roll")]
+    [InlineData("'quoted' text", "quoted-text")]
+    [InlineData("O'Brien", "o-brien")]
+    public void ToKebabCase_when_passed_an_apostrophe_removes_it_without_ending_the_word(string input, string expectedResult)
+    {
+        Assert.Equal(expectedResult, input.ToKebabCase());
+    }
+
+
+
+    [Theory]
+    [InlineData("user_login_count", "user-login-count")]
+    [InlineData("user-login-count", "user-login-count")]
+    [InlineData("User-Login_Count", "user-login-count")]
+    [InlineData("__Leading", "leading")]
+    [InlineData("Trailing_", "trailing")]
+    [InlineData("--Leading", "leading")]
+    [InlineData("Trailing-", "trailing")]
+    [InlineData("a___b", "a-b")]
+    [InlineData("a - b", "a-b")]
+    [InlineData("user_LoginCount", "user-login-count")]
+    public void ToKebabCase_when_passed_underscores_or_dashes_treats_them_as_word_boundaries(string input, string expectedResult)
+    {
+        Assert.Equal(expectedResult, input.ToKebabCase());
+    }
+
+
+
+    [Theory]
     [InlineData("UserLoginCount", "user-login-count")]
     [InlineData("userLoginCount", "user-login-count")]
+    [InlineData("Id", "id")]
+    [InlineData("ID", "id")]
+    [InlineData("oid", "oid")]
     [InlineData("ZoneGroupId", "zone-group-id")]
     [InlineData("SKUCode", "sku-code")]
     [InlineData("ZoneSKU", "zone-sku")]
     [InlineData("GS1Barcode", "gs1-barcode")]
     [InlineData("Line2Qty", "line2-qty")]
     [InlineData("ResultSha256", "result-sha256")]
-    [InlineData("Sha256Hash", "sha256-hash")]
     [InlineData("IANAZone", "iana-zone")]
-    [InlineData("ID", "id")]
-    [InlineData("oid", "oid")]
-    public void ToKebabCase_when_passed_an_identifier_splits_it_into_its_words(string input, string expectedResult)
+    [InlineData("user LoginCount", "user-login-count")]
+    public void ToKebabCase_when_passed_an_identifier_splits_it_at_its_case_boundaries(string input, string expectedResult)
     {
         Assert.Equal(expectedResult, input.ToKebabCase());
     }
@@ -70,18 +120,14 @@ public class ToKebabCaseTests
 
 
     [Theory]
-    [InlineData("With Space", "with-space")]
-    [InlineData("User LoginCount", "user-login-count")]
-    [InlineData("A Sample", "a-sample")]
-    [InlineData("already-delimited", "already-delimited")]
-    [InlineData("Trailing ", "trailing")]
-    [InlineData("Two  Spaces", "two-spaces")]
-    [InlineData("Trailing-", "trailing")]
-    [InlineData("--Leading", "leading")]
-    [InlineData("a---b", "a-b")]
-    [InlineData("With - Both", "with-both")]
-    [InlineData("User-LoginCount", "user-login-count")]
-    public void ToKebabCase_when_words_are_divided_more_than_once_puts_one_delimiter_between_them_and_none_at_the_ends(string input, string expectedResult)
+    [InlineData("caf\u00E9 cr\u00E8me", "caf\u00E9-cr\u00E8me")]
+    [InlineData("\u00C9cole Nationale", "\u00E9cole-nationale")]
+    [InlineData("\u00C9coleNationale", "\u00E9cole-nationale")]
+    [InlineData("cafe\u0301 au lait", "cafe\u0301-au-lait")]
+    [InlineData("\u0394\u03BF\u03BA\u03B9\u03BC\u03AE \u039B\u03AD\u03BE\u03B7", "\u03B4\u03BF\u03BA\u03B9\u03BC\u03AE-\u03BB\u03AD\u03BE\u03B7")]
+    [InlineData("\u65E5\u672C\u8A9E text", "\u65E5\u672C\u8A9E-text")]
+    [InlineData("\uD801\uDC00\uD801\uDC28 word", "\uD801\uDC00\uD801\uDC28-word")]
+    public void ToKebabCase_when_passed_letters_of_other_alphabets_keeps_them_in_their_words(string input, string expectedResult)
     {
         Assert.Equal(expectedResult, input.ToKebabCase());
     }
@@ -89,11 +135,17 @@ public class ToKebabCaseTests
 
 
     [Theory]
+    [InlineData("")]
     [InlineData(" ")]
     [InlineData("   ")]
-    [InlineData("-")]
-    [InlineData("- -")]
-    public void ToKebabCase_when_passed_only_dividers_returns_empty_string(string input)
+    [InlineData("---")]
+    [InlineData("___")]
+    [InlineData("!?.")]
+    [InlineData("'")]
+    [InlineData("\t\r\n")]
+    [InlineData("\uD83D\uDE00")]
+    [InlineData("_ - _")]
+    public void ToKebabCase_when_passed_no_letters_or_digits_returns_empty_string(string input)
     {
         Assert.Equal(string.Empty, input.ToKebabCase());
     }
