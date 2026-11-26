@@ -28,7 +28,7 @@
 		     baseline at the last published version and bump it in the release PR that
 		     ships the next one. -->
 		<EnablePackageValidation>true</EnablePackageValidation>
-		<PackageValidationBaselineVersion>0.1.1</PackageValidationBaselineVersion>
+		<PackageValidationBaselineVersion>0.2.0</PackageValidationBaselineVersion>
 	</PropertyGroup>
 
 	<!-- Trimming and Native AOT: the library uses no reflection, dynamic code or runtime code
