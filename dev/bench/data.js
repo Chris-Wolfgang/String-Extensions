@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795732114870,
+  "lastUpdate": 1795736728297,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -1344,6 +1344,102 @@ window.BENCHMARK_DATA = {
             "value": 20.2904205818971,
             "unit": "ns",
             "range": "± 0.2014409012917709"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e4c0d6f0beada03a44f5abcdbb89984dce477f7b",
+          "message": "chore(pack): advance the PackageValidation baseline to 0.2.0 (#397)\n\n0.2.0 is published, so pack now compares the public surface against it instead of 0.1.1.\n\nCo-authored-by: Claude Fable 5.2 <noreply@anthropic.com>",
+          "timestamp": "2026-11-26T18:42:51-05:00",
+          "tree_id": "9068e06a0679a2cc908c59cec931bce1d49cb8fe",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/e4c0d6f0beada03a44f5abcdbb89984dce477f7b"
+        },
+        "date": 1795736727558,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 261.550434589386,
+            "unit": "ns",
+            "range": "± 0.39404072410819435"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 161.81119012832642,
+            "unit": "ns",
+            "range": "± 1.641829683349358"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 151.13367954889932,
+            "unit": "ns",
+            "range": "± 0.28357779354079404"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 145.99949510892233,
+            "unit": "ns",
+            "range": "± 0.11125995347325432"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 149.43121194839478,
+            "unit": "ns",
+            "range": "± 0.10851274812728326"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 13.23343429962794,
+            "unit": "ns",
+            "range": "± 0.736872148123554"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 9.8705831716458,
+            "unit": "ns",
+            "range": "± 0.21290165119165627"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 17.515144030253094,
+            "unit": "ns",
+            "range": "± 0.4467076352301013"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 10.017471238970757,
+            "unit": "ns",
+            "range": "± 0.20620558529385535"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 35.28272879123688,
+            "unit": "ns",
+            "range": "± 0.5902224494714454"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 21.128334651390713,
+            "unit": "ns",
+            "range": "± 0.3518939252364487"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 21.18182831009229,
+            "unit": "ns",
+            "range": "± 0.6738565198639049"
           }
         ]
       }
