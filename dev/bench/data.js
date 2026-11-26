@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795289642585,
+  "lastUpdate": 1795657722488,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -1152,6 +1152,102 @@ window.BENCHMARK_DATA = {
             "value": 18.082324127356213,
             "unit": "ns",
             "range": "± 0.3629413681006924"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "01186761aa20b20a67f7db6c0ce7badab25c852b",
+          "message": "feat!: the case conversions split words by one shared rule; options overloads, SplitWords, and a stack buffer (#377)\n\n* fix: ToSnakeCase and ToKebabCase split a PascalCase or camelCase identifier into its words\n\nPart of #245\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* fix: ToSnakeCase and ToKebabCase put exactly one delimiter between words and none at the ends\n\nCloses #245\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* docs: fix an article in the ToSnakeCase remarks; Copilot instructions describe the new kebab and snake rule\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* fix: ToCamelCase and ToPascalCase keep the words of an identifier apart (#378)\n\n* fix: ToCamelCase and ToPascalCase keep the words of an identifier apart\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* docs: Copilot instructions describe the new camel and Pascal rule\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Fable 5.2 <noreply@anthropic.com>\n\n* feat!: the four case conversions share one word splitter and drop punctuation (#388)\n\n* fix: ToCamelCase and ToPascalCase keep the words of an identifier apart\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* docs: Copilot instructions describe the new camel and Pascal rule\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* feat!: the four case conversions share one word splitter and drop punctuation\n\nA word is a run of letters and digits; every other character is a word\nboundary and is left out, an apostrophe is removed, and a case boundary\ninside an identifier starts a word. ADR 0006 records the rule.\n\nCloses #380\nCloses #382\nPart of #381\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* test: pin the surrogate and apostrophe paths of the word splitter; no equivalent mutants left\n\nLone surrogates at either end and beside a pair are now tested. The\napostrophe removal uses string.Replace, and the output buffer has one\nsize, so no mutant of them can leave the result unchanged.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Fable 5.2 <noreply@anthropic.com>\n\n* feat: CaseConversionOptions overloads for the case conversions, a custom word splitter, and SplitWords (#389)\n\n* fix: ToCamelCase and ToPascalCase keep the words of an identifier apart\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* docs: Copilot instructions describe the new camel and Pascal rule\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* feat!: the four case conversions share one word splitter and drop punctuation\n\nA word is a run of letters and digits; every other character is a word\nboundary and is left out, an apostrophe is removed, and a case boundary\ninside an identifier starts a word. ADR 0006 records the rule.\n\nCloses #380\nCloses #382\nPart of #381\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* feat: CaseConversionOptions overloads for the case conversions, a custom word splitter, and SplitWords\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* test: pin the surrogate and apostrophe paths of the word splitter; no equivalent mutants left\n\nLone surrogates at either end and beside a pair are now tested. The\napostrophe removal uses string.Replace, and the output buffer has one\nsize, so no mutant of them can leave the result unchanged.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* fix: clear the InspectCode warnings the options overloads raised\n\nFlag tests compare with WordBoundaries.None, two loops are LINQ calls,\nan unused using is gone, and the doc references to the four conversions\nname the overload now that there are two.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Fable 5.2 <noreply@anthropic.com>\n\n* perf: build case-conversion results on the stack for strings up to 128 characters (#390)\n\n* fix: ToCamelCase and ToPascalCase keep the words of an identifier apart\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* docs: Copilot instructions describe the new camel and Pascal rule\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* feat!: the four case conversions share one word splitter and drop punctuation\n\nA word is a run of letters and digits; every other character is a word\nboundary and is left out, an apostrophe is removed, and a case boundary\ninside an identifier starts a word. ADR 0006 records the rule.\n\nCloses #380\nCloses #382\nPart of #381\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* feat: CaseConversionOptions overloads for the case conversions, a custom word splitter, and SplitWords\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* test: pin the surrogate and apostrophe paths of the word splitter; no equivalent mutants left\n\nLone surrogates at either end and beside a pair are now tested. The\napostrophe removal uses string.Replace, and the output buffer has one\nsize, so no mutant of them can leave the result unchanged.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* fix: clear the InspectCode warnings the options overloads raised\n\nFlag tests compare with WordBoundaries.None, two loops are LINQ calls,\nan unused using is gone, and the doc references to the four conversions\nname the overload now that there are two.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* perf: build case-conversion results on the stack for strings up to 128 characters\n\nThe net462 and netstandard2.0 builds take System.Memory for Span<char>;\nnet8.0 and net10.0 need no package. ADR 0008 records the decision.\n\nCloses #384\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* fix: import System in the buffer tests only where the allocation test uses it\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* perf: size the stack buffer to the string and fill it in a method of its own\n\nThe fixed 256-character buffer with the loop inline ran about twice as\nslowly in the benchmark job. The allocation-measuring test classes share\na collection so a garbage collection in one cannot disturb the other.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Fable 5.2 <noreply@anthropic.com>\n\n* test: the allocation test checks only the upper limit\n\nOn Linux ARM64 (.NET 7) the 1,000 conversions measured 56,000 bytes against a baseline of 56,048, and the test failed for allocating 48 bytes too little. The noise can land in either loop, so only the upper limit says anything about a temporary array.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* ci: re-trigger the checks (the push of the test fix was missed during a GitHub outage)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* fix: keep number characters, validate the option enums, and choose the buffer by string length\n\n- A number that is not a decimal digit (a superscript, a fraction, a Roman\n  numeral) is part of a word, so \"x²\" is no longer cut to \"x\".\n- CaseConversionOptions throws ArgumentOutOfRangeException when Punctuation,\n  Boundaries or Acronyms is set to a value outside its enum.\n- JoinWords picks the stack or the heap from the length of the string, not\n  from the doubled length, which overflows for a very long string.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* test(fuzz): the reference word rules count every number character, as the library does\n\nThe oracle still used char.IsDigit and char.IsLetterOrDigit after the library\nmoved to char.IsNumber. Two seed inputs hold a superscript, a fraction and a\nnumber outside the Basic Multilingual Plane.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Fable 5.2 <noreply@anthropic.com>",
+          "timestamp": "2026-11-25T20:46:16-05:00",
+          "tree_id": "17b8ded7fe309927e0e2c6bf9776f01c91ba118b",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/01186761aa20b20a67f7db6c0ce7badab25c852b"
+        },
+        "date": 1795657721720,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 134.6014794508616,
+            "unit": "ns",
+            "range": "± 0.41555094771291945"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 72.04777224858601,
+            "unit": "ns",
+            "range": "± 0.3549309344901903"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 71.63992436726888,
+            "unit": "ns",
+            "range": "± 0.42168594070663973"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 80.22009603182475,
+            "unit": "ns",
+            "range": "± 0.5192712479924103"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 79.82383871078491,
+            "unit": "ns",
+            "range": "± 1.0335178984433149"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 4.057152027885119,
+            "unit": "ns",
+            "range": "± 0.18099789151774143"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 4.964580275118351,
+            "unit": "ns",
+            "range": "± 0.07266534870223566"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 3.6112375681598983,
+            "unit": "ns",
+            "range": "± 0.04916536907649636"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 5.358059818545978,
+            "unit": "ns",
+            "range": "± 0.05382715427295337"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 17.500889311234157,
+            "unit": "ns",
+            "range": "± 0.5240427195934043"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 9.92939473191897,
+            "unit": "ns",
+            "range": "± 0.026126126867356412"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 10.106449981530508,
+            "unit": "ns",
+            "range": "± 0.11134737542253079"
           }
         ]
       }
