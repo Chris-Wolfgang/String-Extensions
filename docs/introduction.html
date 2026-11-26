@@ -72,31 +72,26 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the String Extensions library documentation! This library will provide extension methods for .NET string manipulation to make common string operations more intuitive and efficient.</p>
-<h2 id="what-is-string-extensions">What is String Extensions?</h2>
-<p>String Extensions is a .NET library project designed to extend the built-in <code>System.String</code> class with additional methods to simplify common string operations. This library is currently under development.</p>
-<h2 id="project-goals">Project Goals</h2>
-<p>The goals for this library include:</p>
+<p><strong>Wolfgang.Extensions.String</strong> is a small library of extension methods for <code>string</code>:</p>
 <ul>
-<li><strong>Simple and Intuitive API</strong>: Extension methods that feel natural and are easy to use</li>
-<li><strong>Wide .NET Support</strong>: Compatible with .NET Framework 4.6.2 through .NET 10</li>
-<li><strong>High Performance</strong>: Optimized for performance with minimal overhead</li>
-<li><strong>Comprehensive Coverage</strong>: Wide range of string manipulation capabilities</li>
-<li><strong>Well-Tested</strong>: Thoroughly tested to ensure reliability</li>
-<li><strong>Open Source</strong>: Licensed under MIT, free to use in any project</li>
+<li><strong>Substring helpers:</strong> <code>Left</code> and <code>Right</code> return the first or last N characters. They clamp the length (a string shorter than N is returned unchanged) and return <code>null</code> for a <code>null</code> input.</li>
+<li><strong>Center padding:</strong> <code>PadCenter</code> centers a string within a total width, padding both sides with spaces or a character you choose. When the padding is uneven, the extra character goes on the right.</li>
+<li><strong>Case conversions:</strong> <code>ToCamelCase</code>, <code>ToKebabCase</code>, <code>ToPascalCase</code>, <code>ToSnakeCase</code> and <code>ToTitleCase</code>.</li>
 </ul>
-<h2 id="development-status">Development Status</h2>
-<p>This project is currently in the early stages of development. The documentation structure has been set up, and implementation will follow.</p>
-<h2 id="target-audience">Target Audience</h2>
-<p>This library is being designed for:</p>
+<p>The package is published on NuGet as <a href="https://www.nuget.org/packages/Wolfgang.Extensions.String"><code>Wolfgang.Extensions.String</code></a> and targets .NET Framework 4.6.2, .NET Standard 2.0, .NET 8.0 and .NET 10.0.</p>
+<h2 id="behaviour-worth-knowing">Behaviour worth knowing</h2>
 <ul>
-<li>.NET developers working with C#</li>
-<li>Anyone who frequently manipulates strings in their applications</li>
-<li>Teams looking to standardize string operations across their codebase</li>
-<li>Developers seeking to reduce boilerplate code</li>
+<li><code>ToCamelCase</code>, <code>ToKebabCase</code>, <code>ToPascalCase</code> and <code>ToSnakeCase</code> split the string into words by one shared rule and differ only in casing and in what goes between the words. A word is a run of letters and digits; every other character (white space, punctuation, symbols, control characters, <code>_</code> and <code>-</code>) ends the word and is left out, except an apostrophe, which is removed without ending the word. A word also starts at a case boundary inside an identifier, so <code>&quot;SKUCode&quot;.ToSnakeCase()</code> is <code>sku_code</code>, <code>&quot;Line2Qty&quot;</code> is <code>line2_qty</code> and <code>&quot;user_login_count&quot;.ToPascalCase()</code> is <code>UserLoginCount</code>. They use invariant casing, so the result does not depend on the current culture.</li>
+<li>Each of the four has an overload that takes a <code>CaseConversionOptions</code>: keep punctuation in the words (<code>Punctuation</code>), choose what divides words (<code>Boundaries</code>), leave acronyms in upper case (<code>Acronyms</code>), or supply your own word splitter (<code>WordSplitter</code>). A new <code>CaseConversionOptions</code> holds the default rules. <code>SplitWords</code> returns the words themselves.</li>
+<li><code>ToTitleCase</code> delegates to <code>TextInfo.ToTitleCase</code> of the <strong>current</strong> culture, and leaves words that are entirely upper case unchanged.</li>
+<li><code>PadCenter</code> and the case conversions throw <code>ArgumentNullException</code> for a <code>null</code> input. <code>Left</code>, <code>Right</code> and <code>PadCenter</code> throw <code>ArgumentOutOfRangeException</code> for a negative length or width.</li>
 </ul>
-<h2 id="getting-started">Getting Started</h2>
-<p>For information on how to contribute to or use this library, see the <a href="getting-started.html">Getting Started</a> guide.</p>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><a href="getting-started.html">Getting Started</a>: install the package and call each method.</li>
+<li><a href="setup.html">Building from source</a>: build, test and contribute.</li>
+<li><a class="xref" href="../api/Wolfgang.Extensions.String.StringExtensions.html">API Reference</a>: every member, generated from the XML doc comments.</li>
+</ul>
 
 </article>
           </div>
@@ -106,7 +101,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/docfx_project/docs/introduction.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/docfx_project/docs/introduction.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

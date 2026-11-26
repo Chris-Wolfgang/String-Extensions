@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2026-11-26_23-08-14" tag="">
+  <assembly name="Wolfgang.Extensions.String">
+    <class name="Wolfgang.Extensions.String.CaseConversionOptions" coveredlines="17" coverablelines="17" totallines="113" coveredbranches="10" totalbranches="10" coveredcodeelements="8" fullcoveredcodeelements="8" totalcodeelements="8" />
+    <class name="Wolfgang.Extensions.String.StringExtensions" coveredlines="157" coverablelines="157" totallines="994" coveredbranches="161" totalbranches="162" coveredcodeelements="30" fullcoveredcodeelements="30" totalcodeelements="30" />
+  </assembly>
+  <assembly name="Wolfgang.Extensions.String.Tests.DocExamples">
+    <class name="Wolfgang.Extensions.String.Tests.DocExamples.DocExample" coveredlines="23" coverablelines="23" totallines="335" coveredbranches="2" totalbranches="4" coveredcodeelements="8" fullcoveredcodeelements="8" totalcodeelements="8" />
+    <class name="Wolfgang.Extensions.String.Tests.DocExamples.DocExampleCompiler" coveredlines="57" coverablelines="57" totallines="335" coveredbranches="19" totalbranches="24" coveredcodeelements="3" fullcoveredcodeelements="3" totalcodeelements="3" />
+    <class name="Wolfgang.Extensions.String.Tests.DocExamples.DocExampleInfrastructureTests" coveredlines="18" coverablelines="18" totallines="47" coveredbranches="0" totalbranches="0" coveredcodeelements="2" fullcoveredcodeelements="2" totalcodeelements="2" />
+    <class name="Wolfgang.Extensions.String.Tests.DocExamples.DocExampleRotTests" coveredlines="18" coverablelines="18" totallines="335" coveredbranches="0" totalbranches="0" coveredcodeelements="3" fullcoveredcodeelements="3" totalcodeelements="3" />
+    <class name="Wolfgang.Extensions.String.Tests.DocExamples.DocExampleSource" coveredlines="55" coverablelines="55" totallines="335" coveredbranches="29" totalbranches="32" coveredcodeelements="3" fullcoveredcodeelements="3" totalcodeelements="3" />
+  </assembly>
+  <assembly name="Wolfgang.Extensions.String.Tests.Fuzz">
+    <class name="Wolfgang.Extensions.String.Tests.Fuzz.FuzzPropertyAttribute" coveredlines="6" coverablelines="6" totallines="38" coveredbranches="4" totalbranches="4" coveredcodeelements="2" fullcoveredcodeelements="2" totalcodeelements="2" />
+    <class name="Wolfgang.Extensions.String.Tests.Fuzz.FuzzPropertyAttributeTests" coveredlines="8" coverablelines="8" totallines="32" coveredbranches="0" totalbranches="0" coveredcodeelements="2" fullcoveredcodeelements="2" totalcodeelements="2" />
+    <class name="Wolfgang.Extensions.String.Tests.Fuzz.StringExtensionsProperties" coveredlines="124" coverablelines="124" totallines="374" coveredbranches="47" totalbranches="52" coveredcodeelements="24" fullcoveredcodeelements="24" totalcodeelements="24" />
+  </assembly>
+  <assembly name="Wolfgang.Extensions.String.Tests.Snapshots">
+    <class name="Wolfgang.Extensions.String.Tests.Snapshots.StringExtensionsSnapshotTests" coveredlines="76" coverablelines="76" totallines="185" coveredbranches="20" totalbranches="26" coveredcodeelements="10" fullcoveredcodeelements="10" totalcodeelements="10" />
+  </assembly>
+  <assembly name="Wolfgang.Extensions.String.Tests.Unit">
+    <class name="Wolfgang.Extensions.String.Tests.Unit.CaseConversionBufferTests" coveredlines="36" coverablelines="36" totallines="144" coveredbranches="4" totalbranches="4" coveredcodeelements="8" fullcoveredcodeelements="8" totalcodeelements="8" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.CaseConversionOptionsTests" coveredlines="195" coverablelines="195" totallines="558" coveredbranches="8" totalbranches="14" coveredcodeelements="43" fullcoveredcodeelements="43" totalcodeelements="43" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.CultureInvarianceTests" coveredlines="21" coverablelines="21" totallines="98" coveredbranches="0" totalbranches="0" coveredcodeelements="6" fullcoveredcodeelements="6" totalcodeelements="6" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.LeftTests" coveredlines="31" coverablelines="31" totallines="107" coveredbranches="0" totalbranches="0" coveredcodeelements="10" fullcoveredcodeelements="10" totalcodeelements="10" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.PadCenterTests" coveredlines="93" coverablelines="93" totallines="340" coveredbranches="4" totalbranches="8" coveredcodeelements="29" fullcoveredcodeelements="29" totalcodeelements="29" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.RightTests" coveredlines="32" coverablelines="32" totallines="110" coveredbranches="0" totalbranches="0" coveredcodeelements="10" fullcoveredcodeelements="10" totalcodeelements="10" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.SplitWordsTests" coveredlines="41" coverablelines="41" totallines="164" coveredbranches="5" totalbranches="8" coveredcodeelements="13" fullcoveredcodeelements="13" totalcodeelements="13" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.ToCamelCaseTests" coveredlines="22" coverablelines="22" totallines="152" coveredbranches="0" totalbranches="0" coveredcodeelements="10" fullcoveredcodeelements="10" totalcodeelements="10" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.ToKebabCaseTests" coveredlines="22" coverablelines="22" totallines="152" coveredbranches="0" totalbranches="0" coveredcodeelements="10" fullcoveredcodeelements="10" totalcodeelements="10" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.ToPascalCaseTests" coveredlines="22" coverablelines="22" totallines="152" coveredbranches="0" totalbranches="0" coveredcodeelements="10" fullcoveredcodeelements="10" totalcodeelements="10" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.ToSnakeCaseTests" coveredlines="46" coverablelines="46" totallines="244" coveredbranches="0" totalbranches="0" coveredcodeelements="19" fullcoveredcodeelements="19" totalcodeelements="19" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.ToTitleCaseTests" coveredlines="14" coverablelines="14" totallines="56" coveredbranches="0" totalbranches="0" coveredcodeelements="3" fullcoveredcodeelements="3" totalcodeelements="3" />
+    <class name="Wolfgang.Extensions.String.Tests.Unit.ZeroAllocationTests" coveredlines="33" coverablelines="33" totallines="160" coveredbranches="13" totalbranches="22" coveredcodeelements="11" fullcoveredcodeelements="11" totalcodeelements="11" />
+  </assembly>
+</coverage>

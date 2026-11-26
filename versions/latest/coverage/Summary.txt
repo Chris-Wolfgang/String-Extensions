@@ -1,23 +1,54 @@
 Summary
-  Generated on: 6/20/2026 - 5:41:52 PM
-  Coverage date: 6/20/2026 - 5:41:48 PM
-  Parser: Cobertura
-  Assemblies: 1
-  Classes: 1
-  Files: 1
+  Generated on: 11/26/2026 - 11:08:14 PM
+  Coverage date: 11/26/2026 - 11:08:09 PM - 11/26/2026 - 11:08:12 PM
+  Parser: MultiReport (4x Cobertura)
+  Assemblies: 5
+  Classes: 24
+  Files: 21
   Line coverage: 100%
-  Covered lines: 72
+  Covered lines: 1167
   Uncovered lines: 0
-  Coverable lines: 72
-  Total lines: 379
-  Branch coverage: 100% (46 of 46)
-  Covered branches: 46
-  Total branches: 46
-  Method coverage: 100% (9 of 9)
-  Full method coverage: 100% (9 of 9)
-  Covered methods: 9
-  Fully covered methods: 9
-  Total methods: 9
+  Coverable lines: 1167
+  Total lines: 4555
+  Branch coverage: 88.1% (326 of 370)
+  Covered branches: 326
+  Total branches: 370
+  Method coverage: 100% (277 of 277)
+  Full method coverage: 100% (277 of 277)
+  Covered methods: 277
+  Fully covered methods: 277
+  Total methods: 277
 
-Wolfgang.Extensions.String                       100%
-  Wolfgang.Extensions.String.StringExtensions    100%
+Wolfgang.Extensions.String                                                      100%
+  Wolfgang.Extensions.String.CaseConversionOptions                              100%
+  Wolfgang.Extensions.String.StringExtensions                                   100%
+
+Wolfgang.Extensions.String.Tests.DocExamples                                    100%
+  Wolfgang.Extensions.String.Tests.DocExamples.DocExample                       100%
+  Wolfgang.Extensions.String.Tests.DocExamples.DocExampleCompiler               100%
+  Wolfgang.Extensions.String.Tests.DocExamples.DocExampleInfrastructureTests    100%
+  Wolfgang.Extensions.String.Tests.DocExamples.DocExampleRotTests               100%
+  Wolfgang.Extensions.String.Tests.DocExamples.DocExampleSource                 100%
+
+Wolfgang.Extensions.String.Tests.Fuzz                                           100%
+  Wolfgang.Extensions.String.Tests.Fuzz.FuzzPropertyAttribute                   100%
+  Wolfgang.Extensions.String.Tests.Fuzz.FuzzPropertyAttributeTests              100%
+  Wolfgang.Extensions.String.Tests.Fuzz.StringExtensionsProperties              100%
+
+Wolfgang.Extensions.String.Tests.Snapshots                                      100%
+  Wolfgang.Extensions.String.Tests.Snapshots.StringExtensionsSnapshotTests      100%
+
+Wolfgang.Extensions.String.Tests.Unit                                           100%
+  Wolfgang.Extensions.String.Tests.Unit.CaseConversionBufferTests               100%
+  Wolfgang.Extensions.String.Tests.Unit.CaseConversionOptionsTests              100%
+  Wolfgang.Extensions.String.Tests.Unit.CultureInvarianceTests                  100%
+  Wolfgang.Extensions.String.Tests.Unit.LeftTests                               100%
+  Wolfgang.Extensions.String.Tests.Unit.PadCenterTests                          100%
+  Wolfgang.Extensions.String.Tests.Unit.RightTests                              100%
+  Wolfgang.Extensions.String.Tests.Unit.SplitWordsTests                         100%
+  Wolfgang.Extensions.String.Tests.Unit.ToCamelCaseTests                        100%
+  Wolfgang.Extensions.String.Tests.Unit.ToKebabCaseTests                        100%
+  Wolfgang.Extensions.String.Tests.Unit.ToPascalCaseTests                       100%
+  Wolfgang.Extensions.String.Tests.Unit.ToSnakeCaseTests                        100%
+  Wolfgang.Extensions.String.Tests.Unit.ToTitleCaseTests                        100%
+  Wolfgang.Extensions.String.Tests.Unit.ZeroAllocationTests                     100%

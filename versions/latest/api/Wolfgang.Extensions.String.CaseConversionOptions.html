@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class CaseConversionOptions | Wolfgang.Extensions.String </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class CaseConversionOptions | Wolfgang.Extensions.String ">
+    
+    <meta name="description" content="How ToCamelCase, ToKebabCase, ToPascalCase, ToSnakeCase and SplitWords find the words of a string. A new instance holds the rules the conversions use when no options are given.">
+      <link rel="shortcut icon" href="../favicon.svg">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="Wolfgang.Extensions.String">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Wolfgang.Extensions.String.CaseConversionOptions">
+
+
+
+  <h1 id="Wolfgang_Extensions_String_CaseConversionOptions" data-uid="Wolfgang.Extensions.String.CaseConversionOptions" class="text-break">Class CaseConversionOptions</h1>
+  <div class="markdown level0 summary"><p>How <code>ToCamelCase</code>, <code>ToKebabCase</code>, <code>ToPascalCase</code>, <code>ToSnakeCase</code> and
+<code>SplitWords</code> find the words of a string. A new instance holds the rules the conversions use
+when no options are given.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">CaseConversionOptions</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">Wolfgang</span>.<span class="xref">Extensions</span>.<a class="xref" href="Wolfgang.Extensions.String.html">String</a></h6>
+  <h6><strong>Assembly</strong>: Wolfgang.Extensions.String.dll</h6>
+  <h5 id="Wolfgang_Extensions_String_CaseConversionOptions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CaseConversionOptions</code></pre>
+  </div>
+  <h5 id="Wolfgang_Extensions_String_CaseConversionOptions_examples"><strong>Examples</strong></h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var options = new CaseConversionOptions
+{
+    Punctuation = PunctuationHandling.Keep,
+    Boundaries = WordBoundaries.Separators,
+};
+
+var snake = "Hello, World!".ToSnakeCase(options);
+// snake == "hello,_world!"</code></pre>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_CaseConversionOptions_Acronyms.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.CaseConversionOptions.Acronyms%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/CaseConversionOptions.cs/#L87">View Source</a>
+  </span>
+  <a id="Wolfgang_Extensions_String_CaseConversionOptions_Acronyms_" data-uid="Wolfgang.Extensions.String.CaseConversionOptions.Acronyms*"></a>
+  <h4 id="Wolfgang_Extensions_String_CaseConversionOptions_Acronyms" data-uid="Wolfgang.Extensions.String.CaseConversionOptions.Acronyms">Acronyms</h4>
+  <div class="markdown level1 summary"><p>How camel case and Pascal case treat a word written entirely in upper case. The default is
+<a class="xref" href="Wolfgang.Extensions.String.AcronymHandling.html#Wolfgang_Extensions_String_AcronymHandling_AsWord">AsWord</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AcronymHandling Acronyms { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Wolfgang.Extensions.String.AcronymHandling.html">AcronymHandling</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>The value is not a member of <a class="xref" href="Wolfgang.Extensions.String.AcronymHandling.html">AcronymHandling</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_CaseConversionOptions_Boundaries.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.CaseConversionOptions.Boundaries%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/CaseConversionOptions.cs/#L64">View Source</a>
+  </span>
+  <a id="Wolfgang_Extensions_String_CaseConversionOptions_Boundaries_" data-uid="Wolfgang.Extensions.String.CaseConversionOptions.Boundaries*"></a>
+  <h4 id="Wolfgang_Extensions_String_CaseConversionOptions_Boundaries" data-uid="Wolfgang.Extensions.String.CaseConversionOptions.Boundaries">Boundaries</h4>
+  <div class="markdown level1 summary"><p>What divides one word from the next. The default is <a class="xref" href="Wolfgang.Extensions.String.WordBoundaries.html#Wolfgang_Extensions_String_WordBoundaries_All">All</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WordBoundaries Boundaries { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Wolfgang.Extensions.String.WordBoundaries.html">WordBoundaries</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>The value has a bit that is not a member of <a class="xref" href="Wolfgang.Extensions.String.WordBoundaries.html">WordBoundaries</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_CaseConversionOptions_Punctuation.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.CaseConversionOptions.Punctuation%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/CaseConversionOptions.cs/#L42">View Source</a>
+  </span>
+  <a id="Wolfgang_Extensions_String_CaseConversionOptions_Punctuation_" data-uid="Wolfgang.Extensions.String.CaseConversionOptions.Punctuation*"></a>
+  <h4 id="Wolfgang_Extensions_String_CaseConversionOptions_Punctuation" data-uid="Wolfgang.Extensions.String.CaseConversionOptions.Punctuation">Punctuation</h4>
+  <div class="markdown level1 summary"><p>What happens to a character that is neither a letter nor a digit. The default is
+<a class="xref" href="Wolfgang.Extensions.String.PunctuationHandling.html#Wolfgang_Extensions_String_PunctuationHandling_Drop">Drop</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PunctuationHandling Punctuation { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Wolfgang.Extensions.String.PunctuationHandling.html">PunctuationHandling</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>The value is not a member of <a class="xref" href="Wolfgang.Extensions.String.PunctuationHandling.html">PunctuationHandling</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.CaseConversionOptions.WordSplitter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/CaseConversionOptions.cs/#L112">View Source</a>
+  </span>
+  <a id="Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter_" data-uid="Wolfgang.Extensions.String.CaseConversionOptions.WordSplitter*"></a>
+  <h4 id="Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter" data-uid="Wolfgang.Extensions.String.CaseConversionOptions.WordSplitter">WordSplitter</h4>
+  <div class="markdown level1 summary"><p>A function that finds the words of the string in place of the built-in rules, or
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> (the default) to use the built-in rules.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;string, IEnumerable&lt;string&gt;&gt;? WordSplitter { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>When it is set, <a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_Punctuation">Punctuation</a> and <a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_Boundaries">Boundaries</a> are not used: the
+conversion cases and joins exactly the words the function returns, in the order it returns
+them. The sequence is enumerated once. A <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> or empty word is skipped.</p>
+</div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_CaseConversionOptions.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.CaseConversionOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/CaseConversionOptions.cs/#L25" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Made with DocFX <script>(function(){var r='/';if(window.location.hostname.endsWith('.github.io')){var s=window.location.pathname.split('/').filter(Boolean);if(s.length)r='/'+s[0]+'/';}var t=document.createElement('script');t.src=r+'public/version-picker.js';t.async=true;document.head.appendChild(t);})();</script>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

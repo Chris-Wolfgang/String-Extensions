@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Building from source | Wolfgang.Extensions.String </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Building from source | Wolfgang.Extensions.String ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.svg">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="Wolfgang.Extensions.String">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="building-from-source">Building from source</h1>
+
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download">.NET 10.0 SDK</a>. The test project also targets older frameworks; tests for a framework run only when its runtime (or, for .NET Framework, Windows) is available.</li>
+<li>Optional: <a href="https://github.com/PowerShell/PowerShell">PowerShell 7</a> for the scripts under <code>scripts/</code>.</li>
+</ul>
+<h2 id="repository-layout">Repository layout</h2>
+<table>
+<thead>
+<tr>
+<th>Folder</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src/Wolfgang.Extensions.String/</code></td>
+<td>The library (<code>StringExtensions.cs</code>) and its <code>PublicAPI.*.txt</code> baseline</td>
+</tr>
+<tr>
+<td><code>tests/Wolfgang.Extensions.String.Tests.Unit/</code></td>
+<td>xUnit tests</td>
+</tr>
+<tr>
+<td><code>benchmarks/Wolfgang.Extensions.String.Benchmarks/</code></td>
+<td>BenchmarkDotNet benchmarks</td>
+</tr>
+<tr>
+<td><code>examples/</code></td>
+<td>A runnable console example</td>
+</tr>
+<tr>
+<td><code>docfx_project/</code></td>
+<td>This documentation site</td>
+</tr>
+</tbody>
+</table>
+<h2 id="build-and-test">Build and test</h2>
+<pre><code class="lang-bash">git clone https://github.com/Chris-Wolfgang/String-Extensions.git
+cd String-Extensions
+dotnet restore
+dotnet build --configuration Release
+dotnet test --configuration Release
+</code></pre>
+<p>Release builds treat warnings as errors, and every public member needs an XML doc comment.</p>
+<h2 id="run-the-pr-checks-locally">Run the PR checks locally</h2>
+<pre><code class="lang-powershell">pwsh ./scripts/build-pr.ps1
+</code></pre>
+<p>This mirrors the Windows stage of the PR workflow: a Release build, the tests on every target framework, the coverage gate (production code and test code are both gated; see <code>CODECOV_MINIMUM</code> and <code>CODECOV_TEST_MINIMUM</code> in <code>.github/workflows/pr.yaml</code>), DevSkim and gitleaks.</p>
+<h2 id="conventions">Conventions</h2>
+<ul>
+<li>Test names follow <code>Method_when_condition_expected_result</code>, for example <code>Left_when_passed_null_returns_null</code>.</li>
+<li>Usings are explicit in every file; implicit and global usings are off.</li>
+<li>A PR that changes <code>src/</code> adds a fragment under <code>changelog/unreleased/</code> (see its <code>README.md</code>).</li>
+<li>See <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for the full guide.</li>
+</ul>
+<h2 id="building-this-site">Building this site</h2>
+<pre><code class="lang-bash">dotnet tool restore
+dotnet docfx docfx_project/docfx.json --serve
+</code></pre>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/docfx_project/docs/setup.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Made with DocFX <script>(function(){var r='/';if(window.location.hostname.endsWith('.github.io')){var s=window.location.pathname.split('/').filter(Boolean);if(s.length)r='/'+s[0]+'/';}var t=document.createElement('script');t.src=r+'public/version-picker.js';t.async=true;document.head.appendChild(t);})();</script>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

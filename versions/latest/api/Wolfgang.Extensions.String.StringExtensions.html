@@ -106,7 +106,7 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Wolfgang.html">Wolfgang</a>.<a class="xref" href="Wolfgang.Extensions.html">Extensions</a>.<a class="xref" href="Wolfgang.Extensions.String.html">String</a></h6>
+  <h6><strong>Namespace</strong>: <span class="xref">Wolfgang</span>.<span class="xref">Extensions</span>.<a class="xref" href="Wolfgang.Extensions.String.html">String</a></h6>
   <h6><strong>Assembly</strong>: Wolfgang.Extensions.String.dll</h6>
   <h5 id="Wolfgang_Extensions_String_StringExtensions_syntax">Syntax</h5>
   <div class="codewrapper">
@@ -116,14 +116,14 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/eddad41f5ae7ae232563d993649475f0720762ea/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_Left_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.Left(System.String%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_Left_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.Left(System.String%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/src/Wolfgang.Extensions.String/StringExtensions.cs/#L27">View Source</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L37">View Source</a>
   </span>
   <a id="Wolfgang_Extensions_String_StringExtensions_Left_" data-uid="Wolfgang.Extensions.String.StringExtensions.Left*"></a>
   <h4 id="Wolfgang_Extensions_String_StringExtensions_Left_System_String_System_Int32_" data-uid="Wolfgang.Extensions.String.StringExtensions.Left(System.String,System.Int32)">Left(string?, int)</h4>
-  <div class="markdown level1 summary"><p>Returns the left most specified character from the specified string.</p>
+  <div class="markdown level1 summary"><p>Returns the leftmost <code class="paramref">length</code> characters of the string.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -172,6 +172,14 @@ then the entire string is returned.</p>
       </tr>
     </tbody>
   </table>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_Left_System_String_System_Int32__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var prefix = "A sample string".Left(8);   // "A sample"
+var whole = "Hello".Left(10);             // "Hello" (shorter than length: unchanged)
+string? missing = null;
+var none = missing.Left(3);               // null</code></pre>
+
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -190,19 +198,19 @@ then the entire string is returned.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/eddad41f5ae7ae232563d993649475f0720762ea/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/src/Wolfgang.Extensions.String/StringExtensions.cs/#L62">View Source</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L83">View Source</a>
   </span>
   <a id="Wolfgang_Extensions_String_StringExtensions_PadCenter_" data-uid="Wolfgang.Extensions.String.StringExtensions.PadCenter*"></a>
-  <h4 id="Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_" data-uid="Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String,System.Int32)">PadCenter(string?, int)</h4>
+  <h4 id="Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_" data-uid="Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String,System.Int32)">PadCenter(string, int)</h4>
   <div class="markdown level1 summary"><p>Returns a new string of a specified length in which the current string is centered with spaces padding either side.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string PadCenter(this string? s, int totalWidth)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string PadCenter(this string s, int totalWidth)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -246,6 +254,13 @@ When the padding is uneven, the extra character is placed on the right.</p>
       </tr>
     </tbody>
   </table>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var centered = "Hello".PadCenter(11);     // "   Hello   "
+var uneven = "Hello".PadCenter(8);        // " Hello  " (the extra space goes on the right)
+var unchanged = "Hello".PadCenter(3);     // "Hello" (already wider than totalWidth)</code></pre>
+
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -269,19 +284,19 @@ When the padding is uneven, the extra character is placed on the right.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/eddad41f5ae7ae232563d993649475f0720762ea/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_System_Char_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String%2CSystem.Int32%2CSystem.Char)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_System_Char_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String%2CSystem.Int32%2CSystem.Char)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/src/Wolfgang.Extensions.String/StringExtensions.cs/#L86">View Source</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L115">View Source</a>
   </span>
   <a id="Wolfgang_Extensions_String_StringExtensions_PadCenter_" data-uid="Wolfgang.Extensions.String.StringExtensions.PadCenter*"></a>
-  <h4 id="Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_System_Char_" data-uid="Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String,System.Int32,System.Char)">PadCenter(string?, int, char)</h4>
+  <h4 id="Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_System_Char_" data-uid="Wolfgang.Extensions.String.StringExtensions.PadCenter(System.String,System.Int32,System.Char)">PadCenter(string, int, char)</h4>
   <div class="markdown level1 summary"><p>Returns a new string of a specified length in which the current string is centered with a specified character padding either side.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string PadCenter(this string? s, int totalWidth, char paddingChar)</code></pre>
+    <pre><code class="lang-csharp hljs">public static string PadCenter(this string s, int totalWidth, char paddingChar)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -331,6 +346,12 @@ When the padding is uneven, the extra character is placed on the right.</p>
       </tr>
     </tbody>
   </table>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_PadCenter_System_String_System_Int32_System_Char__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var centered = "Hello".PadCenter(11, '-'); // "---Hello---"
+var uneven = "Hello".PadCenter(8, '*');    // "*Hello**"</code></pre>
+
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -354,14 +375,14 @@ When the padding is uneven, the extra character is placed on the right.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/eddad41f5ae7ae232563d993649475f0720762ea/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_Right_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.Right(System.String%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_Right_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.Right(System.String%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/src/Wolfgang.Extensions.String/StringExtensions.cs/#L128">View Source</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L182">View Source</a>
   </span>
   <a id="Wolfgang_Extensions_String_StringExtensions_Right_" data-uid="Wolfgang.Extensions.String.StringExtensions.Right*"></a>
   <h4 id="Wolfgang_Extensions_String_StringExtensions_Right_System_String_System_Int32_" data-uid="Wolfgang.Extensions.String.StringExtensions.Right(System.String,System.Int32)">Right(string?, int)</h4>
-  <div class="markdown level1 summary"><p>Returns the right most specified character from the specified string.</p>
+  <div class="markdown level1 summary"><p>Returns the rightmost <code class="paramref">length</code> characters of the string.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -410,6 +431,14 @@ then the entire string is returned.</p>
       </tr>
     </tbody>
   </table>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_Right_System_String_System_Int32__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var suffix = "A sample string".Right(6);  // "string"
+var whole = "Hello".Right(10);            // "Hello" (shorter than length: unchanged)
+string? missing = null;
+var none = missing.Right(3);              // null</code></pre>
+
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -428,15 +457,179 @@ then the entire string is returned.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/eddad41f5ae7ae232563d993649475f0720762ea/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToCamelCase(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_SplitWords_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.SplitWords(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/src/Wolfgang.Extensions.String/StringExtensions.cs/#L173">View Source</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L605">View Source</a>
+  </span>
+  <a id="Wolfgang_Extensions_String_StringExtensions_SplitWords_" data-uid="Wolfgang.Extensions.String.StringExtensions.SplitWords*"></a>
+  <h4 id="Wolfgang_Extensions_String_StringExtensions_SplitWords_System_String_" data-uid="Wolfgang.Extensions.String.StringExtensions.SplitWords(System.String)">SplitWords(string)</h4>
+  <div class="markdown level1 summary"><p>Splits a string into its words by the rules the case conversions use: a word is a run of letters
+and digits, every other character ends the word and is left out, an apostrophe is removed without
+ending the word, and a word also starts at a case boundary inside an identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;string&gt; SplitWords(this string s)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">s</span></td>
+        <td><p>The string to split.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><p>The words in the order they appear, with the casing they have in <code class="paramref">s</code>. The
+sequence is produced as it is enumerated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_SplitWords_System_String__examples">Examples</h5>
+  <pre><code class="lang-csharp">using System.Linq;
+using Wolfgang.Extensions.String;
+
+var words = "SKUCode for user_login!".SplitWords().ToArray();
+// words == ["SKU", "Code", "for", "user", "login"]</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">s</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_SplitWords_System_String_Wolfgang_Extensions_String_CaseConversionOptions_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.SplitWords(System.String%2CWolfgang.Extensions.String.CaseConversionOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L641">View Source</a>
+  </span>
+  <a id="Wolfgang_Extensions_String_StringExtensions_SplitWords_" data-uid="Wolfgang.Extensions.String.StringExtensions.SplitWords*"></a>
+  <h4 id="Wolfgang_Extensions_String_StringExtensions_SplitWords_System_String_Wolfgang_Extensions_String_CaseConversionOptions_" data-uid="Wolfgang.Extensions.String.StringExtensions.SplitWords(System.String,Wolfgang.Extensions.String.CaseConversionOptions)">SplitWords(string, CaseConversionOptions)</h4>
+  <div class="markdown level1 summary"><p>Splits a string into its words by the rules in <code class="paramref">options</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;string&gt; SplitWords(this string s, CaseConversionOptions options)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">s</span></td>
+        <td><p>The string to split.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html">CaseConversionOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>How the words of the string are found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><p>The words in the order they appear, with the casing they have in <code class="paramref">s</code>. When
+<a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter">WordSplitter</a> is set, the result is what that function returns,
+without its <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> and empty words.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_SplitWords_System_String_Wolfgang_Extensions_String_CaseConversionOptions__examples">Examples</h5>
+  <pre><code class="lang-csharp">using System.Linq;
+using Wolfgang.Extensions.String;
+
+var options = new CaseConversionOptions { Punctuation = PunctuationHandling.Keep };
+
+var words = "Hello, big World!".SplitWords(options).ToArray();
+// words == ["Hello,", "big", "World!"]</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">s</code> or <code class="paramref">options</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p><a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter">WordSplitter</a> returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToCamelCase(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L241">View Source</a>
   </span>
   <a id="Wolfgang_Extensions_String_StringExtensions_ToCamelCase_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToCamelCase*"></a>
   <h4 id="Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToCamelCase(System.String)">ToCamelCase(string)</h4>
-  <div class="markdown level1 summary"><p>Converts a string to camelCase by lowering the first character, capitalizing the first letter
-of each subsequent word, and removing all separator characters.</p>
+  <div class="markdown level1 summary"><p>Converts a string to camelCase: its words run together, the first in lower case and every later one
+with its first letter in upper case and the rest in lower case.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -472,19 +665,38 @@ of each subsequent word, and removing all separator characters.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The specified string in camel case.</p>
+        <td><p>The specified string in camel case. It is empty when the string has no letters or digits.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><example>
-<pre><code class="lang-csharp">    Original: " A sample string for processing! "
-Return value: aSampleStringForProcessing!</code></pre>
-</example>
-<p>Characters where <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char.isseparator#system-char-isseparator(system-char)">IsSeparator(char)</a> returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> are treated as word
-boundaries and removed from the output. Control characters and punctuation are preserved.</p>
+  <div class="markdown level1 remarks"><p>
+The string is first split into words, by the rule every case conversion shares. A word is a run of
+letters and digits. Every other character (white space, punctuation, symbols, control characters,
+underscores and dashes) ends the word and is left out. An apostrophe is removed without ending the
+word, so <code>don't</code> is the one word <code>dont</code>.
+</p>
+<p>
+A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
+last upper-case letter of a run that a lower-case letter follows. An acronym is therefore one word
+and a digit stays with the word before it: <code>SKUCode</code> is <code>SKU</code> and <code>Code</code>, and
+<code>Line2Qty</code> is <code>Line2</code> and <code>Qty</code>.
+</p>
+<p>
+Letters are cased one <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a> at a time with the invariant culture, so the result does not
+depend on the current culture.
+</p>
 </div>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var camel = " A sample string, for processing! ".ToCamelCase();
+// camel == "aSampleStringForProcessing"
+
+var fromIdentifier = "UserLoginCount".ToCamelCase();
+// fromIdentifier == "userLoginCount"</code></pre>
+
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -503,14 +715,104 @@ boundaries and removed from the output. Control characters and punctuation are p
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/eddad41f5ae7ae232563d993649475f0720762ea/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToKebabCase(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToCamelCase(System.String%2CWolfgang.Extensions.String.CaseConversionOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/src/Wolfgang.Extensions.String/StringExtensions.cs/#L229">View Source</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L279">View Source</a>
+  </span>
+  <a id="Wolfgang_Extensions_String_StringExtensions_ToCamelCase_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToCamelCase*"></a>
+  <h4 id="Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToCamelCase(System.String,Wolfgang.Extensions.String.CaseConversionOptions)">ToCamelCase(string, CaseConversionOptions)</h4>
+  <div class="markdown level1 summary"><p>Converts a string to camel case, finding its words by the rules in <code class="paramref">options</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToCamelCase(this string s, CaseConversionOptions options)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">s</span></td>
+        <td><p>The string to convert.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html">CaseConversionOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>How the words of the string are found, and how an acronym is cased.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>The specified string in camel case. It is empty when no word is found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With a new <a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html">CaseConversionOptions</a> the result is the same as
+<a class="xref" href="Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String_">ToCamelCase(string)</a> gives. When <a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter">WordSplitter</a> is
+set, the words it returns are cased and joined as they are.</p>
+</div>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToCamelCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var options = new CaseConversionOptions { Boundaries = WordBoundaries.All &amp; ~WordBoundaries.CaseChanges };
+
+var camel = "iPhone case".ToCamelCase(options);
+// camel == "iphoneCase"</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">s</code> or <code class="paramref">options</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p><a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter">WordSplitter</a> returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToKebabCase(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L328">View Source</a>
   </span>
   <a id="Wolfgang_Extensions_String_StringExtensions_ToKebabCase_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToKebabCase*"></a>
   <h4 id="Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToKebabCase(System.String)">ToKebabCase(string)</h4>
-  <div class="markdown level1 summary"><p>Converts all letters to lower case and replaces separator characters with dashes.</p>
+  <div class="markdown level1 summary"><p>Converts a string to kebab case: its words in lower case with one dash between them.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -546,19 +848,38 @@ boundaries and removed from the output. Control characters and punctuation are p
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The specified string in kebab case.</p>
+        <td><p>The specified string in kebab case. It is empty when the string has no letters or digits.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><example>
-<pre><code class="lang-csharp">    Original: "A sample string for processing!"
-Return value: a-sample-string-for-processing!</code></pre>
-</example>
-<p>Characters where <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char.isseparator#system-char-isseparator(system-char)">IsSeparator(char)</a> returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> are replaced with dashes.
-Control characters and punctuation are preserved.</p>
+  <div class="markdown level1 remarks"><p>
+The string is first split into words, by the rule every case conversion shares. A word is a run of
+letters and digits. Every other character (white space, punctuation, symbols, control characters,
+underscores and dashes) ends the word and is left out. An apostrophe is removed without ending the
+word, so <code>don't</code> is the one word <code>dont</code>.
+</p>
+<p>
+A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
+last upper-case letter of a run that a lower-case letter follows. An acronym is therefore one word
+and a digit stays with the word before it: <code>SKUCode</code> is <code>SKU</code> and <code>Code</code>, and
+<code>Line2Qty</code> is <code>Line2</code> and <code>Qty</code>.
+</p>
+<p>
+Letters are cased one <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a> at a time with the invariant culture, so the result does not
+depend on the current culture.
+</p>
 </div>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var kebab = " A sample string, for processing! ".ToKebabCase();
+// kebab == "a-sample-string-for-processing"
+
+var fromIdentifier = "UserLoginCount".ToKebabCase();
+// fromIdentifier == "user-login-count"</code></pre>
+
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -577,14 +898,105 @@ Control characters and punctuation are preserved.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/eddad41f5ae7ae232563d993649475f0720762ea/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToPascalCase(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToKebabCase(System.String%2CWolfgang.Extensions.String.CaseConversionOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/src/Wolfgang.Extensions.String/StringExtensions.cs/#L274">View Source</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L366">View Source</a>
+  </span>
+  <a id="Wolfgang_Extensions_String_StringExtensions_ToKebabCase_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToKebabCase*"></a>
+  <h4 id="Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToKebabCase(System.String,Wolfgang.Extensions.String.CaseConversionOptions)">ToKebabCase(string, CaseConversionOptions)</h4>
+  <div class="markdown level1 summary"><p>Converts a string to kebab case, finding its words by the rules in <code class="paramref">options</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToKebabCase(this string s, CaseConversionOptions options)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">s</span></td>
+        <td><p>The string to convert.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html">CaseConversionOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>How the words of the string are found, and how an acronym is cased.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>The specified string in kebab case. It is empty when no word is found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With a new <a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html">CaseConversionOptions</a> the result is the same as
+<a class="xref" href="Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String_">ToKebabCase(string)</a> gives. When <a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter">WordSplitter</a> is
+set, the words it returns are cased and joined as they are.</p>
+</div>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToKebabCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var options = new CaseConversionOptions { Boundaries = WordBoundaries.All &amp; ~WordBoundaries.CaseChanges };
+
+var kebab = "iPhone case".ToKebabCase(options);
+// kebab == "iphone-case"</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">s</code> or <code class="paramref">options</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p><a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter">WordSplitter</a> returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToPascalCase(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L416">View Source</a>
   </span>
   <a id="Wolfgang_Extensions_String_StringExtensions_ToPascalCase_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToPascalCase*"></a>
   <h4 id="Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToPascalCase(System.String)">ToPascalCase(string)</h4>
-  <div class="markdown level1 summary"><p>Capitalizes each word, including the first one, and removes all separator characters.</p>
+  <div class="markdown level1 summary"><p>Converts a string to PascalCase: its words run together, each with its first letter in upper case and
+the rest in lower case.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -620,19 +1032,38 @@ Control characters and punctuation are preserved.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The specified string in Pascal case.</p>
+        <td><p>The specified string in Pascal case. It is empty when the string has no letters or digits.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><example>
-<pre><code class="lang-csharp">    Original: " A sample string for processing! "
-Return value: ASampleStringForProcessing!</code></pre>
-</example>
-<p>Characters where <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char.isseparator#system-char-isseparator(system-char)">IsSeparator(char)</a> returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> are treated as word
-boundaries and removed from the output. Control characters and punctuation are preserved.</p>
+  <div class="markdown level1 remarks"><p>
+The string is first split into words, by the rule every case conversion shares. A word is a run of
+letters and digits. Every other character (white space, punctuation, symbols, control characters,
+underscores and dashes) ends the word and is left out. An apostrophe is removed without ending the
+word, so <code>don't</code> is the one word <code>dont</code>.
+</p>
+<p>
+A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
+last upper-case letter of a run that a lower-case letter follows. An acronym is therefore one word
+and a digit stays with the word before it: <code>SKUCode</code> is <code>SKU</code> and <code>Code</code>, and
+<code>Line2Qty</code> is <code>Line2</code> and <code>Qty</code>.
+</p>
+<p>
+Letters are cased one <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a> at a time with the invariant culture, so the result does not
+depend on the current culture.
+</p>
 </div>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var pascal = " A sample string, for processing! ".ToPascalCase();
+// pascal == "ASampleStringForProcessing"
+
+var fromIdentifier = "user_login_count".ToPascalCase();
+// fromIdentifier == "UserLoginCount"</code></pre>
+
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -651,14 +1082,104 @@ boundaries and removed from the output. Control characters and punctuation are p
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/eddad41f5ae7ae232563d993649475f0720762ea/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToPascalCase(System.String%2CWolfgang.Extensions.String.CaseConversionOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/src/Wolfgang.Extensions.String/StringExtensions.cs/#L328">View Source</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L454">View Source</a>
+  </span>
+  <a id="Wolfgang_Extensions_String_StringExtensions_ToPascalCase_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToPascalCase*"></a>
+  <h4 id="Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToPascalCase(System.String,Wolfgang.Extensions.String.CaseConversionOptions)">ToPascalCase(string, CaseConversionOptions)</h4>
+  <div class="markdown level1 summary"><p>Converts a string to Pascal case, finding its words by the rules in <code class="paramref">options</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToPascalCase(this string s, CaseConversionOptions options)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">s</span></td>
+        <td><p>The string to convert.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html">CaseConversionOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>How the words of the string are found, and how an acronym is cased.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>The specified string in Pascal case. It is empty when no word is found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With a new <a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html">CaseConversionOptions</a> the result is the same as
+<a class="xref" href="Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String_">ToPascalCase(string)</a> gives. When <a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter">WordSplitter</a> is
+set, the words it returns are cased and joined as they are.</p>
+</div>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToPascalCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var options = new CaseConversionOptions { Boundaries = WordBoundaries.All &amp; ~WordBoundaries.CaseChanges };
+
+var pascal = "iPhone case".ToPascalCase(options);
+// pascal == "IphoneCase"</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">s</code> or <code class="paramref">options</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p><a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter">WordSplitter</a> returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L503">View Source</a>
   </span>
   <a id="Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToSnakeCase*"></a>
   <h4 id="Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(System.String)">ToSnakeCase(string)</h4>
-  <div class="markdown level1 summary"><p>Converts all letters to lower case and replaces separator characters with underscores.</p>
+  <div class="markdown level1 summary"><p>Converts a string to snake case: its words in lower case with one underscore between them.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -694,19 +1215,38 @@ boundaries and removed from the output. Control characters and punctuation are p
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The specified string in snake case.</p>
+        <td><p>The specified string in snake case. It is empty when the string has no letters or digits.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><example>
-<pre><code class="lang-csharp">    Original: "A sample string for processing!"
-Return value: a_sample_string_for_processing!</code></pre>
-</example>
-<p>Characters where <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char.isseparator#system-char-isseparator(system-char)">IsSeparator(char)</a> returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> are replaced with underscores.
-Control characters and punctuation are preserved.</p>
+  <div class="markdown level1 remarks"><p>
+The string is first split into words, by the rule every case conversion shares. A word is a run of
+letters and digits. Every other character (white space, punctuation, symbols, control characters,
+underscores and dashes) ends the word and is left out. An apostrophe is removed without ending the
+word, so <code>don't</code> is the one word <code>dont</code>.
+</p>
+<p>
+A word also starts at an upper-case letter that follows a lower-case letter or a digit, and at the
+last upper-case letter of a run that a lower-case letter follows. An acronym is therefore one word
+and a digit stays with the word before it: <code>SKUCode</code> is <code>SKU</code> and <code>Code</code>, and
+<code>Line2Qty</code> is <code>Line2</code> and <code>Qty</code>.
+</p>
+<p>
+Letters are cased one <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a> at a time with the invariant culture, so the result does not
+depend on the current culture.
+</p>
 </div>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var snake = " A sample string, for processing! ".ToSnakeCase();
+// snake == "a_sample_string_for_processing"
+
+var fromIdentifier = "UserLoginCount".ToSnakeCase();
+// fromIdentifier == "user_login_count"</code></pre>
+
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -725,10 +1265,100 @@ Control characters and punctuation are preserved.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/eddad41f5ae7ae232563d993649475f0720762ea/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToTitleCase_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToTitleCase(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(System.String%2CWolfgang.Extensions.String.CaseConversionOptions)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/src/Wolfgang.Extensions.String/StringExtensions.cs/#L374">View Source</a>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L541">View Source</a>
+  </span>
+  <a id="Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToSnakeCase*"></a>
+  <h4 id="Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(System.String,Wolfgang.Extensions.String.CaseConversionOptions)">ToSnakeCase(string, CaseConversionOptions)</h4>
+  <div class="markdown level1 summary"><p>Converts a string to snake case, finding its words by the rules in <code class="paramref">options</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToSnakeCase(this string s, CaseConversionOptions options)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">s</span></td>
+        <td><p>The string to convert.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html">CaseConversionOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>How the words of the string are found, and how an acronym is cased.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><p>The specified string in snake case. It is empty when no word is found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With a new <a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html">CaseConversionOptions</a> the result is the same as
+<a class="xref" href="Wolfgang.Extensions.String.StringExtensions.html#Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String_">ToSnakeCase(string)</a> gives. When <a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter">WordSplitter</a> is
+set, the words it returns are cased and joined as they are.</p>
+</div>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToSnakeCase_System_String_Wolfgang_Extensions_String_CaseConversionOptions__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var options = new CaseConversionOptions { Boundaries = WordBoundaries.All &amp; ~WordBoundaries.CaseChanges };
+
+var snake = "iPhone case".ToSnakeCase(options);
+// snake == "iphone_case"</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">s</code> or <code class="paramref">options</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p><a class="xref" href="Wolfgang.Extensions.String.CaseConversionOptions.html#Wolfgang_Extensions_String_CaseConversionOptions_WordSplitter">WordSplitter</a> returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions_ToTitleCase_System_String_.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions.ToTitleCase(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L574">View Source</a>
   </span>
   <a id="Wolfgang_Extensions_String_StringExtensions_ToTitleCase_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToTitleCase*"></a>
   <h4 id="Wolfgang_Extensions_String_StringExtensions_ToTitleCase_System_String_" data-uid="Wolfgang.Extensions.String.StringExtensions.ToTitleCase(System.String)">ToTitleCase(string)</h4>
@@ -774,14 +1404,16 @@ Control characters and punctuation are preserved.</p>
     </tbody>
   </table>
   <h5 id="Wolfgang_Extensions_String_StringExtensions_ToTitleCase_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><example>
-<pre><code class="lang-csharp">    Original: "a sample string for processing!"
-Return value: A Sample String For Processing!</code></pre>
-</example>
-<p>Delegates to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.textinfo.totitlecase">ToTitleCase(string)</a> using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo.currentculture">CurrentCulture</a>.
+  <div class="markdown level1 remarks"><p>Delegates to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.textinfo.totitlecase">ToTitleCase(string)</a> using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo.currentculture">CurrentCulture</a>.
 Words that are entirely uppercase are left unchanged. This is a general-purpose implementation;
 proper names and addresses may require specialized handling.</p>
 </div>
+  <h5 id="Wolfgang_Extensions_String_StringExtensions_ToTitleCase_System_String__examples">Examples</h5>
+  <pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+var title = "a sample string for processing!".ToTitleCase();
+// title == "A Sample String For Processing!" (under en-US)</code></pre>
+
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
     <thead>
@@ -807,10 +1439,10 @@ proper names and addresses may require specialized handling.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/eddad41f5ae7ae232563d993649475f0720762ea/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/new/v0.2.0/apiSpec/new?filename=Wolfgang_Extensions_String_StringExtensions.md&amp;value=---%0Auid%3A%20Wolfgang.Extensions.String.StringExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/src/Wolfgang.Extensions.String/StringExtensions.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/src/Wolfgang.Extensions.String/StringExtensions.cs/#L12" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -72,67 +72,74 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="getting-started">Getting Started</h1>
 
-<p>This guide will help you get started with the String Extensions library project.</p>
-<h2 id="project-status">Project Status</h2>
-<p>The String Extensions library is currently under development. This repository contains the project structure and documentation framework, with implementation to follow.</p>
-<h2 id="for-contributors">For Contributors</h2>
-<p>If you'd like to contribute to the development of this library:</p>
-<h3 id="prerequisites">Prerequisites</h3>
-<ul>
-<li><strong>.NET SDK</strong> - The library will support .NET Framework 4.6.2 through .NET 10</li>
-<li>A compatible IDE (Visual Studio 2022, Visual Studio 2019, VS Code, or Rider)</li>
-<li>Basic knowledge of C# and .NET</li>
-</ul>
-<h3 id="setting-up-for-development">Setting Up for Development</h3>
-<ol>
-<li><p><strong>Clone the repository</strong>:</p>
-<pre><code class="lang-bash">git clone https://github.com/Chris-Wolfgang/String-Extensions.git
-cd String-Extensions
+<h2 id="install">Install</h2>
+<pre><code class="lang-bash">dotnet add package Wolfgang.Extensions.String
 </code></pre>
-</li>
-<li><p><strong>Explore the structure</strong>:</p>
-<ul>
-<li><code>/src</code> - Source code will go here</li>
-<li><code>/tests</code> - Unit tests will go here</li>
-<li><code>/benchmarks</code> - Performance benchmarks will go here</li>
-<li><code>/examples</code> - Example usage will go here</li>
-<li><code>/docs</code> - Additional documentation</li>
-</ul>
-</li>
-<li><p><strong>Review the contribution guidelines</strong>:
-See <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for details on the development workflow and coding standards.</p>
-</li>
-</ol>
-<h2 id="for-future-users">For Future Users</h2>
-<p>Once the library is published to NuGet, you will be able to install it using:</p>
-<h3 id="via-nuget-package-manager">Via NuGet Package Manager</h3>
-<ol>
-<li>Right-click on your project in Solution Explorer</li>
-<li>Select &quot;Manage NuGet Packages&quot;</li>
-<li>Search for &quot;String-Extensions&quot;</li>
-<li>Click &quot;Install&quot;</li>
-</ol>
-<h3 id="via-net-cli">Via .NET CLI</h3>
-<pre><code class="lang-bash">dotnet add package String-Extensions
+<p>Or from the Package Manager Console:</p>
+<pre><code class="lang-powershell">Install-Package Wolfgang.Extensions.String
 </code></pre>
-<h3 id="via-package-manager-console">Via Package Manager Console</h3>
-<pre><code class="lang-powershell">Install-Package String-Extensions
+<p>In Visual Studio, search for <code>Wolfgang.Extensions.String</code> in <strong>Manage NuGet Packages</strong>.</p>
+<h2 id="use">Use</h2>
+<p>Add the namespace, then call the methods on any <code>string</code>:</p>
+<pre><code class="lang-csharp">using Wolfgang.Extensions.String;
+
+// Substring helpers (null-tolerant, length-clamped)
+&quot;A sample string&quot;.Left(8);    // &quot;A sample&quot;
+&quot;Hello&quot;.Left(10);             // &quot;Hello&quot;
+&quot;Hello&quot;.Left(0);              // &quot;&quot;
+&quot;A sample string&quot;.Right(6);   // &quot;string&quot;
+
+// Center padding
+&quot;Hello&quot;.PadCenter(11);        // &quot;   Hello   &quot;
+&quot;Hello&quot;.PadCenter(11, '-');   // &quot;---Hello---&quot;
+&quot;Hello&quot;.PadCenter(3);         // &quot;Hello&quot; (already wide enough)
+
+// Case conversions
+&quot;A sample string for processing&quot;.ToCamelCase();   // &quot;aSampleStringForProcessing&quot;
+&quot;A sample string for processing&quot;.ToKebabCase();   // &quot;a-sample-string-for-processing&quot;
+&quot;A sample string for processing&quot;.ToPascalCase();  // &quot;ASampleStringForProcessing&quot;
+&quot;A sample string for processing&quot;.ToSnakeCase();   // &quot;a_sample_string_for_processing&quot;
+&quot;a sample string for processing&quot;.ToTitleCase();   // &quot;A Sample String For Processing&quot;
+
+// Case conversions with your own word rules
+var keep = new CaseConversionOptions { Punctuation = PunctuationHandling.Keep };
+&quot;Hello, World!&quot;.ToSnakeCase(keep);                // &quot;hello,_world!&quot;
+
+var acronyms = new CaseConversionOptions { Acronyms = AcronymHandling.Preserve };
+&quot;SKUCode&quot;.ToPascalCase(acronyms);                 // &quot;SKUCode&quot;
+
+// The words themselves
+&quot;SKUCode for user_login!&quot;.SplitWords();           // &quot;SKU&quot;, &quot;Code&quot;, &quot;for&quot;, &quot;user&quot;, &quot;login&quot;
 </code></pre>
-<h2 id="documentation-structure">Documentation Structure</h2>
+<h2 id="supported-frameworks">Supported frameworks</h2>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.NET Framework</td>
+<td>4.6.2 and later</td>
+</tr>
+<tr>
+<td>.NET Standard</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>.NET</td>
+<td>8.0, 10.0</td>
+</tr>
+</tbody>
+</table>
+<p>On .NET 8 and later the package has no dependencies. On .NET Framework and .NET Standard 2.0 it depends on <code>System.Memory</code>.</p>
+<h2 id="where-to-next">Where to next</h2>
 <ul>
-<li><strong><a href="introduction.html">Introduction</a></strong> - Project overview and goals</li>
-<li><strong><a href="setup.html">Setup</a></strong> - Development setup instructions</li>
-<li><strong>API Reference</strong> - API documentation (to be generated)</li>
+<li>The <a class="xref" href="../api/Wolfgang.Extensions.String.StringExtensions.html">API Reference</a> documents every overload, its exceptions and an example.</li>
+<li>The <a href="https://github.com/Chris-Wolfgang/String-Extensions/tree/main/examples">examples project</a> is a runnable console app.</li>
 </ul>
-<h2 id="getting-help">Getting Help</h2>
-<p>If you have questions or want to contribute:</p>
-<ul>
-<li>Visit the <a href="https://github.com/Chris-Wolfgang/String-Extensions">GitHub Repository</a></li>
-<li>Open an issue for bug reports or feature requests</li>
-<li>Check existing issues and discussions</li>
-</ul>
-<h2 id="next-steps">Next Steps</h2>
-<p>For detailed development setup instructions, see the <a href="setup.html">Setup Guide</a>.</p>
 
 </article>
           </div>
@@ -142,7 +149,7 @@ See <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/main/CONTR
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/eddad41f5ae7ae232563d993649475f0720762ea/docfx_project/docs/getting-started.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/Chris-Wolfgang/String-Extensions/blob/v0.2.0/docfx_project/docs/getting-started.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

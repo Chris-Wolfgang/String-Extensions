@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2026-06-20_17-41-52" tag="">
+  <assembly name="Wolfgang.Extensions.String">
+    <class name="Wolfgang.Extensions.String.StringExtensions" coveredlines="72" coverablelines="72" totallines="379" coveredbranches="46" totalbranches="46" coveredcodeelements="9" fullcoveredcodeelements="9" totalcodeelements="9" />
+  </assembly>
+</coverage>
