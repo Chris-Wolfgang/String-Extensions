@@ -116,8 +116,8 @@ public class StringExtensionsProperties
 
 
 
-    // Random strings almost never hold a valid surrogate pair or an apostrophe next to a letter, so
-    // these inputs are checked on every run as well.
+    // Random strings almost never hold a valid surrogate pair, an apostrophe next to a letter, or a
+    // number that is not a decimal digit, so these inputs are checked on every run as well.
     [Theory]
     [InlineData("")]
     [InlineData("UserLoginCount")]
@@ -125,6 +125,8 @@ public class StringExtensionsProperties
     [InlineData("\uD801\uDC00\uD801\uDC28 word")]
     [InlineData("emoji \uD83D\uDE00 face")]
     [InlineData("cafe\u0301Bar SKUCode Line2Qty")]
+    [InlineData("x\u00B2 m\u00B2Area \u00BD cup")]
+    [InlineData("a \uD800\uDD07 b\uD800\uDD07C")]
     public void Case_conversions_when_passed_a_seed_input_match_the_reference_word_list(string text)
     {
         ArgumentNullException.ThrowIfNull(text);
@@ -265,7 +267,7 @@ public class StringExtensionsProperties
 
 
 
-    // An upper-case letter starts a word when a lower-case letter or a digit comes before it, or when
+    // An upper-case letter starts a word when a lower-case letter or a number comes before it, or when
     // an upper-case letter comes before it and a lower-case letter after it.
     private static bool StartsWord(string s, int i)
     {
@@ -274,10 +276,10 @@ public class StringExtensionsProperties
             return false;
         }
 
-        var lowerOrDigitBefore = char.IsLower(s[i - 1]) || char.IsDigit(s[i - 1]);
+        var lowerOrNumberBefore = char.IsLower(s[i - 1]) || char.IsNumber(s[i - 1]);
         var endsUpperRun = char.IsUpper(s[i - 1]) && i + 1 < s.Length && char.IsLower(s[i + 1]);
 
-        return lowerOrDigitBefore || endsUpperRun;
+        return lowerOrNumberBefore || endsUpperRun;
     }
 
 
@@ -310,7 +312,7 @@ public class StringExtensionsProperties
 
 
 
-    // True at every position that is a letter, a digit or a combining mark; a surrogate pair is
+    // True at every position that is a letter, a number or a combining mark; a surrogate pair is
     // judged as one character and a surrogate on its own belongs to no word.
     private static bool[] WordCharacterMask(string s)
     {
@@ -321,13 +323,13 @@ public class StringExtensionsProperties
         {
             if (char.IsSurrogatePair(s, i))
             {
-                mask[i] = char.IsLetterOrDigit(s, i);
+                mask[i] = char.IsLetter(s, i) || char.IsNumber(s, i);
                 mask[i + 1] = mask[i];
                 i += 2;
             }
             else
             {
-                mask[i] = char.IsLetterOrDigit(s[i]) || IsMark(s[i]);
+                mask[i] = char.IsLetter(s[i]) || char.IsNumber(s[i]) || IsMark(s[i]);
                 i++;
             }
         }
