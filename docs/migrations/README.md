@@ -12,7 +12,7 @@ The template in [TEMPLATE-major-version-migration.md](TEMPLATE-major-version-mig
 
 ## Index
 
-_No guides yet: the library is at 0.1.1 and has not shipped a breaking release. The first entry lands with the 0.x → 1.0 release PR._
+- [v0.1 to v0.2](v0.1-to-v0.2.md): the four case conversions split words by one shared rule.
 
 ## Before 1.0
 

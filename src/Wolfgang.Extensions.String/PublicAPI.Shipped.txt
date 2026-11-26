@@ -1,11 +1,40 @@
 #nullable enable
+Wolfgang.Extensions.String.AcronymHandling
+Wolfgang.Extensions.String.AcronymHandling.AsWord = 0 -> Wolfgang.Extensions.String.AcronymHandling
+Wolfgang.Extensions.String.AcronymHandling.Preserve = 1 -> Wolfgang.Extensions.String.AcronymHandling
+Wolfgang.Extensions.String.CaseConversionOptions
+Wolfgang.Extensions.String.CaseConversionOptions.Acronyms.get -> Wolfgang.Extensions.String.AcronymHandling
+Wolfgang.Extensions.String.CaseConversionOptions.Acronyms.set -> void
+Wolfgang.Extensions.String.CaseConversionOptions.Boundaries.get -> Wolfgang.Extensions.String.WordBoundaries
+Wolfgang.Extensions.String.CaseConversionOptions.Boundaries.set -> void
+Wolfgang.Extensions.String.CaseConversionOptions.CaseConversionOptions() -> void
+Wolfgang.Extensions.String.CaseConversionOptions.Punctuation.get -> Wolfgang.Extensions.String.PunctuationHandling
+Wolfgang.Extensions.String.CaseConversionOptions.Punctuation.set -> void
+Wolfgang.Extensions.String.CaseConversionOptions.WordSplitter.get -> System.Func<string!, System.Collections.Generic.IEnumerable<string!>!>?
+Wolfgang.Extensions.String.CaseConversionOptions.WordSplitter.set -> void
+Wolfgang.Extensions.String.PunctuationHandling
+Wolfgang.Extensions.String.PunctuationHandling.Drop = 0 -> Wolfgang.Extensions.String.PunctuationHandling
+Wolfgang.Extensions.String.PunctuationHandling.Keep = 1 -> Wolfgang.Extensions.String.PunctuationHandling
 Wolfgang.Extensions.String.StringExtensions
+Wolfgang.Extensions.String.WordBoundaries
+Wolfgang.Extensions.String.WordBoundaries.All = Wolfgang.Extensions.String.WordBoundaries.Separators | Wolfgang.Extensions.String.WordBoundaries.Delimiters | Wolfgang.Extensions.String.WordBoundaries.CaseChanges | Wolfgang.Extensions.String.WordBoundaries.ControlCharacters -> Wolfgang.Extensions.String.WordBoundaries
+Wolfgang.Extensions.String.WordBoundaries.CaseChanges = 4 -> Wolfgang.Extensions.String.WordBoundaries
+Wolfgang.Extensions.String.WordBoundaries.ControlCharacters = 8 -> Wolfgang.Extensions.String.WordBoundaries
+Wolfgang.Extensions.String.WordBoundaries.Delimiters = 2 -> Wolfgang.Extensions.String.WordBoundaries
+Wolfgang.Extensions.String.WordBoundaries.None = 0 -> Wolfgang.Extensions.String.WordBoundaries
+Wolfgang.Extensions.String.WordBoundaries.Separators = 1 -> Wolfgang.Extensions.String.WordBoundaries
 static Wolfgang.Extensions.String.StringExtensions.Left(this string? s, int length) -> string?
-static Wolfgang.Extensions.String.StringExtensions.PadCenter(this string? s, int totalWidth) -> string!
-static Wolfgang.Extensions.String.StringExtensions.PadCenter(this string? s, int totalWidth, char paddingChar) -> string!
+static Wolfgang.Extensions.String.StringExtensions.PadCenter(this string! s, int totalWidth) -> string!
+static Wolfgang.Extensions.String.StringExtensions.PadCenter(this string! s, int totalWidth, char paddingChar) -> string!
 static Wolfgang.Extensions.String.StringExtensions.Right(this string? s, int length) -> string?
+static Wolfgang.Extensions.String.StringExtensions.SplitWords(this string! s) -> System.Collections.Generic.IEnumerable<string!>!
+static Wolfgang.Extensions.String.StringExtensions.SplitWords(this string! s, Wolfgang.Extensions.String.CaseConversionOptions! options) -> System.Collections.Generic.IEnumerable<string!>!
 static Wolfgang.Extensions.String.StringExtensions.ToCamelCase(this string! s) -> string!
+static Wolfgang.Extensions.String.StringExtensions.ToCamelCase(this string! s, Wolfgang.Extensions.String.CaseConversionOptions! options) -> string!
 static Wolfgang.Extensions.String.StringExtensions.ToKebabCase(this string! s) -> string!
+static Wolfgang.Extensions.String.StringExtensions.ToKebabCase(this string! s, Wolfgang.Extensions.String.CaseConversionOptions! options) -> string!
 static Wolfgang.Extensions.String.StringExtensions.ToPascalCase(this string! s) -> string!
+static Wolfgang.Extensions.String.StringExtensions.ToPascalCase(this string! s, Wolfgang.Extensions.String.CaseConversionOptions! options) -> string!
 static Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(this string! s) -> string!
+static Wolfgang.Extensions.String.StringExtensions.ToSnakeCase(this string! s, Wolfgang.Extensions.String.CaseConversionOptions! options) -> string!
 static Wolfgang.Extensions.String.StringExtensions.ToTitleCase(this string! s) -> string!
