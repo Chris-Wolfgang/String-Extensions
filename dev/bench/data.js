@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795657722488,
+  "lastUpdate": 1795732114870,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -1248,6 +1248,102 @@ window.BENCHMARK_DATA = {
             "value": 10.106449981530508,
             "unit": "ns",
             "range": "± 0.11134737542253079"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a014e45c5b2e4c4c9fed0e3f48a1d53295764630",
+          "message": "Release v0.2.0: one word rule for the case conversions, options overloads, SplitWords (#394)\n\n* release: v0.2.0\n\nMinor bump from 0.1.1: before 1.0 a breaking change rides on the minor\nversion. The four case conversions split words by one shared rule\n(breaking), and the release adds CaseConversionOptions, SplitWords and\ntrim/AOT compatibility. AssemblyVersion stays 1.0.0.0: no public member\nwas removed or changed, so compiled callers still bind.\n\nThe changelog is assembled from the 16 fragments, the unshipped public API\nentries are folded into the shipped list, and docs/migrations gains the\nv0.1 to v0.2 guide.\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n* ci: re-trigger the checks so the changelog check sees the no-changelog label\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Fable 5.2 <noreply@anthropic.com>",
+          "timestamp": "2026-11-26T17:25:52-05:00",
+          "tree_id": "4d65e59c22487b641308f88e180db64b5d0c9be8",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/a014e45c5b2e4c4c9fed0e3f48a1d53295764630"
+        },
+        "date": 1795732114325,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 256.32708136240643,
+            "unit": "ns",
+            "range": "± 3.3875122799303874"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 154.07463765144348,
+            "unit": "ns",
+            "range": "± 0.7158544969119398"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 149.64437294006348,
+            "unit": "ns",
+            "range": "± 0.16925090720863492"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 150.1286344130834,
+            "unit": "ns",
+            "range": "± 0.936013964571585"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 148.55236693223318,
+            "unit": "ns",
+            "range": "± 0.45260065026020596"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 18.133174071709316,
+            "unit": "ns",
+            "range": "± 0.2262379697206343"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 9.572769522666931,
+            "unit": "ns",
+            "range": "± 0.21401852573160302"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 14.916771123806635,
+            "unit": "ns",
+            "range": "± 0.5835995892548657"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 9.712786679466566,
+            "unit": "ns",
+            "range": "± 0.0992633141474941"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 33.078430692354836,
+            "unit": "ns",
+            "range": "± 0.2085697079175459"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 20.964197099208832,
+            "unit": "ns",
+            "range": "± 0.20255661353822627"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 20.2904205818971,
+            "unit": "ns",
+            "range": "± 0.2014409012917709"
           }
         ]
       }
