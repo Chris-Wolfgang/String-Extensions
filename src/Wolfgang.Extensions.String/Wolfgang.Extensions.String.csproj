@@ -41,6 +41,12 @@
 		<IsTrimmable>true</IsTrimmable>
 	</PropertyGroup>
 
+	<!-- Span<T> on the two targets whose framework does not have it. The package is used inside the
+	     library only: no span type appears on the public surface. net8.0 and later need no package. -->
+	<ItemGroup Condition="'$(TargetFramework)' == 'net462' or '$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="System.Memory" Version="4.6.3" />
+	</ItemGroup>
+
 	<!-- Analyzer PackageReferences are centralized in Directory.Build.props -->
 
 	<ItemGroup>

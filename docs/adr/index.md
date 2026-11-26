@@ -14,3 +14,6 @@ The format is [Michael Nygard's ADR](https://cognitect.com/blog/2011/11/15/docum
 | [0003](0003-explicit-usings-in-multi-target-projects.md) | Explicit `using` directives in multi-target projects; no implicit or global usings | Accepted |
 | [0004](0004-invariant-casing-except-totitlecase.md) | Invariant casing for the separator-based conversions; current culture for `ToTitleCase` | Accepted |
 | [0005](0005-left-right-null-tolerant.md) | `Left` / `Right` accept `null`; `PadCenter` and the case conversions reject it | Accepted |
+| [0006](0006-one-word-splitter-for-the-case-conversions.md) | One word splitter for the four identifier case conversions | Accepted |
+| [0007](0007-options-overloads-and-a-custom-word-splitter.md) | Options overloads for the case conversions, with a caller-supplied word splitter | Accepted |
+| [0008](0008-system-memory-on-the-older-targets.md) | Take `System.Memory` on net462 and netstandard2.0, for spans inside the library | Accepted |

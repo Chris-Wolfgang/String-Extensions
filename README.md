@@ -80,13 +80,54 @@ authoritative list (kept in sync with source on every release), see the
 | `Right(this string? s, int length)` | `string?` | Returns the rightmost `length` characters. Returns the whole string when it is shorter than `length`; returns `null` for a `null` input. |
 | `PadCenter(this string, int totalWidth)` | `string` | Centers the string within `totalWidth`, padding both sides with spaces. When padding is uneven the extra character goes on the right. Returns the original string when it is already at least `totalWidth` long. |
 | `PadCenter(this string, int totalWidth, char paddingChar)` | `string` | As above, padding with `paddingChar` instead of spaces. |
-| `ToCamelCase(this string)` | `string` | Converts to `camelCase`. Separator characters are treated as word boundaries and removed. |
-| `ToKebabCase(this string)` | `string` | Converts to `kebab-case`. Separator characters become dashes. |
-| `ToPascalCase(this string)` | `string` | Converts to `PascalCase`. Separator characters are treated as word boundaries and removed. |
-| `ToSnakeCase(this string)` | `string` | Converts to `snake_case`. Separator characters become underscores. |
+| `ToCamelCase(this string)` | `string` | Converts to `camelCase`: the words run together, the first in lower case and each later one capitalized. `"User login-count"` and `"UserLoginCount"` are both `userLoginCount`. |
+| `ToKebabCase(this string)` | `string` | Converts to `kebab-case`: the words in lower case with one dash between them. `"UserLoginCount"` and `" user  login_count! "` are both `user-login-count`. |
+| `ToPascalCase(this string)` | `string` | Converts to `PascalCase`: the words run together, each capitalized. `"user_login_count"` and `"userLoginCount"` are both `UserLoginCount`. |
+| `ToSnakeCase(this string)` | `string` | Converts to `snake_case`: the words in lower case with one underscore between them. `"UserLoginCount"` and `" user  login-count! "` are both `user_login_count`. |
 | `ToTitleCase(this string)` | `string` | Converts to `Title Case`, preserving spaces and punctuation. Delegates to `TextInfo.ToTitleCase` using the current culture. |
+| `ToCamelCase` / `ToKebabCase` / `ToPascalCase` / `ToSnakeCase(this string, CaseConversionOptions)` | `string` | The same conversion with the word rules taken from the options: keep punctuation, choose what divides words, preserve acronyms, or supply your own word splitter. |
+| `SplitWords(this string)` | `IEnumerable<string>` | The words of the string by the rules the conversions use, in order and in their original casing. |
+| `SplitWords(this string, CaseConversionOptions)` | `IEnumerable<string>` | The words of the string by the rules in the options. |
 
-`Left` / `Right` are length-clamping and null-tolerant. `PadCenter` and the `ToXxxCase` methods throw `ArgumentNullException` for a `null` input; `PadCenter` throws `ArgumentOutOfRangeException` for a negative width. Separator handling uses `char.IsSeparator`, so control characters and punctuation are preserved.
+`Left` / `Right` are length-clamping and null-tolerant. `PadCenter` and the `ToXxxCase` methods throw `ArgumentNullException` for a `null` input; `PadCenter` throws `ArgumentOutOfRangeException` for a negative width.
+
+The four `ToXxxCase` identifier conversions split the string into words by one shared rule and differ only in how they case and join the words:
+
+- A word is a run of letters and digits. Every other character (white space, punctuation, symbols, control characters, `_` and `-`) ends the word and is left out.
+- An apostrophe is removed without ending the word: `"don't stop"` is the words `dont` and `stop`.
+- A word also starts at a case boundary inside an identifier. An acronym is one word and a digit stays with the word before it: `SKUCode` is `SKU` + `Code`, `Line2Qty` is `Line2` + `Qty`.
+- The result is empty when the string has no letters or digits.
+
+### Options
+
+Each identifier conversion has an overload that takes a `CaseConversionOptions`. A new instance holds the default rules, so `s.ToSnakeCase(new CaseConversionOptions())` gives what `s.ToSnakeCase()` gives.
+
+| Property | Values | Default |
+|---|---|---|
+| `Punctuation` | `Drop`: a character that is not a letter or digit ends the word and is left out. `Keep`: it stays in the word it touches. | `Drop` |
+| `Boundaries` | Any combination of `Separators`, `Delimiters` (`_` and `-`), `CaseChanges` and `ControlCharacters`. | `All` |
+| `Acronyms` | `AsWord`: `SKUCode` becomes `SkuCode`. `Preserve`: a word with no lower-case letter is left as it is where a word is capitalized. | `AsWord` |
+| `WordSplitter` | A `Func<string, IEnumerable<string>>` that finds the words in place of the built-in rules. | `null` |
+
+When punctuation is dropped, every character that is not a letter or a digit ends the word, so only `CaseChanges` in `Boundaries` makes a difference. The other three matter together with `Punctuation = Keep`.
+
+```csharp
+var keep = new CaseConversionOptions { Punctuation = PunctuationHandling.Keep };
+"Hello, World!".ToSnakeCase(keep);                // "hello,_world!"
+
+var acronyms = new CaseConversionOptions { Acronyms = AcronymHandling.Preserve };
+"SKUCode".ToPascalCase(acronyms);                 // "SKUCode"   (default: "SkuCode")
+
+var noCase = new CaseConversionOptions { Boundaries = WordBoundaries.All & ~WordBoundaries.CaseChanges };
+"iPhone case".ToSnakeCase(noCase);                // "iphone_case"   (default: "i_phone_case")
+
+var custom = new CaseConversionOptions { WordSplitter = text => text.Split('|') };
+"One|Two Three".ToSnakeCase(custom);              // "one_two three"
+
+"SKUCode for user_login!".SplitWords();           // "SKU", "Code", "for", "user", "login"
+```
+
+A custom splitter's words are cased and joined exactly as returned; its sequence is read once, and a `null` or empty word is skipped.
 
 ### Examples
 
@@ -131,6 +172,8 @@ This library targets:
 - **.NET Framework:** 4.6.2
 - **.NET Standard:** 2.0
 - **.NET:** 8.0, 10.0
+
+On .NET 8 and later the package has no dependencies. On .NET Framework and .NET Standard 2.0 it depends on `System.Memory`.
 
 See the [NuGet package page](https://www.nuget.org/packages/Wolfgang.Extensions.String/) for the authoritative per-TFM compatibility matrix.
 

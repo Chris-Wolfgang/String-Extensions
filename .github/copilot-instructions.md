@@ -8,8 +8,13 @@ A shipped .NET library, published to NuGet as `Wolfgang.Extensions.String`. It i
 - `Left` / `Right` — the first or last N characters; null-tolerant (`null` in, `null` out) and length-clamping.
 - `PadCenter` — centers a string within a total width, padding with spaces or a given character; the extra
   character of uneven padding goes on the right.
-- `ToCamelCase`, `ToKebabCase`, `ToPascalCase`, `ToSnakeCase` — split on `char.IsSeparator` characters and use
-  invariant casing.
+- `ToCamelCase`, `ToKebabCase`, `ToPascalCase`, `ToSnakeCase` — share one word splitter (`JoinWords`): a word
+  is a run of letters and digits, everything else is a boundary and is dropped, an apostrophe is removed, and
+  a case boundary inside an identifier starts a word. They differ only in casing and delimiter, and use
+  invariant casing (ADR 0006).
+- The `CaseConversionOptions` overloads and `SplitWords` build a word list (`SplitWordsIterator`, or the caller's
+  `WordSplitter`) and format it (`FormatWords`). The methods without options must stay on the single pass in
+  `JoinWords`; tests compare the two paths (ADR 0007).
 - `ToTitleCase` — delegates to `TextInfo.ToTitleCase` of the current culture.
 
 `PadCenter` and the case conversions throw `ArgumentNullException` (parameter `s`) for a null input; `Left`, `Right`

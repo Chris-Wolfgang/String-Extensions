@@ -22,7 +22,7 @@ namespace Wolfgang.Extensions.String.Tests.Snapshots;
 public class StringExtensionsSnapshotTests
 {
     // Covers: empty, single char, mixed case, upper case, leading/trailing/repeated spaces, tab and
-    // newline (not separators), NO-BREAK SPACE and EM SPACE (Zs), LINE and PARAGRAPH SEPARATOR (Zl, Zp),
+    // newline (control characters), NO-BREAK SPACE and EM SPACE (Zs), LINE and PARAGRAPH SEPARATOR (Zl, Zp),
     // Turkish dotted/dotless i, ASCII words starting with i (tr-TR title-cases them to U+0130),
     // sharp s, digits, punctuation and a surrogate pair.
     private static readonly string[] Corpus =

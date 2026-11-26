@@ -25,6 +25,8 @@ dotnet add package Wolfgang.Extensions.String
 | `ToPascalCase()` | Convert to `PascalCase` |
 | `ToSnakeCase()` | Convert to `snake_case` |
 | `ToTitleCase()` | Convert to `Title Case` (current culture) |
+| `ToCamelCase(options)` and the other three | The same conversions with your own word rules (`CaseConversionOptions`) |
+| `SplitWords()` | The words of a string, by the rules the conversions use |
 
 ## Quick examples
 

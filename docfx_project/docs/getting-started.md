@@ -38,6 +38,16 @@ using Wolfgang.Extensions.String;
 "A sample string for processing".ToPascalCase();  // "ASampleStringForProcessing"
 "A sample string for processing".ToSnakeCase();   // "a_sample_string_for_processing"
 "a sample string for processing".ToTitleCase();   // "A Sample String For Processing"
+
+// Case conversions with your own word rules
+var keep = new CaseConversionOptions { Punctuation = PunctuationHandling.Keep };
+"Hello, World!".ToSnakeCase(keep);                // "hello,_world!"
+
+var acronyms = new CaseConversionOptions { Acronyms = AcronymHandling.Preserve };
+"SKUCode".ToPascalCase(acronyms);                 // "SKUCode"
+
+// The words themselves
+"SKUCode for user_login!".SplitWords();           // "SKU", "Code", "for", "user", "login"
 ```
 
 ## Supported frameworks
@@ -47,6 +57,8 @@ using Wolfgang.Extensions.String;
 | .NET Framework | 4.6.2 and later |
 | .NET Standard | 2.0 |
 | .NET | 8.0, 10.0 |
+
+On .NET 8 and later the package has no dependencies. On .NET Framework and .NET Standard 2.0 it depends on `System.Memory`.
 
 ## Where to next
 
