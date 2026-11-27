@@ -10,10 +10,17 @@
 | Folder | Contents |
 |---|---|
 | `src/Wolfgang.Extensions.String/` | The library (`StringExtensions.cs`) and its `PublicAPI.*.txt` baseline |
-| `tests/Wolfgang.Extensions.String.Tests.Unit/` | xUnit tests |
+| `tests/Wolfgang.Extensions.String.Tests.Unit/` | xUnit unit tests, run on every target framework |
+| `tests/Wolfgang.Extensions.String.Tests.DocExamples/` | Compiles every code example in the XML doc comments against the library, so the examples cannot rot |
+| `tests/Wolfgang.Extensions.String.Tests.Fuzz/` | FsCheck property tests against an independent oracle; a change to a method's output must change the oracle too |
+| `tests/Wolfgang.Extensions.String.Tests.Snapshots/` | Verify snapshot tests; a change to a method's output must update the `.verified` files |
+| `tests/Wolfgang.Extensions.String.Tests.Aot/` | The unit tests built as a Native AOT executable (xunit.v3.aot; not a `dotnet test` project) |
+| `tests/Wolfgang.Extensions.String.Tests.AotSmoke/` | A small trimmed, Native AOT console consumer (not a `dotnet test` project) |
 | `benchmarks/Wolfgang.Extensions.String.Benchmarks/` | BenchmarkDotNet benchmarks |
 | `examples/` | A runnable console example |
 | `docfx_project/` | This documentation site |
+| `docs/` | Maintainer documentation and the architecture decision records (`docs/adr/`) |
+| `changelog/unreleased/` | Changelog fragments, one per pull request that changes `src/` |
 
 ## Build and test
 
