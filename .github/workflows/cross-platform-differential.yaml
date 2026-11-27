@@ -53,14 +53,25 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          # Every test project under tests/ (references Microsoft.NET.Test.Sdk) that targets
-          # net10.0, each with its own TRX file. Fixtures and smoke executables are skipped.
+          # Every test project under tests/ that targets net10.0, each with its own TRX file.
+          # A test project has a PackageReference to Microsoft.NET.Test.Sdk and does not set
+          # IsTestProject to false. The reference is matched as an element, not as text: the
+          # AOT projects name the package only in a comment, and `dotnet test` cannot run them.
+          # Fixtures and smoke executables are skipped the same way.
           mkdir -p "$GITHUB_WORKSPACE/trx"
           count=0
           while IFS= read -r proj; do
-            grep -q 'Microsoft.NET.Test.Sdk' "$proj" || continue
-            # tr: the element may span several lines; join them before matching.
-            tr -d '\r\n' < "$proj" | grep -qE '<TargetFrameworks?>[^<]*net10\.0' || continue
+            # tr: an element may span several lines; join them before matching.
+            flat="$(tr -d '\r\n' < "$proj")"
+            if grep -qiE '<IsTestProject>[[:space:]]*false[[:space:]]*</IsTestProject>' <<< "$flat"; then
+              echo "Skipping $proj: IsTestProject is false"
+              continue
+            fi
+            if ! grep -qE '<PackageReference[^>]*Include="Microsoft\.NET\.Test\.Sdk"' <<< "$flat"; then
+              echo "Skipping $proj: no PackageReference to Microsoft.NET.Test.Sdk"
+              continue
+            fi
+            grep -qE '<TargetFrameworks?>[^<]*net10\.0' <<< "$flat" || continue
             name="$(basename "$proj" .csproj)"
             dotnet test "$proj" --configuration Release --framework net10.0 \
               --logger "trx;LogFileName=$name.trx" --results-directory "$GITHUB_WORKSPACE/trx"
