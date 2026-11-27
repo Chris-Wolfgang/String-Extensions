@@ -78,7 +78,7 @@ authoritative list (kept in sync with source on every release), see the
 |--------|---------|-------------|
 | `Left(this string? s, int length)` | `string?` | Returns the leftmost `length` characters. Returns the whole string when it is shorter than `length`; returns `null` for a `null` input. |
 | `Right(this string? s, int length)` | `string?` | Returns the rightmost `length` characters. Returns the whole string when it is shorter than `length`; returns `null` for a `null` input. |
-| `PadCenter(this string, int totalWidth)` | `string` | Centers the string within `totalWidth`, padding both sides with spaces. When padding is uneven the extra character goes on the right. Returns the original string when it is already at least `totalWidth` long. |
+| `PadCenter(this string, int totalWidth)` | `string` | Centers the string within `totalWidth`, padding both sides with spaces. When padding is uneven the extra character goes on the right. Returns the original string instance (no copy) when it is already at least `totalWidth` long. |
 | `PadCenter(this string, int totalWidth, char paddingChar)` | `string` | As above, padding with `paddingChar` instead of spaces. |
 | `ToCamelCase(this string)` | `string` | Converts to `camelCase`: the words run together, the first in lower case and each later one capitalized. `"User login-count"` and `"UserLoginCount"` are both `userLoginCount`. |
 | `ToKebabCase(this string)` | `string` | Converts to `kebab-case`: the words in lower case with one dash between them. `"UserLoginCount"` and `" user  login_count! "` are both `user-login-count`. |

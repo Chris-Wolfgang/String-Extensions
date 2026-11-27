@@ -30,7 +30,7 @@ using Wolfgang.Extensions.String;
 // Center padding
 "Hello".PadCenter(11);        // "   Hello   "
 "Hello".PadCenter(11, '-');   // "---Hello---"
-"Hello".PadCenter(3);         // "Hello" (already wide enough)
+"Hello".PadCenter(3);         // "Hello" (already wide enough: the same instance)
 
 // Case conversions
 "A sample string for processing".ToCamelCase();   // "aSampleStringForProcessing"
