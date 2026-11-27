@@ -16,5 +16,6 @@
 ## Consequences
 
 - The four identifier conversions give the same output under every culture; `CultureInvarianceTests` runs them under `tr-TR`, `de-DE` and `en-US` and pins that.
+- Invariant casing is per `char` and has limits. A letter with no invariant mapping, such as U+0130 (`İ`) or U+0131 (`ı`), is left unchanged, so `"İstanbul ıi".ToSnakeCase()` is `İstanbul_ıi`. The mappings come from the runtime's Unicode data, so the same call can differ between .NET Framework and .NET for letters added to Unicode later (for example Georgian Mtavruli). Same culture, same runtime: same result; not the same result on every runtime.
 - `ToTitleCase` can differ between cultures, and leaves words that are entirely upper case unchanged (a `TextInfo` rule). A caller that needs a fixed result sets the culture or calls `TextInfo.ToTitleCase` on the culture it wants.
 - Changing either choice is a behaviour change for consumers and needs a new ADR that supersedes this one.

@@ -98,6 +98,8 @@ The four `ToXxxCase` identifier conversions split the string into words by one s
 - A word also starts at a case boundary inside an identifier. An acronym is one word and a digit stays with the word before it: `SKUCode` is `SKU` + `Code`, `Line2Qty` is `Line2` + `Qty`.
 - The result is empty when the string has no letters or digits.
 
+Every method counts UTF-16 code units (`char` values), not what is displayed: `Left` / `Right` can split a surrogate pair or a letter from its combining mark, and `PadCenter`'s width is not a display width. Invariant casing leaves letters with no invariant mapping (`İ` U+0130, `ı` U+0131) unchanged and follows the runtime's Unicode data, so a few letters convert differently on .NET Framework and on .NET.
+
 ### Options
 
 Each identifier conversion has an overload that takes a `CaseConversionOptions`. A new instance holds the default rules, so `s.ToSnakeCase(new CaseConversionOptions())` gives what `s.ToSnakeCase()` gives.

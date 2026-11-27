@@ -3,7 +3,9 @@
   <!-- Snapshot (approval) tests with Verify (#108): every public method's output over a fixed
        input corpus is rendered as text and compared with the committed *.verified.txt files under
        Snapshots/. A change in any output, however small, fails until the snapshot is re-approved.
-       Single TFM: the outputs are the same on every target (the unit tests run the full matrix). -->
+       Single TFM (the unit tests run the full matrix). The outputs are not guaranteed to be the
+       same on every target: casing follows each runtime's Unicode data, and PadCenter has a
+       separate .NET 8+ implementation. -->
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
