@@ -58,8 +58,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="s">The string to center.</param>
     /// <param name="totalWidth">
-    /// The number of characters in the resulting string. If <paramref name="totalWidth"/> is less than the length of
-    /// <paramref name="s"/>, the original string is returned unchanged.
+    /// The number of characters in the resulting string. If <paramref name="totalWidth"/> is less than or equal to the length of
+    /// <paramref name="s"/>, the original string instance is returned unchanged.
     /// </param>
     /// <returns>
     /// A new string that is equivalent to <paramref name="s"/>, but center-aligned and padded on both sides with spaces.
@@ -71,7 +71,7 @@ public static class StringExtensions
     ///
     /// var centered = "Hello".PadCenter(11);     // "   Hello   "
     /// var uneven = "Hello".PadCenter(8);        // " Hello  " (the extra space goes on the right)
-    /// var unchanged = "Hello".PadCenter(3);     // "Hello" (already wider than totalWidth)
+    /// var unchanged = "Hello".PadCenter(3);     // "Hello" (already at least totalWidth wide: the same instance is returned)
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
@@ -90,8 +90,8 @@ public static class StringExtensions
     /// </summary>
     /// <param name="s">The string to center.</param>
     /// <param name="totalWidth">
-    /// The number of characters in the resulting string. If <paramref name="totalWidth"/> is less than the length of
-    /// <paramref name="s"/>, the original string is returned unchanged.
+    /// The number of characters in the resulting string. If <paramref name="totalWidth"/> is less than or equal to the length of
+    /// <paramref name="s"/>, the original string instance is returned unchanged.
     /// </param>
     /// <param name="paddingChar">A Unicode padding character.</param>
     /// <returns>
@@ -124,7 +124,7 @@ public static class StringExtensions
             throw new ArgumentOutOfRangeException(nameof(totalWidth));
         }
 
-        if (totalWidth < s.Length)
+        if (totalWidth <= s.Length)
         {
             return s;
         }
