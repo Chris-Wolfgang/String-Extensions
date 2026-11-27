@@ -15,15 +15,15 @@ public sealed class PackageReadmeTests
 {
     private static readonly Regex LinkTarget = new
     (
-        @"\]\(([^)\s]+)\)",
-        RegexOptions.CultureInvariant,
+        @"\]\((?<target>[^)\s]+)\)",
+        RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture,
         TimeSpan.FromSeconds(1)
     );
 
     private static readonly Regex ImageTarget = new
     (
-        @"!\[[^\]]*\]\(([^)\s]+)\)",
-        RegexOptions.CultureInvariant,
+        @"!\[[^\]]*\]\((?<target>[^)\s]+)\)",
+        RegexOptions.CultureInvariant | RegexOptions.ExplicitCapture,
         TimeSpan.FromSeconds(1)
     );
 
@@ -51,7 +51,7 @@ public sealed class PackageReadmeTests
     {
         var relative = LinkTarget
             .Matches(await ReadPackageReadmeAsync())
-            .Select(m => m.Groups[1].Value)
+            .Select(m => m.Groups["target"].Value)
             .Where(target => !target.StartsWith("https://", StringComparison.Ordinal))
             .ToArray();
 
@@ -65,7 +65,7 @@ public sealed class PackageReadmeTests
     {
         var images = ImageTarget
             .Matches(await ReadPackageReadmeAsync())
-            .Select(m => m.Groups[1].Value)
+            .Select(m => m.Groups["target"].Value)
             .ToArray();
 
         Assert.NotEmpty(images);
