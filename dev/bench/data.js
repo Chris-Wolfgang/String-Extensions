@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795736728297,
+  "lastUpdate": 1795790826535,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -1440,6 +1440,102 @@ window.BENCHMARK_DATA = {
             "value": 21.18182831009229,
             "unit": "ns",
             "range": "± 0.6738565198639049"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e26399244f49f334512398985cdf10999923a19e",
+          "message": "fix(padcenter): return the original instance when totalWidth equals the length (#365) (#399)\n\nThe guard was totalWidth < s.Length, so at equal width PadCenter built a\ncopy with no padding. It is now totalWidth <= s.Length, matching the README.\nThe two equal-width reference tests flip from NotSame to Same (owner-approved,\n2026-11-20) and ZeroAllocationTests gains the equal-width shape for both\noverloads.\n\nCloses #365\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-11-27T09:21:53-05:00",
+          "tree_id": "ef337dd2186ee10f3f23f871af96c4e1d6270381",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/e26399244f49f334512398985cdf10999923a19e"
+        },
+        "date": 1795790825947,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 266.7742560704549,
+            "unit": "ns",
+            "range": "± 2.322077138388482"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 154.19805121421814,
+            "unit": "ns",
+            "range": "± 0.5313001491507189"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 147.43664173285165,
+            "unit": "ns",
+            "range": "± 1.1092828477961205"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 151.31119163831076,
+            "unit": "ns",
+            "range": "± 1.4566721810421657"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 147.48436518510184,
+            "unit": "ns",
+            "range": "± 1.1604109649266452"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 17.369614521662395,
+            "unit": "ns",
+            "range": "± 0.839133292660724"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 9.346712792913118,
+            "unit": "ns",
+            "range": "± 0.10208309405544183"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 17.58648846546809,
+            "unit": "ns",
+            "range": "± 1.3280012324993575"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 9.474649851520857,
+            "unit": "ns",
+            "range": "± 0.10672566782112067"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 32.50522313515345,
+            "unit": "ns",
+            "range": "± 0.5010019168314033"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 19.88643644253413,
+            "unit": "ns",
+            "range": "± 0.15703952750969974"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 19.742077151934307,
+            "unit": "ns",
+            "range": "± 0.053075694169214614"
           }
         ]
       }
