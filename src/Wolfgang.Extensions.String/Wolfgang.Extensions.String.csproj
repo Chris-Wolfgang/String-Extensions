@@ -15,7 +15,7 @@
 		<PackageTags>string;strings;extensions;extension-methods;left;right;padcenter;camelcase;kebabcase;pascalcase;snakecase;titlecase;dotnet;netstandard</PackageTags>
 		<PackageProjectUrl>https://github.com/Chris-Wolfgang/String-Extensions</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Chris-Wolfgang/String-Extensions.git</RepositoryUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReadmeFile>PACKAGE.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -54,7 +54,7 @@
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
-	  <None Include="..\..\README.md">
+	  <None Include="PACKAGE.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
