@@ -9,7 +9,7 @@
 
 ## Decision
 
-`Left(this string? s, int length)` and `Right(this string? s, int length)` return `null` for a `null` input and clamp `length` to the string's length. Their signatures are `string?` in and out, so nullable flow analysis follows the value through. `PadCenter` and `ToCamelCase` / `ToKebabCase` / `ToPascalCase` / `ToSnakeCase` / `ToTitleCase` throw `ArgumentNullException` with `ParamName` `"s"`, and their receiver is a non-nullable `string`. (Two gaps against this decision are being fixed under #257: `PadCenter`'s receiver was annotated `string?`, and `ToTitleCase` let `TextInfo` throw with `ParamName` `"str"`.) `Left`, `Right` and `PadCenter` throw `ArgumentOutOfRangeException` for a negative length or width; `Left` and `Right` check the length before the `null` test, so a negative length is reported even for a `null` string.
+`Left(this string? s, int length)` and `Right(this string? s, int length)` return `null` for a `null` input and clamp `length` to the string's length. Their signatures are `string?` in and out, so nullable flow analysis follows the value through. `PadCenter` and `ToCamelCase` / `ToKebabCase` / `ToPascalCase` / `ToSnakeCase` / `ToTitleCase` throw `ArgumentNullException` with `ParamName` `"s"`, and their receiver is a non-nullable `string`. `Left`, `Right` and `PadCenter` throw `ArgumentOutOfRangeException` for a negative length or width; `Left` and `Right` check the length before the `null` test, so a negative length is reported even for a `null` string.
 
 ## Consequences
 
