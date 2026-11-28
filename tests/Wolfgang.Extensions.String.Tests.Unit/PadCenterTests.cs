@@ -7,12 +7,11 @@ public class PadCenterTests
 {
 
     [Fact]
-    public void PadCenter_string_int_when_passed_null_string_throws_ArgumentNullException()
+    public void PadCenter_string_int_when_passed_null_string_returns_totalWidth_spaces()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(10));
-        Assert.Equal("s", exception.ParamName);
+        Assert.Equal(new string(' ', 10), sut.PadCenter(10));
     }
 
 
@@ -29,12 +28,12 @@ public class PadCenterTests
 
 
     [Fact]
-    public void PadCenter_string_int_when_passed_null_string_and_totalWidth_less_than_0_throws_ArgumentNullException_on_first_argument()
+    public void PadCenter_string_int_when_passed_null_string_and_totalWidth_less_than_0_throws_ArgumentOutOfRangeException()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(-1));
-        Assert.Equal("s", exception.ParamName);
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => sut.PadCenter(-1));
+        Assert.Equal("totalWidth", exception.ParamName);
     }
 
 
@@ -166,12 +165,11 @@ public class PadCenterTests
 
 
     [Fact]
-    public void PadCenter_string_int_char_when_passed_null_string_throws_ArgumentNullException()
+    public void PadCenter_string_int_char_when_passed_null_string_returns_totalWidth_padding_characters()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(10, '-'));
-        Assert.Equal("s", exception.ParamName);
+        Assert.Equal("----------", sut.PadCenter(10, '-'));
     }
 
 
@@ -188,12 +186,12 @@ public class PadCenterTests
 
 
     [Fact]
-    public void PadCenter_string_int_char_when_passed_null_string_and_totalWidth_less_than_0_throws_ArgumentNullException_on_first_argument()
+    public void PadCenter_string_int_char_when_passed_null_string_and_totalWidth_less_than_0_throws_ArgumentOutOfRangeException()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.PadCenter(-1, '-'));
-        Assert.Equal("s", exception.ParamName);
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => sut.PadCenter(-1, '-'));
+        Assert.Equal("totalWidth", exception.ParamName);
     }
 
 

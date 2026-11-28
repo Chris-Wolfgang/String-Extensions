@@ -9,12 +9,11 @@ public class ToTitleCaseTests
 
 
     [Fact]
-    public void ToTitleCase_when_passed_null_throws_ArgumentNullException()
+    public void ToTitleCase_when_passed_null_returns_null()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.ToTitleCase());
-        Assert.Equal("s", exception.ParamName);
+        Assert.Null(sut.ToTitleCase());
     }
 
 

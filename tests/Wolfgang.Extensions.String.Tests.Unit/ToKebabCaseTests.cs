@@ -8,12 +8,11 @@ public class ToKebabCaseTests
 
 
     [Fact]
-    public void ToKebabCase_when_passed_null_throws_ArgumentNullException()
+    public void ToKebabCase_when_passed_null_returns_null()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.ToKebabCase());
-        Assert.Equal("s", exception.ParamName);
+        Assert.Null(sut.ToKebabCase());
     }
 
 

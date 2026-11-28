@@ -65,45 +65,85 @@ public class CaseConversionOptionsTests
 
 
     [Fact]
-    public void ToCamelCase_when_passed_null_string_and_options_throws_ArgumentNullException()
+    public void ToCamelCase_when_passed_null_string_and_options_returns_null()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.ToCamelCase(new CaseConversionOptions()));
-        Assert.Equal("s", exception.ParamName);
+        Assert.Null(sut.ToCamelCase(new CaseConversionOptions()));
     }
 
 
 
     [Fact]
-    public void ToKebabCase_when_passed_null_string_and_options_throws_ArgumentNullException()
+    public void ToCamelCase_when_passed_null_string_and_null_options_throws_ArgumentNullException_for_options()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.ToKebabCase(new CaseConversionOptions()));
-        Assert.Equal("s", exception.ParamName);
+        var exception = Assert.Throws<ArgumentNullException>(() => sut.ToCamelCase(null!));
+        Assert.Equal("options", exception.ParamName);
     }
 
 
 
     [Fact]
-    public void ToPascalCase_when_passed_null_string_and_options_throws_ArgumentNullException()
+    public void ToKebabCase_when_passed_null_string_and_options_returns_null()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.ToPascalCase(new CaseConversionOptions()));
-        Assert.Equal("s", exception.ParamName);
+        Assert.Null(sut.ToKebabCase(new CaseConversionOptions()));
     }
 
 
 
     [Fact]
-    public void ToSnakeCase_when_passed_null_string_and_options_throws_ArgumentNullException()
+    public void ToKebabCase_when_passed_null_string_and_null_options_throws_ArgumentNullException_for_options()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.ToSnakeCase(new CaseConversionOptions()));
-        Assert.Equal("s", exception.ParamName);
+        var exception = Assert.Throws<ArgumentNullException>(() => sut.ToKebabCase(null!));
+        Assert.Equal("options", exception.ParamName);
+    }
+
+
+
+    [Fact]
+    public void ToPascalCase_when_passed_null_string_and_options_returns_null()
+    {
+        string? sut = null;
+
+        Assert.Null(sut.ToPascalCase(new CaseConversionOptions()));
+    }
+
+
+
+    [Fact]
+    public void ToPascalCase_when_passed_null_string_and_null_options_throws_ArgumentNullException_for_options()
+    {
+        string? sut = null;
+
+        var exception = Assert.Throws<ArgumentNullException>(() => sut.ToPascalCase(null!));
+        Assert.Equal("options", exception.ParamName);
+    }
+
+
+
+    [Fact]
+    public void ToSnakeCase_when_passed_null_string_and_options_returns_null()
+    {
+        string? sut = null;
+
+        Assert.Null(sut.ToSnakeCase(new CaseConversionOptions()));
+    }
+
+
+
+    [Fact]
+    public void ToSnakeCase_when_passed_null_string_and_null_options_throws_ArgumentNullException_for_options()
+    {
+        string? sut = null;
+
+        var exception = Assert.Throws<ArgumentNullException>(() => sut.ToSnakeCase(null!));
+        Assert.Equal("options", exception.ParamName);
     }
 
 

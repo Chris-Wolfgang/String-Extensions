@@ -1,7 +1,7 @@
 # 0005. `Left` / `Right` accept `null`; `PadCenter` and the case conversions reject it
 
 - **Date:** 2026-10-23 (records the behaviour shipped since 0.1.0)
-- **Status:** Accepted
+- **Status:** Superseded by [ADR-0009](0009-null-in-null-out.md)
 
 ## Context
 
