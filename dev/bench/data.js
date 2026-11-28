@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1795790826535,
+  "lastUpdate": 1795836733656,
   "repoUrl": "https://github.com/Chris-Wolfgang/String-Extensions",
   "entries": {
     "BenchmarkDotNet": [
@@ -1536,6 +1536,102 @@ window.BENCHMARK_DATA = {
             "value": 19.742077151934307,
             "unit": "ns",
             "range": "± 0.053075694169214614"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "210299580+Chris-Wolfgang@users.noreply.github.com",
+            "name": "Chris Wolfgang",
+            "username": "Chris-Wolfgang"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bec3aba6e163aca4487b6da88fd12ac8787f1914",
+          "message": "docs: document UTF-16 code-unit counting and the limits of invariant casing (#385) (#402)\n\n- XML <remarks> on Left, Right and both PadCenter overloads: they count\n  UTF-16 code units; a surrogate pair or a combining mark can be split, and\n  totalWidth is not a display width.\n- The four identifier conversions' casing paragraph: U+0130 / U+0131 are left\n  unchanged, and mappings follow the runtime's Unicode data.\n- README, docfx introduction and ADR 0004 (new consequence) say the same.\n- Tests.Snapshots and Tests.Fuzz csproj comments no longer claim the same\n  output or code on every target.\n\nCloses #385\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>",
+          "timestamp": "2026-11-27T22:19:04-05:00",
+          "tree_id": "2bed23f00db16123d176329ed8c5f1bf65325def",
+          "url": "https://github.com/Chris-Wolfgang/String-Extensions/commit/bec3aba6e163aca4487b6da88fd12ac8787f1914"
+        },
+        "date": 1795836732248,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToTitleCase",
+            "value": 203.60067900021872,
+            "unit": "ns",
+            "range": "± 1.2350944169727924"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToCamelCase",
+            "value": 114.26633036136627,
+            "unit": "ns",
+            "range": "± 0.7654864578051568"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToPascalCase",
+            "value": 112.32732009887695,
+            "unit": "ns",
+            "range": "± 0.9113893126749193"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToKebabCase",
+            "value": 108.96687523523967,
+            "unit": "ns",
+            "range": "± 0.4778125726412536"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.CasingBenchmarks.ToSnakeCase",
+            "value": 122.4578906695048,
+            "unit": "ns",
+            "range": "± 0.17316702925835598"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Left",
+            "value": 6.269833952188492,
+            "unit": "ns",
+            "range": "± 0.13503430130732363"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Left",
+            "value": 7.515773569544156,
+            "unit": "ns",
+            "range": "± 0.1634041323387943"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Substring_Right",
+            "value": 6.358182167013486,
+            "unit": "ns",
+            "range": "± 0.18593309415091108"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.LeftRightBenchmarks.Right",
+            "value": 8.468778491020203,
+            "unit": "ns",
+            "range": "± 0.05393439278343898"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.Manual_PadLeftPadRight",
+            "value": 26.08409008383751,
+            "unit": "ns",
+            "range": "± 0.2269620082611228"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter",
+            "value": 14.798573523759842,
+            "unit": "ns",
+            "range": "± 0.15296416125058582"
+          },
+          {
+            "name": "Wolfgang.Extensions.String.Benchmarks.PadCenterBenchmarks.PadCenter_WithChar",
+            "value": 14.984330038229624,
+            "unit": "ns",
+            "range": "± 0.14859957750136396"
           }
         ]
       }
