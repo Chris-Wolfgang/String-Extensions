@@ -2,7 +2,9 @@
 
   <!-- FsCheck property-based fuzz tests (#100). PR CI runs each property at FsCheck's default
        100 cases; the weekly fuzz.yaml run sets FSCHECK_MAX_TESTS=100000. Single TFM: the
-       properties exercise the library's behaviour, which is the same code on every target. -->
+       properties pin the library's behaviour on net10.0 only. The other targets are not the same
+       code everywhere (PadCenter has a separate .NET 8+ path, and casing follows each runtime's
+       Unicode data); the unit tests run the full matrix. -->
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
