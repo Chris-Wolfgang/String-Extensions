@@ -9,23 +9,32 @@ public class SplitWordsTests
 
 
     [Fact]
-    public void SplitWords_when_passed_null_throws_ArgumentNullException_before_it_is_enumerated()
+    public void SplitWords_when_passed_null_returns_an_empty_sequence()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.SplitWords());
-        Assert.Equal("s", exception.ParamName);
+        Assert.Empty(sut.SplitWords());
     }
 
 
 
     [Fact]
-    public void SplitWords_when_passed_null_string_and_options_throws_ArgumentNullException_before_it_is_enumerated()
+    public void SplitWords_when_passed_null_string_and_options_returns_an_empty_sequence()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.SplitWords(new CaseConversionOptions()));
-        Assert.Equal("s", exception.ParamName);
+        Assert.Empty(sut.SplitWords(new CaseConversionOptions()));
+    }
+
+
+
+    [Fact]
+    public void SplitWords_when_passed_null_string_and_null_options_throws_ArgumentNullException_for_options()
+    {
+        string? sut = null;
+
+        var exception = Assert.Throws<ArgumentNullException>(() => sut.SplitWords(null!));
+        Assert.Equal("options", exception.ParamName);
     }
 
 

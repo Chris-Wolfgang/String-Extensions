@@ -23,7 +23,7 @@ Throws<ArgumentOutOfRangeException>("Right negative", () => "x".Right(-1));
 Check("PadCenter", string.Equals("Hello".PadCenter(11), "   Hello   ", StringComparison.Ordinal));
 Check("PadCenter uneven", string.Equals("Hello".PadCenter(8, '-'), "-Hello--", StringComparison.Ordinal));
 Check("PadCenter narrower", string.Equals("Hello".PadCenter(3), "Hello", StringComparison.Ordinal));
-Throws<ArgumentNullException>("PadCenter null", () => ((string)null!).PadCenter(4));
+Check("PadCenter null", string.Equals(((string?)null).PadCenter(4), "    ", StringComparison.Ordinal));
 Throws<ArgumentOutOfRangeException>("PadCenter negative", () => "x".PadCenter(-1, '*'));
 
 // Case conversions.
@@ -33,11 +33,11 @@ Check("ToKebabCase", string.Equals(input.ToKebabCase(), "user-login-count", Stri
 Check("ToPascalCase", string.Equals(input.ToPascalCase(), "UserLoginCount", StringComparison.Ordinal));
 Check("ToSnakeCase", string.Equals(input.ToSnakeCase(), "user_login_count", StringComparison.Ordinal));
 Check("ToTitleCase", string.Equals("user login count".ToTitleCase(), "User Login Count", StringComparison.Ordinal));
-Throws<ArgumentNullException>("ToCamelCase null", () => ((string)null!).ToCamelCase());
-Throws<ArgumentNullException>("ToKebabCase null", () => ((string)null!).ToKebabCase());
-Throws<ArgumentNullException>("ToPascalCase null", () => ((string)null!).ToPascalCase());
-Throws<ArgumentNullException>("ToSnakeCase null", () => ((string)null!).ToSnakeCase());
-Throws<ArgumentNullException>("ToTitleCase null", () => ((string)null!).ToTitleCase());
+Check("ToCamelCase null", ((string?)null).ToCamelCase() is null);
+Check("ToKebabCase null", ((string?)null).ToKebabCase() is null);
+Check("ToPascalCase null", ((string?)null).ToPascalCase() is null);
+Check("ToSnakeCase null", ((string?)null).ToSnakeCase() is null);
+Check("ToTitleCase null", ((string?)null).ToTitleCase() is null);
 
 // Case conversions with options, and SplitWords.
 var keep = new CaseConversionOptions
@@ -58,7 +58,7 @@ Throws<ArgumentNullException>("ToCamelCase null options", () => "x".ToCamelCase(
 Throws<ArgumentNullException>("ToKebabCase null options", () => "x".ToKebabCase(null!));
 Throws<ArgumentNullException>("ToPascalCase null options", () => "x".ToPascalCase(null!));
 Throws<ArgumentNullException>("ToSnakeCase null options", () => "x".ToSnakeCase(null!));
-Throws<ArgumentNullException>("SplitWords null", () => string.Concat(((string)null!).SplitWords()));
+Check("SplitWords null", !((string?)null).SplitWords().Any());
 Throws<ArgumentNullException>("SplitWords null options", () => string.Concat("x".SplitWords(null!)));
 Throws<InvalidOperationException>("ToSnakeCase splitter null", () => "x".ToSnakeCase(new CaseConversionOptions { WordSplitter = _ => null! }));
 

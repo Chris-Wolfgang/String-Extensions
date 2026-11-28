@@ -89,7 +89,7 @@ authoritative list (kept in sync with source on every release), see the
 | `SplitWords(this string)` | `IEnumerable<string>` | The words of the string by the rules the conversions use, in order and in their original casing. |
 | `SplitWords(this string, CaseConversionOptions)` | `IEnumerable<string>` | The words of the string by the rules in the options. |
 
-`Left` / `Right` clamp a length longer than the string and are null-tolerant. `PadCenter` and the `ToXxxCase` methods throw `ArgumentNullException` for a `null` input. `Left`, `Right` and `PadCenter` throw `ArgumentOutOfRangeException` for a negative length or width; `Left` and `Right` check the length first, so a negative length throws even for a `null` string.
+`Left` / `Right` clamp a length longer than the string. Every method accepts a `null` string: `Left`, `Right` and the `ToXxxCase` methods return `null`, `PadCenter` returns `totalWidth` padding characters, and `SplitWords` returns an empty sequence. `Left`, `Right` and `PadCenter` throw `ArgumentOutOfRangeException` for a negative length or width, even for a `null` string, and a `null` `CaseConversionOptions` throws `ArgumentNullException`.
 
 The four `ToXxxCase` identifier conversions split the string into words by one shared rule and differ only in how they case and join the words:
 

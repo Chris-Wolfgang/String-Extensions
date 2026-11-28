@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="length"/> is less than zero.
     /// </exception>
+    [return: NotNullIfNotNull(nameof(s))]
     public static string? Left(this string? s, int length)
     {
         if (length < 0)
@@ -63,7 +65,8 @@ public static class StringExtensions
     /// </param>
     /// <returns>
     /// A new string that is equivalent to <paramref name="s"/>, but center-aligned and padded on both sides with spaces.
-    /// When the padding is uneven, the extra character is placed on the right.
+    /// When the padding is uneven, the extra character is placed on the right. When <paramref name="s"/> is
+    /// <see langword="null"/>, a string of <paramref name="totalWidth"/> spaces.
     /// </returns>
     /// <example>
     /// <code>
@@ -74,13 +77,10 @@ public static class StringExtensions
     /// var unchanged = "Hello".PadCenter(3);     // "Hello" (already at least totalWidth wide: the same instance is returned)
     /// </code>
     /// </example>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> is <see langword="null"/>.
-    /// </exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="totalWidth"/> is less than zero.
     /// </exception>
-    public static string PadCenter(this string s, int totalWidth)
+    public static string PadCenter(this string? s, int totalWidth)
         => PadCenter(s, totalWidth, ' ');
 
 
@@ -97,6 +97,8 @@ public static class StringExtensions
     /// <returns>
     /// A new string that is equivalent to <paramref name="s"/>, but center-aligned and padded on both sides with the
     /// <paramref name="paddingChar"/> character. When the padding is uneven, the extra character is placed on the right.
+    /// When <paramref name="s"/> is <see langword="null"/>, a string of <paramref name="totalWidth"/>
+    /// <paramref name="paddingChar"/> characters.
     /// </returns>
     /// <example>
     /// <code>
@@ -106,22 +108,19 @@ public static class StringExtensions
     /// var uneven = "Hello".PadCenter(8, '*');    // "*Hello**"
     /// </code>
     /// </example>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> is <see langword="null"/>.
-    /// </exception>
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="totalWidth"/> is less than zero.
     /// </exception>
-    public static string PadCenter(this string s, int totalWidth, char paddingChar)
+    public static string PadCenter(this string? s, int totalWidth, char paddingChar)
     {
-        if (s == null)
-        {
-            throw new ArgumentNullException(nameof(s));
-        }
-
         if (totalWidth < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(totalWidth));
+        }
+
+        if (s == null)
+        {
+            return new string(paddingChar, totalWidth);
         }
 
         if (totalWidth <= s.Length)
@@ -179,6 +178,7 @@ public static class StringExtensions
     /// <exception cref="ArgumentOutOfRangeException">
     /// <paramref name="length"/> is less than zero.
     /// </exception>
+    [return: NotNullIfNotNull(nameof(s))]
     public static string? Right(this string? s, int length)
     {
         if (length < 0)
@@ -204,7 +204,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
-    /// The specified string in camel case. It is empty when the string has no letters or digits.
+    /// <see langword="null"/> when <paramref name="s"/> is <see langword="null"/>; otherwise, the specified string in camel case. It is empty when the string has no letters or digits.
     /// </returns>
     /// <remarks>
     /// <para>
@@ -235,12 +235,13 @@ public static class StringExtensions
     /// // fromIdentifier == "userLoginCount"
     /// </code>
     /// </example>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> is <see langword="null"/>.
-    /// </exception>
-    public static string ToCamelCase(this string s)
+    [return: NotNullIfNotNull(nameof(s))]
+    public static string? ToCamelCase(this string? s)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
+        if (s is null)
+        {
+            return null;
+        }
 
         return JoinWords(s, NoDelimiter, WordCasing.CapitalizedAfterFirst);
     }
@@ -253,7 +254,7 @@ public static class StringExtensions
     /// <param name="s">The string to convert.</param>
     /// <param name="options">How the words of the string are found, and how an acronym is cased.</param>
     /// <returns>
-    /// The specified string in camel case. It is empty when no word is found.
+    /// <see langword="null"/> when <paramref name="s"/> is <see langword="null"/>; otherwise, the specified string in camel case. It is empty when no word is found.
     /// </returns>
     /// <remarks>
     /// With a new <see cref="CaseConversionOptions"/> the result is the same as
@@ -271,15 +272,20 @@ public static class StringExtensions
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> or <paramref name="options"/> is <see langword="null"/>.
+    /// <paramref name="options"/> is <see langword="null"/>.
     /// </exception>
     /// <exception cref="InvalidOperationException">
     /// <see cref="CaseConversionOptions.WordSplitter"/> returned <see langword="null"/>.
     /// </exception>
-    public static string ToCamelCase(this string s, CaseConversionOptions options)
+    [return: NotNullIfNotNull(nameof(s))]
+    public static string? ToCamelCase(this string? s, CaseConversionOptions options)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
         _ = options ?? throw new ArgumentNullException(nameof(options));
+
+        if (s is null)
+        {
+            return null;
+        }
 
         return FormatWords(FindWords(s, options), NoDelimiter, WordCasing.CapitalizedAfterFirst, options.Acronyms);
     }
@@ -291,7 +297,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
-    /// The specified string in kebab case. It is empty when the string has no letters or digits.
+    /// <see langword="null"/> when <paramref name="s"/> is <see langword="null"/>; otherwise, the specified string in kebab case. It is empty when the string has no letters or digits.
     /// </returns>
     /// <remarks>
     /// <para>
@@ -322,12 +328,13 @@ public static class StringExtensions
     /// // fromIdentifier == "user-login-count"
     /// </code>
     /// </example>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> is <see langword="null"/>.
-    /// </exception>
-    public static string ToKebabCase(this string s)
+    [return: NotNullIfNotNull(nameof(s))]
+    public static string? ToKebabCase(this string? s)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
+        if (s is null)
+        {
+            return null;
+        }
 
         return JoinWords(s, '-', WordCasing.Lower);
     }
@@ -340,7 +347,7 @@ public static class StringExtensions
     /// <param name="s">The string to convert.</param>
     /// <param name="options">How the words of the string are found, and how an acronym is cased.</param>
     /// <returns>
-    /// The specified string in kebab case. It is empty when no word is found.
+    /// <see langword="null"/> when <paramref name="s"/> is <see langword="null"/>; otherwise, the specified string in kebab case. It is empty when no word is found.
     /// </returns>
     /// <remarks>
     /// With a new <see cref="CaseConversionOptions"/> the result is the same as
@@ -358,15 +365,20 @@ public static class StringExtensions
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> or <paramref name="options"/> is <see langword="null"/>.
+    /// <paramref name="options"/> is <see langword="null"/>.
     /// </exception>
     /// <exception cref="InvalidOperationException">
     /// <see cref="CaseConversionOptions.WordSplitter"/> returned <see langword="null"/>.
     /// </exception>
-    public static string ToKebabCase(this string s, CaseConversionOptions options)
+    [return: NotNullIfNotNull(nameof(s))]
+    public static string? ToKebabCase(this string? s, CaseConversionOptions options)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
         _ = options ?? throw new ArgumentNullException(nameof(options));
+
+        if (s is null)
+        {
+            return null;
+        }
 
         return FormatWords(FindWords(s, options), '-', WordCasing.Lower, options.Acronyms);
     }
@@ -379,7 +391,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
-    /// The specified string in Pascal case. It is empty when the string has no letters or digits.
+    /// <see langword="null"/> when <paramref name="s"/> is <see langword="null"/>; otherwise, the specified string in Pascal case. It is empty when the string has no letters or digits.
     /// </returns>
     /// <remarks>
     /// <para>
@@ -410,12 +422,13 @@ public static class StringExtensions
     /// // fromIdentifier == "UserLoginCount"
     /// </code>
     /// </example>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> is <see langword="null"/>.
-    /// </exception>
-    public static string ToPascalCase(this string s)
+    [return: NotNullIfNotNull(nameof(s))]
+    public static string? ToPascalCase(this string? s)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
+        if (s is null)
+        {
+            return null;
+        }
 
         return JoinWords(s, NoDelimiter, WordCasing.Capitalized);
     }
@@ -428,7 +441,7 @@ public static class StringExtensions
     /// <param name="s">The string to convert.</param>
     /// <param name="options">How the words of the string are found, and how an acronym is cased.</param>
     /// <returns>
-    /// The specified string in Pascal case. It is empty when no word is found.
+    /// <see langword="null"/> when <paramref name="s"/> is <see langword="null"/>; otherwise, the specified string in Pascal case. It is empty when no word is found.
     /// </returns>
     /// <remarks>
     /// With a new <see cref="CaseConversionOptions"/> the result is the same as
@@ -446,15 +459,20 @@ public static class StringExtensions
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> or <paramref name="options"/> is <see langword="null"/>.
+    /// <paramref name="options"/> is <see langword="null"/>.
     /// </exception>
     /// <exception cref="InvalidOperationException">
     /// <see cref="CaseConversionOptions.WordSplitter"/> returned <see langword="null"/>.
     /// </exception>
-    public static string ToPascalCase(this string s, CaseConversionOptions options)
+    [return: NotNullIfNotNull(nameof(s))]
+    public static string? ToPascalCase(this string? s, CaseConversionOptions options)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
         _ = options ?? throw new ArgumentNullException(nameof(options));
+
+        if (s is null)
+        {
+            return null;
+        }
 
         return FormatWords(FindWords(s, options), NoDelimiter, WordCasing.Capitalized, options.Acronyms);
     }
@@ -466,7 +484,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
-    /// The specified string in snake case. It is empty when the string has no letters or digits.
+    /// <see langword="null"/> when <paramref name="s"/> is <see langword="null"/>; otherwise, the specified string in snake case. It is empty when the string has no letters or digits.
     /// </returns>
     /// <remarks>
     /// <para>
@@ -497,12 +515,13 @@ public static class StringExtensions
     /// // fromIdentifier == "user_login_count"
     /// </code>
     /// </example>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> is <see langword="null"/>.
-    /// </exception>
-    public static string ToSnakeCase(this string s)
+    [return: NotNullIfNotNull(nameof(s))]
+    public static string? ToSnakeCase(this string? s)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
+        if (s is null)
+        {
+            return null;
+        }
 
         return JoinWords(s, '_', WordCasing.Lower);
     }
@@ -515,7 +534,7 @@ public static class StringExtensions
     /// <param name="s">The string to convert.</param>
     /// <param name="options">How the words of the string are found, and how an acronym is cased.</param>
     /// <returns>
-    /// The specified string in snake case. It is empty when no word is found.
+    /// <see langword="null"/> when <paramref name="s"/> is <see langword="null"/>; otherwise, the specified string in snake case. It is empty when no word is found.
     /// </returns>
     /// <remarks>
     /// With a new <see cref="CaseConversionOptions"/> the result is the same as
@@ -533,15 +552,20 @@ public static class StringExtensions
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> or <paramref name="options"/> is <see langword="null"/>.
+    /// <paramref name="options"/> is <see langword="null"/>.
     /// </exception>
     /// <exception cref="InvalidOperationException">
     /// <see cref="CaseConversionOptions.WordSplitter"/> returned <see langword="null"/>.
     /// </exception>
-    public static string ToSnakeCase(this string s, CaseConversionOptions options)
+    [return: NotNullIfNotNull(nameof(s))]
+    public static string? ToSnakeCase(this string? s, CaseConversionOptions options)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
         _ = options ?? throw new ArgumentNullException(nameof(options));
+
+        if (s is null)
+        {
+            return null;
+        }
 
         return FormatWords(FindWords(s, options), '_', WordCasing.Lower, options.Acronyms);
     }
@@ -553,7 +577,7 @@ public static class StringExtensions
     /// </summary>
     /// <param name="s">The string to convert.</param>
     /// <returns>
-    /// The specified string in title case.
+    /// <see langword="null"/> when <paramref name="s"/> is <see langword="null"/>; otherwise, the specified string in title case.
     /// </returns>
     /// <remarks>
     /// Delegates to <see cref="TextInfo.ToTitleCase"/> using <see cref="CultureInfo.CurrentCulture"/>.
@@ -568,12 +592,13 @@ public static class StringExtensions
     /// // title == "A Sample String For Processing!" (under en-US)
     /// </code>
     /// </example>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> is <see langword="null"/>.
-    /// </exception>
-    public static string ToTitleCase(this string s)
+    [return: NotNullIfNotNull(nameof(s))]
+    public static string? ToTitleCase(this string? s)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
+        if (s is null)
+        {
+            return null;
+        }
 
         return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s);
     }
@@ -588,7 +613,7 @@ public static class StringExtensions
     /// <param name="s">The string to split.</param>
     /// <returns>
     /// The words in the order they appear, with the casing they have in <paramref name="s"/>. The
-    /// sequence is produced as it is enumerated.
+    /// sequence is produced as it is enumerated. It is empty when <paramref name="s"/> is <see langword="null"/>.
     /// </returns>
     /// <example>
     /// <code>
@@ -599,12 +624,12 @@ public static class StringExtensions
     /// // words == ["SKU", "Code", "for", "user", "login"]
     /// </code>
     /// </example>
-    /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> is <see langword="null"/>.
-    /// </exception>
-    public static IEnumerable<string> SplitWords(this string s)
+    public static IEnumerable<string> SplitWords(this string? s)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
+        if (s is null)
+        {
+            return Enumerable.Empty<string>();
+        }
 
         return SplitWordsIterator(s, PunctuationHandling.Drop, WordBoundaries.All);
     }
@@ -617,7 +642,8 @@ public static class StringExtensions
     /// <param name="s">The string to split.</param>
     /// <param name="options">How the words of the string are found.</param>
     /// <returns>
-    /// The words in the order they appear, with the casing they have in <paramref name="s"/>. When
+    /// The words in the order they appear, with the casing they have in <paramref name="s"/>, or an empty
+    /// sequence when <paramref name="s"/> is <see langword="null"/>. When
     /// <see cref="CaseConversionOptions.WordSplitter"/> is set, the result is what that function returns,
     /// without its <see langword="null"/> and empty words.
     /// </returns>
@@ -633,15 +659,19 @@ public static class StringExtensions
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
-    /// <paramref name="s"/> or <paramref name="options"/> is <see langword="null"/>.
+    /// <paramref name="options"/> is <see langword="null"/>.
     /// </exception>
     /// <exception cref="InvalidOperationException">
     /// <see cref="CaseConversionOptions.WordSplitter"/> returned <see langword="null"/>.
     /// </exception>
-    public static IEnumerable<string> SplitWords(this string s, CaseConversionOptions options)
+    public static IEnumerable<string> SplitWords(this string? s, CaseConversionOptions options)
     {
-        _ = s ?? throw new ArgumentNullException(nameof(s));
         _ = options ?? throw new ArgumentNullException(nameof(options));
+
+        if (s is null)
+        {
+            return Enumerable.Empty<string>();
+        }
 
         return WithoutEmptyWords(FindWords(s, options));
     }

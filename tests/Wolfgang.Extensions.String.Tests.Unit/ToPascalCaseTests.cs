@@ -8,12 +8,11 @@ public class ToPascalCaseTests
 
 
     [Fact]
-    public void ToPascalCase_when_passed_null_throws_ArgumentNullException()
+    public void ToPascalCase_when_passed_null_returns_null()
     {
         string? sut = null;
 
-        var exception = Assert.Throws<ArgumentNullException>(() => sut!.ToPascalCase());
-        Assert.Equal("s", exception.ParamName);
+        Assert.Null(sut.ToPascalCase());
     }
 
 
