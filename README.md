@@ -78,7 +78,7 @@ authoritative list (kept in sync with source on every release), see the
 |--------|---------|-------------|
 | `Left(this string? s, int length)` | `string?` | Returns the leftmost `length` characters. Returns the whole string when it is shorter than `length`; returns `null` for a `null` input. |
 | `Right(this string? s, int length)` | `string?` | Returns the rightmost `length` characters. Returns the whole string when it is shorter than `length`; returns `null` for a `null` input. |
-| `PadCenter(this string, int totalWidth)` | `string` | Centers the string within `totalWidth`, padding both sides with spaces. When padding is uneven the extra character goes on the right. Returns the original string when it is already at least `totalWidth` long. |
+| `PadCenter(this string, int totalWidth)` | `string` | Centers the string within `totalWidth`, padding both sides with spaces. When padding is uneven the extra character goes on the right. Returns the original string instance (no copy) when it is already at least `totalWidth` long. |
 | `PadCenter(this string, int totalWidth, char paddingChar)` | `string` | As above, padding with `paddingChar` instead of spaces. |
 | `ToCamelCase(this string)` | `string` | Converts to `camelCase`: the words run together, the first in lower case and each later one capitalized. `"User login-count"` and `"UserLoginCount"` are both `userLoginCount`. |
 | `ToKebabCase(this string)` | `string` | Converts to `kebab-case`: the words in lower case with one dash between them. `"UserLoginCount"` and `" user  login_count! "` are both `user-login-count`. |
@@ -89,7 +89,7 @@ authoritative list (kept in sync with source on every release), see the
 | `SplitWords(this string)` | `IEnumerable<string>` | The words of the string by the rules the conversions use, in order and in their original casing. |
 | `SplitWords(this string, CaseConversionOptions)` | `IEnumerable<string>` | The words of the string by the rules in the options. |
 
-`Left` / `Right` are length-clamping and null-tolerant. `PadCenter` and the `ToXxxCase` methods throw `ArgumentNullException` for a `null` input; `PadCenter` throws `ArgumentOutOfRangeException` for a negative width.
+`Left` / `Right` clamp a length longer than the string and are null-tolerant. `PadCenter` and the `ToXxxCase` methods throw `ArgumentNullException` for a `null` input. `Left`, `Right` and `PadCenter` throw `ArgumentOutOfRangeException` for a negative length or width; `Left` and `Right` check the length first, so a negative length throws even for a `null` string.
 
 The four `ToXxxCase` identifier conversions split the string into words by one shared rule and differ only in how they case and join the words:
 
@@ -97,6 +97,8 @@ The four `ToXxxCase` identifier conversions split the string into words by one s
 - An apostrophe is removed without ending the word: `"don't stop"` is the words `dont` and `stop`.
 - A word also starts at a case boundary inside an identifier. An acronym is one word and a digit stays with the word before it: `SKUCode` is `SKU` + `Code`, `Line2Qty` is `Line2` + `Qty`.
 - The result is empty when the string has no letters or digits.
+
+Every method counts UTF-16 code units (`char` values), not what is displayed: `Left` / `Right` can split a surrogate pair or a letter from its combining mark, and `PadCenter`'s width is not a display width. Invariant casing leaves letters with no invariant mapping (`İ` U+0130, `ı` U+0131) unchanged and follows the runtime's Unicode data, so a few letters convert differently on .NET Framework and on .NET.
 
 ### Options
 

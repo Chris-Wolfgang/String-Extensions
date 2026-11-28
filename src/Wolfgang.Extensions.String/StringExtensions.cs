@@ -14,6 +14,10 @@ public static class StringExtensions
     /// <summary>
     /// Returns the leftmost <paramref name="length"/> characters of the string.
     /// </summary>
+    /// <remarks>
+    /// Counts UTF-16 code units (<see cref="char"/> values), not user-perceived characters: a surrogate pair
+    /// (such as an emoji) or a base letter followed by a combining mark can be split.
+    /// </remarks>
     /// <param name="s">The instance to retrieve from.</param>
     /// <param name="length">The number of characters to retrieve.</param>
     /// <returns>
@@ -56,10 +60,15 @@ public static class StringExtensions
     /// <summary>
     /// Returns a new string of a specified length in which the current string is centered with spaces padding either side.
     /// </summary>
+    /// <remarks>
+    /// <paramref name="totalWidth"/> counts UTF-16 code units (<see cref="char"/> values), not display
+    /// width: a surrogate pair or a letter with a combining mark counts as two, and a double-width CJK
+    /// character counts as one.
+    /// </remarks>
     /// <param name="s">The string to center.</param>
     /// <param name="totalWidth">
-    /// The number of characters in the resulting string. If <paramref name="totalWidth"/> is less than the length of
-    /// <paramref name="s"/>, the original string is returned unchanged.
+    /// The number of characters in the resulting string. If <paramref name="totalWidth"/> is less than or equal to the length of
+    /// <paramref name="s"/>, the original string instance is returned unchanged.
     /// </param>
     /// <returns>
     /// A new string that is equivalent to <paramref name="s"/>, but center-aligned and padded on both sides with spaces.
@@ -71,7 +80,7 @@ public static class StringExtensions
     ///
     /// var centered = "Hello".PadCenter(11);     // "   Hello   "
     /// var uneven = "Hello".PadCenter(8);        // " Hello  " (the extra space goes on the right)
-    /// var unchanged = "Hello".PadCenter(3);     // "Hello" (already wider than totalWidth)
+    /// var unchanged = "Hello".PadCenter(3);     // "Hello" (already at least totalWidth wide: the same instance is returned)
     /// </code>
     /// </example>
     /// <exception cref="ArgumentNullException">
@@ -88,10 +97,15 @@ public static class StringExtensions
     /// <summary>
     /// Returns a new string of a specified length in which the current string is centered with a specified character padding either side.
     /// </summary>
+    /// <remarks>
+    /// <paramref name="totalWidth"/> counts UTF-16 code units (<see cref="char"/> values), not display
+    /// width: a surrogate pair or a letter with a combining mark counts as two, and a double-width CJK
+    /// character counts as one.
+    /// </remarks>
     /// <param name="s">The string to center.</param>
     /// <param name="totalWidth">
-    /// The number of characters in the resulting string. If <paramref name="totalWidth"/> is less than the length of
-    /// <paramref name="s"/>, the original string is returned unchanged.
+    /// The number of characters in the resulting string. If <paramref name="totalWidth"/> is less than or equal to the length of
+    /// <paramref name="s"/>, the original string instance is returned unchanged.
     /// </param>
     /// <param name="paddingChar">A Unicode padding character.</param>
     /// <returns>
@@ -124,7 +138,7 @@ public static class StringExtensions
             throw new ArgumentOutOfRangeException(nameof(totalWidth));
         }
 
-        if (totalWidth < s.Length)
+        if (totalWidth <= s.Length)
         {
             return s;
         }
@@ -159,6 +173,10 @@ public static class StringExtensions
     /// <summary>
     /// Returns the rightmost <paramref name="length"/> characters of the string.
     /// </summary>
+    /// <remarks>
+    /// Counts UTF-16 code units (<see cref="char"/> values), not user-perceived characters: a surrogate pair
+    /// (such as an emoji) or a base letter followed by a combining mark can be split.
+    /// </remarks>
     /// <param name="s">The instance to retrieve from.</param>
     /// <param name="length">The number of characters to retrieve.</param>
     /// <returns>
@@ -221,7 +239,9 @@ public static class StringExtensions
     /// </para>
     /// <para>
     /// Letters are cased one <see cref="char"/> at a time with the invariant culture, so the result does not
-    /// depend on the current culture.
+    /// depend on the current culture. A letter with no invariant mapping, such as U+0130 (capital I with dot
+    /// above) or U+0131 (small dotless i), is left as it is. The case mappings come from the runtime's Unicode
+    /// data, so a few letters (for example Georgian Mtavruli) convert differently on .NET Framework and on .NET.
     /// </para>
     /// </remarks>
     /// <example>
@@ -308,7 +328,9 @@ public static class StringExtensions
     /// </para>
     /// <para>
     /// Letters are cased one <see cref="char"/> at a time with the invariant culture, so the result does not
-    /// depend on the current culture.
+    /// depend on the current culture. A letter with no invariant mapping, such as U+0130 (capital I with dot
+    /// above) or U+0131 (small dotless i), is left as it is. The case mappings come from the runtime's Unicode
+    /// data, so a few letters (for example Georgian Mtavruli) convert differently on .NET Framework and on .NET.
     /// </para>
     /// </remarks>
     /// <example>
@@ -396,7 +418,9 @@ public static class StringExtensions
     /// </para>
     /// <para>
     /// Letters are cased one <see cref="char"/> at a time with the invariant culture, so the result does not
-    /// depend on the current culture.
+    /// depend on the current culture. A letter with no invariant mapping, such as U+0130 (capital I with dot
+    /// above) or U+0131 (small dotless i), is left as it is. The case mappings come from the runtime's Unicode
+    /// data, so a few letters (for example Georgian Mtavruli) convert differently on .NET Framework and on .NET.
     /// </para>
     /// </remarks>
     /// <example>
@@ -483,7 +507,9 @@ public static class StringExtensions
     /// </para>
     /// <para>
     /// Letters are cased one <see cref="char"/> at a time with the invariant culture, so the result does not
-    /// depend on the current culture.
+    /// depend on the current culture. A letter with no invariant mapping, such as U+0130 (capital I with dot
+    /// above) or U+0131 (small dotless i), is left as it is. The case mappings come from the runtime's Unicode
+    /// data, so a few letters (for example Georgian Mtavruli) convert differently on .NET Framework and on .NET.
     /// </para>
     /// </remarks>
     /// <example>

@@ -17,8 +17,8 @@ namespace Wolfgang.Extensions.String.Tests.Unit;
 /// <item><description><c>Left</c> / <c>Right</c> when <c>length</c> is at least the string's length (the
 /// same instance), when <c>length</c> is 0 (<see cref="string.Empty"/>), and for a <see langword="null"/>
 /// string.</description></item>
-/// <item><description><c>PadCenter</c> (both overloads) when <c>totalWidth</c> is less than the string's
-/// length (the same instance).</description></item>
+/// <item><description><c>PadCenter</c> (both overloads) when <c>totalWidth</c> is less than or equal to the
+/// string's length (the same instance).</description></item>
 /// </list>
 /// <para>
 /// One allocation: <c>PadCenter</c> that pads allocates exactly its result string on .NET 8 and later
@@ -106,6 +106,22 @@ public class ZeroAllocationTests
     public void PadCenter_string_int_char_when_totalWidth_is_less_than_length_allocates_zero_bytes()
     {
         AssertZeroAllocation(() => Value.PadCenter(3, '*'));
+    }
+
+
+
+    [Fact]
+    public void PadCenter_string_int_when_totalWidth_equals_length_allocates_zero_bytes()
+    {
+        AssertZeroAllocation(() => Value.PadCenter(Value.Length));
+    }
+
+
+
+    [Fact]
+    public void PadCenter_string_int_char_when_totalWidth_equals_length_allocates_zero_bytes()
+    {
+        AssertZeroAllocation(() => Value.PadCenter(Value.Length, '*'));
     }
 
 #if NET8_0_OR_GREATER

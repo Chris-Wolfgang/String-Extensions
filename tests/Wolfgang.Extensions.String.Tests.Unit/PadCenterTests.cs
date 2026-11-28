@@ -70,11 +70,11 @@ public class PadCenterTests
 
 
     [Fact]
-    public void PadCenter_string_int_when_passed_totalWidth_equals_string_length_returns_a_reference_to_a_new_string()
+    public void PadCenter_string_int_when_passed_totalWidth_equals_string_length_returns_a_reference_to_existing_string()
     {
         const string sut = "sample text";
 
-        Assert.NotSame(sut, sut.PadCenter(sut.Length));
+        Assert.Same(sut, sut.PadCenter(sut.Length));
     }
 
 
@@ -229,11 +229,11 @@ public class PadCenterTests
 
 
     [Fact]
-    public void PadCenter_string_int_char_when_passed_totalWidth_equals_string_length_returns_a_reference_to_a_new_string()
+    public void PadCenter_string_int_char_when_passed_totalWidth_equals_string_length_returns_a_reference_to_existing_string()
     {
         const string sut = "sample text";
 
-        Assert.NotSame(sut, sut.PadCenter(sut.Length, '-'));
+        Assert.Same(sut, sut.PadCenter(sut.Length, '-'));
     }
 
 
